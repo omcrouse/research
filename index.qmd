@@ -1,7 +1,7 @@
 ---
 title: "My Name is Orin Crouse"
 image: headshot1.png
-resources: resume.pdf
+resources: "C:\Users\Orin Crouse\OneDrive - The University of Colorado Denver\Desktop\School\Fellowship\Fellow.pdf"
 about:
   template: solana
   image-shape: rounded

@@ -13,9 +13,8 @@ execute:
 
 <h1 style="text-align: center;">
 
-Decentralization of the Cryptocurrency 
-<br>
-dy/dx on the Ethereum Blockchain 
+Decentralization of the Cryptocurrency <br> dy/dx on the Ethereum Blockchain
+
 </h1>
 
 <h2 style="text-align: center;">
@@ -29,24 +28,44 @@ Alex Schaef, Nathaniel Hamilton Thompson, Orin Crouse
 # Abstract
 
 </h3>
-Cryptocurrency exchanges heavily emphasize being a “decentralized finance,” in that all transactions of cryptocurrencies are made between two individuals without requiring a central intermediary. However, recent studies have expressed doubt about the decentralized nature of cryptocurrency. In this paper, we study the Euler crypto token (in addition to a previous study done over the AAVE token) to conclude that, although there are some centralized components within the network of transactions, trends across multiple tokens still indicate a decentralized nature to the network.
+
+Cryptocurrency exchanges heavily emphasize being a "decentralized finance," in that all transactions of cryptocurrencies are made between two individuals without requiring a central intermediary. However, recent studies have expressed doubt about the decentralized nature of cryptocurrency. In this paper, we study the Euler crypto token (in addition to a previous study done over the AAVE token) to conclude that, although there are some centralized components within the network of transactions, trends across multiple tokens still indicate a decentralized nature to the network.
 
 #1 Introduction
 
-Cryptocurrency prides itself on being a truly decentralized finance, meaning transactions can happen between any two individuals, or more, without the need of a central intermediary. In our lives, the best example of an intermediary is a bank. With the U.S. dollar, transactions are normally approved by a bank, meaning most exchanges of money go through a central point; the majority of transactions are between a person and a bank. Cryptocurrency is different in that transactions are made entirely between individuals, with no central intermediary. These transactions are recorded on a blockchain, which is essentially a virtual ledger. Our project is inspired by a previous paper written by Ziqiao Ao, Gergely Horvath, and Luyao Zhang, titled Are Decentralized Finance Really Decentralized? A Social Network Analysis of the AAVE Protocol on the Ethereum Blockchain The paper studies the AAVE token, and attempts to argue that cryptocurrency is not fully decentralized as it claims to be. In this project, we will expand on the studies done in this original paper, with the following goals:
+Cryptocurrency prides itself on being a truly decentralized finance, meaning transactions can happen between any two individuals, or more, without the need of a central intermediary. In our lives, the best example of an intermediary is a bank. With the U.S. dollar, transactions are normally approved by a bank, meaning most exchanges of money go through a central point; the majority of transactions are between a person and a bank. Cryptocurrency is different in that transactions are made entirely between individuals, with no central intermediary. These transactions are recorded on a blockchain, which is essentially a virtual ledger. Our project is inspired by a previous paper written by Ziqiao Ao, Gergely Horvath, and Luyao Zhang, titled "Is Decentralized Finance Really Decentralized? A Social Network Analysis of the AAVE Protocol on the Ethereum Blockchain". The paper studies the AAVE token, and attempts to argue that cryptocurrency is not fully decentralized as it claims to be. In this project, we will expand on the studies done in this original paper, with the following goals:
+
 <ul>
-  <li>Confirm or deny the results of the original paper.<li>
-  <li>Use data from dy/dx token to expand on the results of the original paper.<li>
-  <li>Examine trends between tokens to see if the decentralization of transactions is comparable across different currencies.<li>
-  <li>Examine trends across time to see if different tokens follow a similar trend over the lifetime of the token.
+
+<li>
+
+Confirm or deny the results of the original paper.
+
+<li>
+
+<li>
+
+Use data from dy/dx token to expand on the results of the original paper.
+
+<li>
+
+<li>
+
+Examine trends between tokens to see if the decentralization of transactions is comparable across different currencies.
+
+<li>
+
+<li>
+
+Examine trends across time to see if different tokens follow a similar trend over the lifetime of the token.
+
 </ul>
 
 ## 1.1 General Approach
 
 This notebook take the approach of taking the networks for the Euler token and re-framing the data into simpler, more readable outputs to better explain the idea of the centralization for the tokens. A quote to describe the idea used is
 
-"core-periphery structure in its simplest form refers to a partition of a network into two groups of nodes called core and periphery, where core nodes are densely interconnected (i.e., adjacent), and peripheral nodes are adjacent to the core nodes but not to other peripheral nodes".[2]
-
+"core-periphery structure in its simplest form refers to a partition of a network into two groups of nodes called core and periphery, where core nodes are densely interconnected (i.e., adjacent), and peripheral nodes are adjacent to the core nodes but not to other peripheral nodes".\[2\]
 
 If a token is to be described as being a central network we would see our graphs consist of core nodes, while a decentralized network would consist of periphery nodes.
 
@@ -54,19 +73,21 @@ Core-periphery pairs are defined to have the properties of:
 
 $$
 A^*=A^*_{ij}=(x_i+x_j-x_ix_j)\delta(c_i,c_j)
-$$
-We see $x_i=1$ for core nodes and $x_i=0$ for peripheral nodes. The index of the core-peripheral pair to which node $i$ belongs to is represented by $c_i(1 \leq c_i \leq C)$. The following properties are treated like axioms here.
+$$ We see $x_i=1$ for core nodes and $x_i=0$ for peripheral nodes. The index of the core-peripheral pair to which node $i$ belongs to is represented by $c_i(1 \leq c_i \leq C)$. The following properties are treated like axioms here.
+
 <ol>
-  <li> Every core node is adjacent to every other core node.</li>
-  <li>Every core node is adjacent to all corresponding peripheral nodes.</li>
-  <li>Every peripheral node is not adjacent to any other peripheral node.</li>
-  <li>Lastly, there are no edges between different idealized core-periphery pairs. $[3, 4]$</li>
+
+<li>Every core node is adjacent to every other core node.</li>
+
+<li>Every core node is adjacent to all corresponding peripheral nodes.</li>
+
+<li>Every peripheral node is not adjacent to any other peripheral node.</li>
+
+<li>Lastly, there are no edges between different idealized core-periphery pairs. $[3, 4]$</li>
+
 </ol>
 
-When computing you want $c_i,x_i \in(1 \leq i \leq N)$ not be maximized comparatively between $A$ and $A*$. This is shown by:
-$$Q^{cp}_{config} = \frac{1}{2M} \sum_{i=1}^N\sum_{j=1}^N A_{ij}A_{ij}^* - Ε [\frac{1}{2M} \sum_{i=1}^N \sum_{j=1}^{conf}(1-A_{ij}^*)]$$
-Using a configuration model where the expected number of edges between nodes $i$ and $j$ can be represented by $Ε[A_{ij}^{conf}]=\frac{d_id_j}{2M}$.
-
+When computing you want $c_i,x_i \in(1 \leq i \leq N)$ not be maximized comparatively between $A$ and $A*$. This is shown by: $$Q^{cp}_{config} = \frac{1}{2M} \sum_{i=1}^N\sum_{j=1}^N A_{ij}A_{ij}^* - Ε [\frac{1}{2M} \sum_{i=1}^N \sum_{j=1}^{conf}(1-A_{ij}^*)]$$ Using a configuration model where the expected number of edges between nodes $i$ and $j$ can be represented by $Ε[A_{ij}^{conf}]=\frac{d_id_j}{2M}$.
 
 # 3 Data
 
@@ -74,7 +95,6 @@ In the section titled "Construct Continuous Core-Periphery Structures", various 
 
 ## 3.1 Seeing the token's raw form of a network for the months of June through August, 3 continuous months.
 
- 
 ```{python setup, include = FALSE}
 
 #!pip install matplotlib==3.5.1 &> /dev/null
@@ -179,7 +199,6 @@ june_color = [community_index[n] for n in june_g]
 print(len(june.index), 'Number Transactions for June')
 nx.draw(june_g, with_labels=False, node_size=5, node_color=june_color)
 ```
-
 
 ```{python}
 plt.subplot(1,2,1)
@@ -501,9 +520,7 @@ Network_Features['token'] =  'Euler'
 Network_Features.to_csv('Euler_Network_Features.csv')
 ```
 
-
-
-Construction of the continuous core-periphery structure using the Borgatti-Everett Algorithm. 
+Construction of the continuous core-periphery structure using the Borgatti-Everett Algorithm.
 
 ```{python}
 #title Borgatti-Everett Algorithm
@@ -554,7 +571,6 @@ fig = plt.figure(figsize=(8, 6))
 ax = plt.gca()
 ax, _ = cpnet.draw(G, c, x, ax, pos = pos)
 ```
-
 
 ```{python}
 #Conform Core Addresses by Date Counts
@@ -643,7 +659,6 @@ edf_2[['core_cnt']].plot(ax = axes[2,1], figsize=(10,10), grid=False, title='Num
 plt.subplots_adjust(wspace =0.15, hspace =0.35)
 ```
 
-
 ##3.2 Breakdown
 
 **Number of Components**: We expect a *smaller* number of componenets to indicate a more *centralized* network. The number of components is fairly random with an exception toward the beginning of the recorded data.
@@ -654,10 +669,9 @@ plt.subplots_adjust(wspace =0.15, hspace =0.35)
 
 **Standard Deviation of Degree Centrality**: A *higher* standard deviation suggests a more *centralized* network. Standard deviation for Euler starts high but quickly falls by day five, where is stays steady. Like the modularity scores, this suggests a more centralized network early on that quickly becomes and stays decentralized.
 
-
 #4 Conclusion
 
-While the prior study on the AAVE token suggested that there was a high level of centralization, our study with the Euler token does **not** indicate a centralized finance network. However, the tokens have similar trends in decentralization over time. Both tokens begin incredibly centralized, which should not be surprising since most tokens start from one central source. Over a few weeks, all tokens see an increase in the level of decentralization before eventually settling at a point that is certainly decentralized by definition, although both tokens’ networks maintain centralized aspects. This is most visible in the network graphs, where one account has edges linked to a noticeably large number of other accounts. However, the graphs change over time to reflect trends we see in other variables studied (number of components, giant component size ratio, standard deviation of degree centrality, modularity), in that all tokens’ trading networks are centralized when the tokens are created, but become decentralized a short time after trading begins.
+While the prior study on the AAVE token suggested that there was a high level of centralization, our study with the Euler token does **not** indicate a centralized finance network. However, the tokens have similar trends in decentralization over time. Both tokens begin incredibly centralized, which should not be surprising since most tokens start from one central source. Over a few weeks, all tokens see an increase in the level of decentralization before eventually settling at a point that is certainly decentralized by definition, although both tokens' networks maintain centralized aspects. This is most visible in the network graphs, where one account has edges linked to a noticeably large number of other accounts. However, the graphs change over time to reflect trends we see in other variables studied (number of components, giant component size ratio, standard deviation of degree centrality, modularity), in that all tokens' trading networks are centralized when the tokens are created, but become decentralized a short time after trading begins.
 
 Personal takeaways from this project include getting a wider understanding of cryptocurrency trading and decentralized finance, utilizing graph theory to visualize trade networks, using data to study changes over time, and applying mathematical concepts to real world data.
 
@@ -665,5 +679,4 @@ We hope our reults help our sponsor (Chainpulse) better understand the transacti
 
 #5 Citiations
 
-Ao, Ziqiao, Gergely Horvath, and Luyao Zhang. "Is decentralized finance really decentralized? A social network analysis of the Aave protocol on the Ethereum blockchain." arXiv preprint arXiv:2206.08401 (2022). [1] <br>
-Kojaku, Sadamori, and Naoki Masuda. "Core-periphery structure requires something else in the network." New Journal of physics 20.4 (2018): 043012. [2]
+Ao, Ziqiao, Gergely Horvath, and Luyao Zhang. "Is decentralized finance really decentralized? A social network analysis of the Aave protocol on the Ethereum blockchain." arXiv preprint arXiv:2206.08401 (2022). \[1\] <br> Kojaku, Sadamori, and Naoki Masuda. "Core-periphery structure requires something else in the network." New Journal of physics 20.4 (2018): 043012. \[2\]
