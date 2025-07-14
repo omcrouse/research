@@ -2,9 +2,7 @@
 title: "research"
 ---
 
-This is a Quarto website.
-
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+Hello. My name is Orin Crouse
 
 ```{r}
 1 + 1
