@@ -95,21 +95,21 @@ Data were collected from NHL.com (stats), NHLPA.com (CBA and cap data), and Spot
 
 Salary cap values used per season:
 
-\*'21-22: \\\$ 81.5 million
+*'21-22: \$ 81.5 million
 
-\*'22-23: \\\$ 82.5 million
+*'22-23: \$ 82.5 million
 
-\*'23-24 and 2024-25: \\\$ 83.5 million
+*'23-24 and 2024-25: \$ 83.5 million
 
-The salary floor for '24-25 was \\\$ 70.6 million. Minimum player salary was \\\$ 775,000, rookie max \\\$ 950,000, and total player max 20% of team cap (i.e., \\\$ 17.6 million for '24-25).
+The salary floor for '24-25 was \$ 70.6 million. Minimum player salary was \$ 775,000, rookie max \$ 950,000, and total player max 20% of team cap (i.e., \$ 17.6 million for '24-25).
 
-Carey Price had the highest goalie salary (\\\$ 10.5M), while Igor Shesterkin will earn \\\$ 11.85 million in '25-26.
+Carey Price had the highest goalie salary (\$ 10.5M), while Igor Shesterkin will earn \$ 11.85 million in '25-26.
 
-\### 3.1 Data sorting
+### 3.1 Data sorting
 
-Not all data is good data. Each team in the NHL is allowed to have 3 goalies on the roster, while only 2 can be "dressed" for the game, meaning that they are on the ice for the game or on the bench ready to go in. The third goalie is typically playing for an affiliated team in a lower level, like the American Hockey League (AHL). In the rules of the NHL, you are allowed to pull your starting goalie and put in the backup. The starting goalie for any particular game can either be the number one goalie (typically the highest-paid) or the second goalie. The idea is that goalies cannot play all 82 games in a row. They are given breaks throughout the season, but the goalie who played the last 3-20 games will be dressed for the game(s), but still able to play if the starting goalie becomes injured or has a bad game. A goalie who is having a bad game, meaning they are getting scored on without making many saves (lower Sv%), is eligible to be pulled. There is a rule in the NHL where an Emergency Backup Goalie (EBUG) will be in the building ready to play, but not dressed, for either team, meaning the EBUG can play for an away team. An example is that an EBUG can be in the stands at a Dallas Stars game, in Dallas, and play for the Anaheim Ducks, the away team, which happened on April 29th, 2022. The EBUG procedure became a rule in the 16-'17 season, and before this, it was simply set as a team would call upon a volunteer amateur goalie. This is used when a team's starting goalie is injured during the game, along with the backup goalie. This can also happen when the starting goalie is pulled, the second goalie becomes injured, requiring the starting goalie to be put back into the game, and then becomes injured. Injuries can range widely, but it is very rare to happen to both goalies. In fact, the EBUG process has only occurred 6 times in NHL history. Since they are EBUGs, they are not allowed to be in any sense a professional goaltender or team-paid employee, meaning they are not paid by any team, and are mostly former goalies or students. The next season of '25-'26, there will be traveling EBUGs that will not count towards the roster limit and therefore will most likely not go against the cap hit, and there is no set pay for them. Although EBUGs got TOI, they only get \\\$500 (yes, hundred, not thousands) for the game as a professional tryout contract. Side note, they received their jersey, which must be an awesome item for the trophy case in the man cave. This rule means that an EBUG, a goalie, can help a team receive a win; they don't affect the salary cap for that year. So, for that fact, we removed the 3 EBUGs that took the ice during the seasons we looked at. They were Thomas Hodges for the Anaheim Ducks on April 29th, 2022, with 19 minutes and 16 seconds TOI, Matt Berlin for the Edmonton Oilers on January 28th, 2023, with 2 minutes and 26 seconds, and Jett Alexander for the Toronto Maple Leafs on April 8, 2023 with 1 minute and 10 seconds. The total is 22 minutes and 52 seconds. They do not significantly affect the data set, contributing less than 23 minutes of total ice time.
+Not all data is good data. Each team in the NHL is allowed to have 3 goalies on the roster, while only 2 can be "dressed" for the game, meaning that they are on the ice for the game or on the bench ready to go in. The third goalie is typically playing for an affiliated team in a lower level, like the American Hockey League (AHL). In the rules of the NHL, you are allowed to pull your starting goalie and put in the backup. The starting goalie for any particular game can either be the number one goalie (typically the highest-paid) or the second goalie. The idea is that goalies cannot play all 82 games in a row. They are given breaks throughout the season, but the goalie who played the last 3-20 games will be dressed for the game(s), but still able to play if the starting goalie becomes injured or has a bad game. A goalie who is having a bad game, meaning they are getting scored on without making many saves (lower Sv%), is eligible to be pulled. There is a rule in the NHL where an Emergency Backup Goalie (EBUG) will be in the building ready to play, but not dressed, for either team, meaning the EBUG can play for an away team. An example is that an EBUG can be in the stands at a Dallas Stars game, in Dallas, and play for the Anaheim Ducks, the away team, which happened on April 29th, 2022. The EBUG procedure became a rule in the 16-'17 season, and before this, it was simply set as a team would call upon a volunteer amateur goalie. This is used when a team's starting goalie is injured during the game, along with the backup goalie. This can also happen when the starting goalie is pulled, the second goalie becomes injured, requiring the starting goalie to be put back into the game, and then becomes injured. Injuries can range widely, but it is very rare to happen to both goalies. In fact, the EBUG process has only occurred 6 times in NHL history. Since they are EBUGs, they are not allowed to be in any sense a professional goaltender or team-paid employee, meaning they are not paid by any team, and are mostly former goalies or students. The next season of '25-'26, there will be traveling EBUGs that will not count towards the roster limit and therefore will most likely not go against the cap hit, and there is no set pay for them. Although EBUGs got TOI, they only get \$500 (yes, hundred, not thousands) for the game as a professional tryout contract. Side note, they received their jersey, which must be an awesome item for the trophy case in the man cave. This rule means that an EBUG, a goalie, can help a team receive a win; they don't affect the salary cap for that year. So, for that fact, we removed the 3 EBUGs that took the ice during the seasons we looked at. They were Thomas Hodges for the Anaheim Ducks on April 29th, 2022, with 19 minutes and 16 seconds TOI, Matt Berlin for the Edmonton Oilers on January 28th, 2023, with 2 minutes and 26 seconds, and Jett Alexander for the Toronto Maple Leafs on April 8, 2023 with 1 minute and 10 seconds. The total is 22 minutes and 52 seconds. They do not significantly affect the data set, contributing less than 23 minutes of total ice time.
 
-\### 3.2 Data Inspection
+### 3.2 Data Inspection
 
 ```{r bins, echo = FALSE}
 
@@ -132,17 +132,17 @@ q4  <- cap_hit_quartiles[5]  # Maximum
 
 Let's first look at the cap space. We briefly went over what goalies get paid. Here is are the rankings we use. In Millions:\\
 
-Minimum = \`{r} q0\`\\
+Minimum = \`{r} I(q0)\`\\
 
-25th percentile = \`{r} q1\`\\
+25th percentile = \`{r} I(q1)\`\\
 
-Median = \`{r} q2\`\\
+Median = \`{r} I(q2)\`\\
 
 75th percentile = \`{r} q3\`\\
 
-Maximum = \`{r} q4\`\\
+Maximum = \`{r} I(q4)\`\\
 
-These are broken up by quantiles and are in millions of dollars. So the minimum amount of these bins is 750,000 dollars per year, which is the league minimum for any player. However, we see half of the goalies get 1,050,000 dollars per year. This is in the ranking of Cap Hit for players set at 531 out of 836 players as of last season, '24-'25. Next is looking at how these bins spread across several factors. Cap hit against itself, Sv% (save percentage \[saves against the number of shots taken\]), Wins (overall wins), and TOI (time spent on ice). We used Sv% because this measures how good a goalie performs. The number of shots they can take per season ranges from 1 (rare) to 2,155 shots, while the number of saves ranges from 1 to 1,962. This has used a range for Sv% from 50% to 100%. Wins are used to show how well the Sv% can be used against not only cap hit but also against Sv%. These show which range of paid goalies get more wins, and which range of wins get higher Sv%. The last used is TOI, which will show if a goalie is paid more, do they spend more time on ice, and how much that will vary. It comes off as obvious that if a general manager/head coach pays a goalie more, they will be their starting goalie. Meaning that the goalie is trusted to win more games, so play them more often.
+These are broken up by quantiles and are in millions of dollars. So the minimum amount of these bins is \$ 750,000 per year, which is the league minimum for any player. However, we see half of the goalies get \$ 1,050,000  per year. This is in the ranking of Cap Hit for players set at 531 out of 836 players as of last season, '24-'25. Next is looking at how these bins spread across several factors. Cap hit against itself, Sv% (save percentage [saves against the number of shots taken]), Wins (overall wins), and TOI (time spent on ice). We used Sv% because this measures how good a goalie performs. The number of shots they can take per season ranges from 1 (rare) to 2,155 shots, while the number of saves ranges from 1 to 1,962. This has used a range for Sv% from 50% to 100%. Wins are used to show how well the Sv% can be used against not only cap hit but also against Sv%. These show which range of paid goalies get more wins, and which range of wins get higher Sv%. The last used is TOI, which will show if a goalie is paid more, do they spend more time on ice, and how much that will vary. It comes off as obvious that if a general manager/head coach pays a goalie more, they will be their starting goalie. Meaning that the goalie is trusted to win more games, so play them more often.
 
 ```{r boxplots, echo = FALSE}
 
@@ -1057,7 +1057,7 @@ p_intercept <- round(robust_coefs["(Intercept)", "Pr(>|t|)"], 5)
 
 \`\`\`
 
-Though this we see in order of significance with p-values, TOI \`{r} p_toi\`, (Very Significant), Sv% \`{r} p_sv\`, (Significant), wins \`{r} p_wins\`, (Not Significant). with values being less than 0.0001, to 0.01, to 0.05 to 0.1 are the levels we see of significance. Seeing this, we are encourage to remove Wins from the model. Let us see if this is the case with a step-wise regression model.
+Though this we see in order of significance with p-values, TOI \`{r} I{p_toi}\`, (Very Significant), Sv% \`{r} p_sv\`, (Significant), wins \`{r} I{p_wins}\`, (Not Significant). with values being less than 0.0001, to 0.01, to 0.05 to 0.1 are the levels we see of significance. Seeing this, we are encourage to remove Wins from the model. Let us see if this is the case with a step-wise regression model.
 
 \##### 4.3.3 Step-Wise Regression
 
