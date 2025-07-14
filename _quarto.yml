@@ -3,13 +3,12 @@ project:
   output-dir: docs
 
 website:
-  title: "research"
+  title: "Orin Crouse"
   navbar:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
-
+      - Goalies.qmd
 format:
   html:
     theme: cosmo

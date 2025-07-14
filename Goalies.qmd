@@ -1,0 +1,112 @@
+---
+title: "Goalies"
+author: "Orin Crouse"
+date: 08/07/2025
+date-format: "DD/MM/YYYY"
+format:
+  html:
+    code-fold: true
+    code-tools: true
+editor: visual
+execute: 
+  echo: false
+---
+
+```{r setup, echo=FALSE}
+library(tidyverse)
+library(lubridate)
+library(ggplot2)
+library(gridExtra)
+library(dplyr)
+library(stringr)
+library(broom)
+library(purrr)
+library(readr)
+library(car)
+library(lmtest)
+library(sandwich)
+library(broom)
+goalies = read.csv("Complete_Combined_Goalie_Stats_2021_to_2025.csv") # Read in full data set
+
+team_results = read.csv("Combined_Team_Results_2021_to_2025.csv") # Read in team results data set
+
+goalies <- goalies %>%
+
+  mutate(Cap_Hit = as.numeric(gsub("[^0-9]", "", `CapHit`)) / 1e6) #Remove non-numeric characters&convert Cap Hit (millions)
+
+goalies <- goalies %>%
+
+  mutate(Sv_percent = as.numeric(gsub("[^0-9\\.]", "", `Svpercent`))) # Convert Sv% column to numeric
+
+goalies <- goalies %>%
+
+  mutate(TOI_minutes = sapply(strsplit(TOI, ":"), function(x) as.numeric(x[1]) + as.numeric(x[2]) / 60)) # Convert TOI from HH:MM format to total minutes
+
+goalies <- goalies %>%
+
+  filter(!is.na(Cap_Hit), Cap_Hit > 0,
+
+         #!is.na(TOI_minutes), TOI_minutes > 0
+
+         !Player_Name %in% c("Thomas Hodges", "Matt Berlin", "Jett Alexander")) # Filter out goalies with 0 or NA Cap_Hit or TOI_minutes and the three EBUG
+
+goalies |> 
+
+  dplyr::select(Cap_Hit, TOI_minutes, Sv_percent, Wins) |> 
+
+  summary()
+
+goalies <- goalies %>%
+
+  mutate(SA = as.integer(gsub(",", "", SA)))  # Remove commas and convert to integer
+
+goalies <- goalies %>%
+
+  mutate(SA = as.integer(SA))
+
+goalies <- goalies %>%
+
+  mutate(Svs = as.integer(gsub(",", "", Svs)))  # Remove commas and convert to integer
+
+goalies <- goalies %>%
+
+  mutate(Svs = as.integer(Svs))
+
+tTOI <- sum(goalies$TOI_minutes)
+```
+
+# Do higher-paid goalies lead to teams ending the season better than others?
+
+## Abstract
+
+This study investigates the relationship between NHL goalie salaries and team performance. Specifically, we ask whether higher-paid goalies contribute to better team outcomes, such as ranking in the top 16 teams (playoff eligibility). We examine contract values in relation to goalie performance metrics, including Wins, Save Percentage (Sv%), and Time on Ice (TOI). The goal is to identify which variables most strongly influence salary and determine whether current pay structures align with performance. We use multilevel regression analysis and interpret the significance of different predictors.
+
+## 1. Introduction
+
+In this paper, we aim to determine whether a National Hockey League (NHL) team that allocates more money to its goal tenders (goalies) will lead to the team achieving a ranking in the top 16 at the conclusion of the season. The reason we choose the top 16 is that it is the number of teams that advance to the playoffs. While teams ranked 15th or 16th occasionally miss the playoffs due to conference seeding, we focused on the top 16 teams by overall standings. The measure of goalies is strictly the average pay per year against a team's Cap Hit. This shows what the goalie will earn that year, regardless of bonuses. We used the average pay, rather than the goalie's contract amount divided by the number of years the contract was signed for, to maintain consistency. Teams have player's pay allocated to sometimes pay out different amounts each year which means that a contract of \$ 10 million dollars for 5 years would seem to be \$ 2 million a year but we see that some players/goalies will get \$ 3 million the first year, and only \$1 million in the last year. Looking at this, it seems that a team values the players/goalies more in the first year. This also leads a team to make better deals at the end of that contract, whether it would lead to resigning a contract, extension of a contract, or a trade to another team. The reverse logic is that a player/goalie who is paid the same throughout the contract (or more at the end, which is very rare), would mean the team values the player/goalie equally throughout the contracted years.
+
+The variables used in this paper are Cap Hit, Wins, overall average Sv %, TOI, GP, and ranking of teams throughout each, rather than a total. We are also only looking at the last four seasons, '21-'22, '22-'23, '23-'24, '24-'25. This keeps the number of games played per season at 82, rather than accounting for the COVID-19 seasons where '19-'20 and '20-'21 were cut short. The tools used are mostly regression, looking at R\^2. We will break down how we get there and why we choose to use certain variables at different times.
+
+## 2. Literature Review
+
+For this research, we sought to see what would lead an NHL goalie to argue for a higher pay rate. This started with seeing Igor Shesterkin, who "signed an eight-year, \$ 92 million contract with the New York Rangers (Rosen, 1) this past season. This allowed him to be the highest-paid goalie in NHL history, but it still only makes him the 9th (three-way tie) highest-paid player for the next season, '25-'26. With that, we looked into a few things. 1. What do goalies do to drive their pay? 2. What can goalies change to possibly argue for more pay? 3. And are the fallacies in what drives goalie salaries when they sign contracts?
+
+We saw through different articles and papers that one idea that comes from Ding, Cribben, Ingolfsson, and Tran at the University of Alberta looked into whether goalies get hot in the playoffs. We chose to look at the regular season rather than the playoffs, but they saw that goalies with lower Sv% should be preferred as they will turn and start to perform better. Meaning that all goalies perform to a certain average, and if they are below this, then they will at some point start to perform above this average. Also means that the average Sv% of goalies leads to wins.
+
+We then saw with Luther III and Estep state that goalies in the salary cap era aren't used for their higher performance alone, but how well they perform against their salary. They showed that recent Stanley Cup winners used a very low cap space allocated towards their goalies. With 8% or less allocated towards the position that receives the most TOI and makes up 10% of the team for the maximum number of players (18 skaters and 2 goalies in the regular season). This amount goes up to 13% post-trade deadline (20 skaters and 3 goalies) and continues into the playoffs with that format. So why does a position in hockey that seems to be one of the most critical get paid a lesser amount? A statement made famous by a football head coach is, Paul Bryant, "offense sells tickets, but defense wins championships". This can explain the difference if a team is looking to sell tickets, as goalies very rarely score goals. But if a team is hunting for a championship, the Cup, and is willing to forgo higher scoring games, then they should look more into their defense, which starts and ends with a goalie.
+
+## 3. Data
+
+Data were collected from NHL.com (stats), NHLPA.com (CBA and cap data), and Spotrac.com (contract details). Goalies were associated with the final team they played for each season, under the assumption that final teams absorbed the cap hit.
+
+Salary cap values used per season:
+
+\*'21-22: \\\$ 81.5 million
+
+\*'22-23: \\\$ 82.5 million
+
+\*'23-24 and 2024-25: \\\$ 83.5 million
+
+The salary floor for '24-25 was \\\$ 70.6 million. Minimum player salary was \\\$ 775,000, rookie max \\\$ 950,000, and total player max 20% of team cap (i.e., \\\$ 17.6 million for '24-25).
+
+Carey Price had the highest goalie salary (\\\$ 10.5M), while Igor Shesterkin will earn \\\$ 11.85 million in '25-26.
