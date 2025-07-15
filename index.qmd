@@ -2,8 +2,22 @@
 title: "research"
 ---
 
-Hello. My name is Orin Crouse
+Hopefully this helps you understand who I am and what I enjoy doing. The two tabs here are projects I did while in my undergrad and graduate school.
 
-```{r}
-1 + 1
-```
+\## Skills
+
+-Proficient in programs R, Python, and Microsoft Office Suite.
+
+-Fully capable of preforming independent research.
+
+-Able to be trained with quick turn around to train others to same high level of standard.
+
+\## Education
+
+-College courses for Mathematics were focused on statistics, regression, and applied programming.
+
+-College courses for Economics were focused on econometrics, and macroeconomics.
+
+-Research developed while at the university was a combination of above.
+
+-College course for Business Analytics were focused on statistical model, project management and machine learning.
