@@ -2,7 +2,6 @@
 title: "Chain Pulse"
 author: "Alex Schaef, Nathaniel Hamilton Thompson, Orin Crouse"
 date: 15/12/2022
-date-format: "DD/MM/YYYY""
 format:
   html:
     code-fold: true
@@ -10,6 +9,8 @@ format:
 editor: visual
 execute: 
   echo: false
+  freeze: false
+  python: /Users/Orin Crouse/anaconda3/python.exe
 ---
 
 <h1 style="text-align: center;">
@@ -96,18 +97,19 @@ In the section titled "Construct Continuous Core-Periphery Structures", various 
 
 ## 3.1 Seeing the token's raw form of a network for the months of June through August, 3 continuous months.
 
-```{python setup, include = FALSE}
+```{python setup, echo = FALSE}
 
-#!pip install matplotlib==3.5.1 &> /dev/null
-#!pip install --upgrade scipy networkx &> /dev/null
-#!pip install cpnet &> /dev/null
+import warnings
+warnings.filterwarnings("ignore", category=FutureWarning)
+
+!pip install matplotlib==3.5.1 
+!pip install --upgrade scipy networkx 
+!pip install cpnet
 
 import cpnet
 import networkx as nx
 import numpy as np
 import matplotlib.pyplot as plt
-
-
 import pandas as pd
 import os
 import time
@@ -120,7 +122,7 @@ import requests
 import json
 import datetime
 
-print("The libraries used are: matplotlib (verison 3.5.1), scipy, networkx, cpnet, numpy, pandas, os, time, zipfile, tqdm,")
+print("The libraries used are: matplotlib (verison 3.5.1), scipy, networkx, cpnet, numpy, pandas, os, time, zipfile, tqdm, ")
 print("community.community_louvain, random, requests, json, and datetime.")
 
 
@@ -177,7 +179,7 @@ week9_g = nx.from_pandas_edgelist(week9, source='from_ID', target='to_ID', edge_
 week10_g = nx.from_pandas_edgelist(week10, source='from_ID', target='to_ID', edge_attr='value')
 ```
 
-```{python}
+```{python data_clean, echo = FALSE}
 
 all_comm = nx.community.label_propagation_communities(all_time_g)
 community_index = {n: i for i, com in enumerate(all_comm) for n in com}
@@ -189,7 +191,7 @@ print(len(all_time.index), 'Number Transactions for the entire data set')
 nx.draw(all_time_g, with_labels=False, node_size=13, node_color=all_color)
 ```
 
-```{python}
+```{python plot_basic_net, echo = FALSE}
 
 june_comm = nx.community.label_propagation_communities(june_g)
 community_index = {n: i for i, com in enumerate(june_comm) for n in com}
@@ -201,7 +203,8 @@ print(len(june.index), 'Number Transactions for June')
 nx.draw(june_g, with_labels=False, node_size=5, node_color=june_color)
 ```
 
-```{python}
+```{python plot_scatter, echo = FALSE}
+
 plt.subplot(1,2,1)
 plt.scatter(june['timestamp'], june['to_ID'])
 plt.title('Buyer Transactions (June 2022)'.format(len(june.index)))
@@ -213,7 +216,7 @@ plt.title('Seller Transactions (June 2022)'.format(len(june.index)))
 plt.tight_layout()
 ```
 
-```{python}
+```{python dfine_core_per, echo = FALSE}
 #title Sorting and Defining Core-Periphery Structure
 
 edf.sort_values('block_timestamp', ascending = True)
@@ -523,7 +526,7 @@ Network_Features.to_csv('Euler_Network_Features.csv')
 
 Construction of the continuous core-periphery structure using the Borgatti-Everett Algorithm.
 
-```{python}
+```{python Borgatti_Evereet, echo = FALSE}
 #title Borgatti-Everett Algorithm
 
 edf_1 = edf.loc[edf['timestamp']==edf_time_partition['timestamp'][63]]
@@ -560,7 +563,7 @@ buyer = edf_2.to_address.unique()
 
 We continue with the Kojaku-Masda Algorithm to see a similar approach, but better given colors....
 
-```{python}
+```{python Kojaku-_Masda, echo = FALSE}
 kmconfig = cpnet.KM_config()
 kmconfig.detect(G)
 
@@ -573,7 +576,7 @@ ax = plt.gca()
 ax, _ = cpnet.draw(G, c, x, ax, pos = pos)
 ```
 
-```{python}
+```{python confirm, echo = FALSE}
 #Conform Core Addresses by Date Counts
 core_address = []
 a = 0
@@ -660,7 +663,7 @@ edf_2[['core_cnt']].plot(ax = axes[2,1], figsize=(10,10), grid=False, title='Num
 plt.subplots_adjust(wspace =0.15, hspace =0.35)
 ```
 
-##3.2 Breakdown
+## 3.2 Breakdown
 
 **Number of Components**: We expect a *smaller* number of componenets to indicate a more *centralized* network. The number of components is fairly random with an exception toward the beginning of the recorded data.
 
@@ -670,14 +673,14 @@ plt.subplots_adjust(wspace =0.15, hspace =0.35)
 
 **Standard Deviation of Degree Centrality**: A *higher* standard deviation suggests a more *centralized* network. Standard deviation for Euler starts high but quickly falls by day five, where is stays steady. Like the modularity scores, this suggests a more centralized network early on that quickly becomes and stays decentralized.
 
-#4 Conclusion
+# 4 Conclusion
 
 While the prior study on the AAVE token suggested that there was a high level of centralization, our study with the Euler token does **not** indicate a centralized finance network. However, the tokens have similar trends in decentralization over time. Both tokens begin incredibly centralized, which should not be surprising since most tokens start from one central source. Over a few weeks, all tokens see an increase in the level of decentralization before eventually settling at a point that is certainly decentralized by definition, although both tokens' networks maintain centralized aspects. This is most visible in the network graphs, where one account has edges linked to a noticeably large number of other accounts. However, the graphs change over time to reflect trends we see in other variables studied (number of components, giant component size ratio, standard deviation of degree centrality, modularity), in that all tokens' trading networks are centralized when the tokens are created, but become decentralized a short time after trading begins.
 
 Personal takeaways from this project include getting a wider understanding of cryptocurrency trading and decentralized finance, utilizing graph theory to visualize trade networks, using data to study changes over time, and applying mathematical concepts to real world data.
 
-We hope our reults help our sponsor (Chainpulse) better understand the transaction networks they study on the Ethereum blockchain so that they can better develop their own research and analytics of cryptocurrency trading.
+We hope our results help our sponsor (Chainpulse) better understand the transaction networks they study on the Ethereum blockchain so that they can better develop their own research and analytics of cryptocurrency trading.
 
-#5 Citiations
+# 5 Citiations
 
 Ao, Ziqiao, Gergely Horvath, and Luyao Zhang. "Is decentralized finance really decentralized? A social network analysis of the Aave protocol on the Ethereum blockchain." arXiv preprint arXiv:2206.08401 (2022). \[1\] <br> Kojaku, Sadamori, and Naoki Masuda. "Core-periphery structure requires something else in the network." New Journal of physics 20.4 (2018): 043012. \[2\]
