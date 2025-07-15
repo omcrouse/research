@@ -95,11 +95,11 @@ Data were collected from NHL.com (stats), NHLPA.com (CBA and cap data), and Spot
 
 Salary cap values used per season:
 
-*'21-22: \$ 81.5 million
+* '21-22: \$ 81.5 million
 
-*'22-23: \$ 82.5 million
+* '22-23: \$ 82.5 million
 
-*'23-24 and 2024-25: \$ 83.5 million
+* '23-24 and 2024-25: \$ 83.5 million
 
 The salary floor for '24-25 was \$ 70.6 million. Minimum player salary was \$ 775,000, rookie max \$ 950,000, and total player max 20% of team cap (i.e., \$ 17.6 million for '24-25).
 
@@ -132,15 +132,15 @@ q4  <- cap_hit_quartiles[5]  # Maximum
 
 Let's first look at the cap space. We briefly went over what goalies get paid. Here is are the rankings we use. In Millions:\\
 
-Minimum = \`{r} I(q0)\`\\
+Minimum = \`r q0)\`
 
-25th percentile = \`{r} I(q1)\`\\
+25th percentile = \`r q1`
 
-Median = \`{r} I(q2)\`\\
+Median = \`r q2`
 
-75th percentile = \`{r} q3\`\\
+75th percentile = \`r q3`
 
-Maximum = \`{r} I(q4)\`\\
+Maximum = \`r q4`
 
 These are broken up by quantiles and are in millions of dollars. So the minimum amount of these bins is \$ 750,000 per year, which is the league minimum for any player. However, we see half of the goalies get \$ 1,050,000  per year. This is in the ranking of Cap Hit for players set at 531 out of 836 players as of last season, '24-'25. Next is looking at how these bins spread across several factors. Cap hit against itself, Sv% (save percentage [saves against the number of shots taken]), Wins (overall wins), and TOI (time spent on ice). We used Sv% because this measures how good a goalie performs. The number of shots they can take per season ranges from 1 (rare) to 2,155 shots, while the number of saves ranges from 1 to 1,962. This has used a range for Sv% from 50% to 100%. Wins are used to show how well the Sv% can be used against not only cap hit but also against Sv%. These show which range of paid goalies get more wins, and which range of wins get higher Sv%. The last used is TOI, which will show if a goalie is paid more, do they spend more time on ice, and how much that will vary. It comes off as obvious that if a general manager/head coach pays a goalie more, they will be their starting goalie. Meaning that the goalie is trusted to win more games, so play them more often.
 
@@ -917,7 +917,7 @@ ggplot(goalies, aes(x = Predicted_Cap_Hit, y = Cap_Percent)) +
   theme_minimal()
 ```
 
-Through this model, we see that with the predictor variables (Sv%, Wins, and TOI), we see a positive trend for the predicted relationship between goalie performance and pay. The positive coefficients suggest that goalies with higher Sv%, Wins, and TOI tend to earn more money for their respective team's salary cap. We see an increase in Sv%, by will change the Cap Hit % by \\\$ \`{r}`b_sv_dollars\`. Similarly, another win will change their pay by\`{r} b_toi_dollars\`}, and another minute on ice will change their pay by\`{r} beta_toi\`. We start the model with an intercept with\`{r} intercept\`. Which leads us to the equation of \$\\hat{y} = b_0 + b_1\*Sv\\% + b_2\*Wins + b_3\*TOI + \\epsilon\$. This is: \$\\hat{y} = \$\`{r} intercept\`+\`{r} beta_sv\`Sv% +\`{r} beta_wins\`Wins +\`{r} beta_toi\`TOI + \$\\epsilon\$. We have an \$R\^2\$ of\`{r} r2\\\`, , which is the best and shows that there is a lot of noise in this model.
+Through this model, we see that with the predictor variables (Sv%, Wins, and TOI), we see a positive trend for the predicted relationship between goalie performance and pay. The positive coefficients suggest that goalies with higher Sv%, Wins, and TOI tend to earn more money for their respective team's salary cap. We see an increase in Sv%, by will change the Cap Hit % by \\\$ \`{r}`b_sv_dollars\`. Similarly, another win will change their pay by\`{r} b_toi_dollars\`}, and another minute on ice will change their pay by\`{r} beta_toi\`. We start the model with an intercept with\`{r} intercept\`. Which leads us to the equation of \$\\hat{y} = b_0 + b_1\*Sv% + b_2\*Wins + b_3\*TOI + \\epsilon\$. This is: \$\\hat{y} = \$\`{r} intercept\`+\`{r} beta_sv\`Sv% +\`{r} beta_wins\`Wins +\`{r} beta_toi\`TOI + \$\\epsilon\$. We have an \$R\^2\$ of\`{r} r2\\\`, , which is the best and shows that there is a lot of noise in this model.
 
 ```{r reg_sv_percent, echo = FALSE, message = FALSE}
 
