@@ -9,6 +9,7 @@ website:
       - href: index.qmd
         text: Home
       - Goalies.qmd
+      - ChainPulse.qmd
 format:
   html:
     theme: cosmo
