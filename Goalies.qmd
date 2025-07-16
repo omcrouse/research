@@ -78,13 +78,13 @@ This study investigates the relationship between NHL goalie salaries and team pe
 
 # 1. Introduction
 
-In this paper, we aim to determine whether a National Hockey League (NHL) team that allocates more money to its goal tenders (goalies) will lead to the team achieving a ranking in the top 16 at the conclusion of the season. The reason we choose the top 16 is that it is the number of teams that advance to the playoffs. While teams ranked 15th or 16th occasionally miss the playoffs due to conference seeding, we focused on the top 16 teams by overall standings. The measure of goalies is strictly the average pay per year against a team's Cap Hit. This shows what the goalie will earn that year, regardless of bonuses. We used the average pay, rather than the goalie's contract amount divided by the number of years the contract was signed for, to maintain consistency. Teams have player's pay allocated to sometimes pay out different amounts each year which means that a contract of \$ 10 million dollars for 5 years would seem to be \$ 2 million a year but we see that some players/goalies will get \$ 3 million the first year, and only \$1 million in the last year. Looking at this, it seems that a team values the players/goalies more in the first year. This also leads a team to make better deals at the end of that contract, whether it would lead to resigning a contract, extension of a contract, or a trade to another team. The reverse logic is that a player/goalie who is paid the same throughout the contract (or more at the end, which is very rare), would mean the team values the player/goalie equally throughout the contracted years.
+In this paper, we aim to determine whether a National Hockey League (NHL) team that allocates more money to its goal tenders (goalies) will lead to the team achieving a ranking in the top 16 at the conclusion of the season. The reason we choose the top 16 is that it is the number of teams that advance to the playoffs. While teams ranked 15th or 16th occasionally miss the playoffs due to conference seeding, we focused on the top 16 teams by overall standings. The measure of goalies is strictly the average pay per year against a team's Cap Hit. This shows what the goalie will earn that year, regardless of bonuses. We used the average pay, rather than the goalie's contract amount divided by the number of years the contract was signed for, to maintain consistency. Teams have player's pay allocated to sometimes pay out different amounts each year which means that a contract of \$10 million for 5 years would seem to be \$2 million a year but we see that some players/goalies will get \$3 million the first year, and only \$1 million in the last year. Looking at this, it seems that a team values the players/goalies more in the first year. This also leads a team to make better deals at the end of that contract, whether it would lead to resigning a contract, extension of a contract, or a trade to another team. The reverse logic is that a player/goalie who is paid the same throughout the contract (or more at the end, which is very rare), would mean the team values the player/goalie equally throughout the contracted years.
 
-The variables used in this paper are Cap Hit, Wins, overall average Sv %, TOI, GP, and ranking of teams throughout each, rather than a total. We are also only looking at the last four seasons, '21-'22, '22-'23, '23-'24, '24-'25. This keeps the number of games played per season at 82, rather than accounting for the COVID-19 seasons where '19-'20 and '20-'21 were cut short. The tools used are mostly regression, looking at R\^2. We will break down how we get there and why we choose to use certain variables at different times.
+The variables used in this paper are Cap Hit, Wins, overall average Sv %, TOI, GP, and ranking of teams throughout each, rather than a total. We are also only looking at the last four seasons, '21-'22, '22-'23, '23-'24, '24-'25. This keeps the number of games played per season at 82, rather than accounting for the COVID-19 seasons where '19-'20 and '20-'21 were cut short. The tools used are mostly regression, looking at $R^2$. We will break down how we get there and why we choose to use certain variables at different times.
 
 # 2. Literature Review
 
-For this research, we sought to see what would lead an NHL goalie to argue for a higher pay rate. This started with seeing Igor Shesterkin, who "signed an eight-year, \$ 92 million contract with the New York Rangers (Rosen, 1) this past season. This allowed him to be the highest-paid goalie in NHL history, but it still only makes him the 9th (three-way tie) highest-paid player for the next season, '25-'26. With that, we looked into a few things. 1. What do goalies do to drive their pay? 2. What can goalies change to possibly argue for more pay? and 3. Are the fallacies in what drives goalie salaries when they sign contracts?
+For this research, we sought to see what would lead an NHL goalie to argue for a higher pay rate. This started with seeing Igor Shesterkin, who "signed an eight-year, \$92 million contract with the New York Rangers (Rosen, 1) this past season. This allowed him to be the highest-paid goalie in NHL history, but it still only makes him the 9th (three-way tie) highest-paid player for the next season, '25-'26. With that, we looked into a few things. 1. What do goalies do to drive their pay? 2. What can goalies change to possibly argue for more pay? and 3. Are the fallacies in what drives goalie salaries when they sign contracts?
 
 We saw through different articles and papers that one idea that comes from Ding, Cribben, Ingolfsson, and Tran at the University of Alberta looked into whether goalies get hot in the playoffs. We chose to look at the regular season rather than the playoffs, but they saw that goalies with lower Sv% should be preferred as they will turn and start to perform better. Meaning that all goalies perform to a certain average, and if they are below this, then they will at some point start to perform above this average. Also means that the average Sv% of goalies leads to wins.
 
@@ -96,15 +96,15 @@ Data were collected from NHL.com (stats), NHLPA.com (CBA and cap data), and Spot
 
 Salary cap values used per season:
 
-* '21-22: \$ 81.5 million
+-   '21-22: \$81.5 million
 
-* '22-23: \$ 82.5 million
+-   '22-23: \$82.5 million
 
-* '23-24 and 2024-25: \$ 83.5 million
+-   '23-24 and 2024-25: \$83.5 million
 
-The salary floor for '24-25 was \$ 70.6 million. Minimum player salary was \$ 775,000, rookie max \$ 950,000, and total player max 20% of team cap (i.e., \$ 17.6 million for '24-25).
+The salary floor for '24-25 was \$70.6 million. Minimum player salary was \$ 775,000, rookie max \$950,000, and total player max 20% of team cap (i.e., \$17.6 million for '24-25).
 
-Carey Price had the highest goalie salary (\$ 10.5M), while Igor Shesterkin will earn \$ 11.85 million in '25-26.
+Carey Price had the highest goalie salary (\$10.5M), while Igor Shesterkin will earn \$11.85 million in '25-26.
 
 ## 3.1 Data sorting
 
@@ -141,7 +141,7 @@ Median = 1.05
 
 Maximum = 10.50
 
-These are broken up by quantiles and are in millions of dollars. So the minimum amount of these bins is \$ 750,000 per year, which is the league minimum for any player. However, we see half of the goalies get \$ 1,050,000  per year. This is in the ranking of Cap Hit for players set at 531 out of 836 players as of last season, '24-'25. Next is looking at how these bins spread across several factors. Cap hit against itself, Sv% (save percentage [saves against the number of shots taken]), Wins (overall wins), and TOI (time spent on ice). We used Sv% because this measures how good a goalie performs. The number of shots they can take per season ranges from 1 (rare) to 2,155 shots, while the number of saves ranges from 1 to 1,962. This has used a range for Sv% from 50% to 100%. Wins are used to show how well the Sv% can be used against not only cap hit but also against Sv%. These show which range of paid goalies get more wins, and which range of wins get higher Sv%. The last used is TOI, which will show if a goalie is paid more, do they spend more time on ice, and how much that will vary. It comes off as obvious that if a general manager/head coach pays a goalie more, they will be their starting goalie. Meaning that the goalie is trusted to win more games, so play them more often.
+These are broken up by quantiles and are in millions of dollars. So the minimum amount of these bins is \$750,000 per year, which is the league minimum for any player. However, we see half of the goalies get \$1,050,000 per year. This is in the ranking of Cap Hit for players set at 531 out of 836 players as of last season, '24-'25. Next is looking at how these bins spread across several factors. Cap hit against itself, Sv% (save percentage \[saves against the number of shots taken\]), Wins (overall wins), and TOI (time spent on ice). We used Sv% because this measures how good a goalie performs. The number of shots they can take per season ranges from 1 (rare) to 2,155 shots, while the number of saves ranges from 1 to 1,962. This has used a range for Sv% from 50% to 100%. Wins are used to show how well the Sv% can be used against not only cap hit but also against Sv%. These show which range of paid goalies get more wins, and which range of wins get higher Sv%. The last used is TOI, which will show if a goalie is paid more, do they spend more time on ice, and how much that will vary. It comes off as obvious that if a general manager/head coach pays a goalie more, they will be their starting goalie. Meaning that the goalie is trusted to win more games, so play them more often.
 
 ```{r boxplots, echo = FALSE}
 
@@ -914,9 +914,11 @@ ggplot(goalies, aes(x = Predicted_Cap_Hit, y = Cap_Percent)) +
   ) +
 
   theme_minimal()
+
+intercept
 ```
 
-Through this model, we see that with the predictor variables (Sv%, Wins, and TOI), we see a positive trend for the predicted relationship between goalie performance and pay. The positive coefficients suggest that goalies with higher Sv%, Wins, and TOI tend to earn more money for their respective team's salary cap. We see an increase in Sv%, by will change the Cap Hit % by \\\$ \`{r}`b_sv_dollars\`. Similarly, another win will change their pay by\`{r} b_toi_dollars\`}, and another minute on ice will change their pay by\`{r} beta_toi\`. We start the model with an intercept with\`{r} intercept\`. Which leads us to the equation of \$\\hat{y} = b_0 + b_1\*Sv% + b_2\*Wins + b_3\*TOI + \\epsilon\$. This is: \$\\hat{y} = \$\`{r} intercept\`+\`{r} beta_sv\`Sv% +\`{r} beta_wins\`Wins +\`{r} beta_toi\`TOI + \$\\epsilon\$. We have an \$R\^2\$ of\`{r} r2\\\`, , which is the best and shows that there is a lot of noise in this model.
+Through this model, we see that with the predictor variables (Sv%, Wins, and TOI), we see a positive trend for the predicted relationship between goalie performance and pay. The positive coefficients suggest that goalies with higher Sv%, Wins, and TOI tend to earn more money for their respective team's salary cap. We see an increase of 1 in Sv%, by will change the Cap Hit % by \$-2,284,189. Similarly, another Win will change their pay by 2,4929.8, and another minute of TOI change their pay by \$934.65. We start the model with an intercept with \$0.03. Which leads us to the equation of $\hat{y} = b_0 + b_1*Sv\% + b_2*Wins + b_3*TOI + \epsilon$. This is: $\hat{y} = 0.03 - 2284189 * Sv\%+ 24929.8 * Wins + 934.65 * TOI + \epsilon$. We have an $R^2$ of\` 0.39, which is the best but shows that there is a lot of noise in this model.
 
 ```{r reg_sv_percent, echo = FALSE, message = FALSE}
 
@@ -1002,21 +1004,22 @@ bp_pval <- round(bp_test$p.value,5)
 dw_result <- dwtest(model_caphit)
 
 dw_stat <- round(dw_result$statistic,5)
+bp_pval
 ```
 
 We tested a few items: multicollinearity, autocorrelation, and heteroskedasticity. For multicollinearity, we used a variance inflation factor calculation for our predictors, and they have a value of:\\
 
-Cap Hit off of Percentage we have \`{r} vif_wins\`\\
+Cap Hit off of Percentage we have 8.45
 
-Sv% we have \`{r} vif_sv_percent\`\\
+Sv% we have 1.10
 
-and with TOI we have \`{r} vif_toi_minutes\`\\
+and with TOI we have 8.71
 
-With these values being great than 1, we do some correlation with each other.\\
+With these values being great than 1, we do some correlation with each other.
 
-For autocorrelation we used a Durbin-Watson (DW) test, and we have a value of \`{r} dw_stat\`, which is very close to 2 meaning have no evidence of autocorrelation.\\
+For autocorrelation we used a Durbin-Watson (DW) test, and we have a value of 1.94, which is very close to 2 meaning have no evidence of autocorrelation.
 
-For heteroskedasticity we tested this by using a Breusch-Pagan (BP) test and residual plots. For the BP test value we have \`{r} bp_pval\`, which means there is strong evidence to suggest heteroskedasticity. We also see this with residual plots below.
+For heteroskedasticity we tested this by using a Breusch-Pagan (BP) test and residual plots. For the BP test value we have 0.0002, which means there is strong evidence to suggest heteroskedasticity. We also see this with residual plots below.
 
 ```{r reg_wp_resid_plots, echo = FALSE, message = FALSE}
 
@@ -1027,11 +1030,11 @@ plot(model_caphit)
 
 We see with these plots the following:
 
-*The "Residuals vs Fitted" shows that the residuals do follow a pattern, mostly at first, but we would've liked to see no pattern through the whole plot.
+\*The "Residuals vs Fitted" shows that the residuals do follow a pattern, mostly at first, but we would've liked to see no pattern through the whole plot.
 
-*For the "Q-Q Residuals," the residuals at the front and back end do not follow the diagonal line, so they do not follow a normal distribution that well.
+\*For the "Q-Q Residuals," the residuals at the front and back end do not follow the diagonal line, so they do not follow a normal distribution that well.
 
-*With the "Scale-Location," the line is not flat, meaning the variance is not constant.
+\*With the "Scale-Location," the line is not flat, meaning the variance is not constant.
 
 And the "Residuals vs Leverage" shows a few outliers and high-leverage points, so a few observations are influencing the model as a whole. This suggests that we should modify the model. We test the model with a t-test using robust standard errors to correct for heteroskedasticity.
 
@@ -1111,17 +1114,16 @@ Further research would include more variables in selection, i.e. does it matter 
 
 # 6.0 Works Cited
 
-“2025 NHL Cap Hit Rankings.” Spotrac, www.spotrac.com/nhl/rankings/player/_/year/2025/sort/cap_total. Accessed 8 July 2025.
+"2025 NHL Cap Hit Rankings." Spotrac, www.spotrac.com/nhl/rankings/player/\_/year/2025/sort/cap_total. Accessed 8 July 2025. Multiple different outputs and filters used.
 
-“Collective Bargaining Agreement.” The PA | NHLPA.Com, 16 Sept. 2012, nhlpa.com/the-pa/cba
+"Collective Bargaining Agreement." The PA \| NHLPA.Com, 16 Sept. 2012, nhlpa.com/the-pa/cba All pages
 
-Ding, Likang, et al. Do NHL Goalies Get Hot in the Playoffs? A Multilevel Logistic Regression Analysis, University of Alberta School of Business, 9 May 2024, arxiv.org/html/2102.09689v2#abstract.
+Ding, Likang, et al. Do NHL Goalies Get Hot in the Playoffs? A Multilevel Logistic Regression Analysis, University of Alberta School of Business, 9 May 2024, arxiv.org/html/2102.09689v2#abstract. Used as a starting point, no reference in paper.
 
-Emily KaplanNov 18, 2024. “Why Paying Goalies Is so Complicated in Today’s NHL.” ESPN, ESPN Internet Ventures, 18 Nov. 2024, www.espn.com/nhl/story/_/id/42446173/goalie-contracts-today-nhl-igor-shesterkin-jeremy-swayman.
+Emily Kaplan Nov 18, 2024. "Why Paying Goalies Is so Complicated in Today's NHL." ESPN, ESPN Internet Ventures, 18 Nov. 2024, www.espn.com/nhl/story/\_/id/42446173/goalie-contracts-today-nhl-igor-shesterkin-jeremy-swayman. page 3
 
-Luther, Robert, and Steven C. Estep. “The Goalie Paradox: Why Elite Goalies Don’t Guarantee Playoff Success and Predictions for the 2025 Stanley Cup Playoffs.” Journal of Sports & Enterainment Law, Havard Law School, 26 Apr. 2025, journals.law.harvard.edu/jsel/2025/04/the-goalie-paradox-why-elite-goalies-dont-guarantee-playoff-success-and-predictions-for-the-2025-stanley-cup-playoffs/.
+Luther, Robert, and Steven C. Estep. "The Goalie Paradox: Why Elite Goalies Don't Guarantee Playoff Success and Predictions for the 2025 Stanley Cup Playoffs." Journal of Sports & Enterainment Law, Havard Law School, 26 Apr. 2025, journals.law.harvard.edu/jsel/2025/04/the-goalie-paradox-why-elite-goalies-dont-guarantee-playoff-success-and-predictions-for-the-2025-stanley-cup-playoffs/.
 
-“NHL Stats.” NHL.Com, National Hockey League, www.nhl.com/stats/goalies?reportType=season&seasonFrom=20212022&seasonTo=20242025&gameType=2&page=1&pageSize=100. Accessed 8 July 2025.
+"NHL Stats." NHL.Com, National Hockey League, www.nhl.com/stats/goalies?reportType=season&seasonFrom=20212022&seasonTo=20242025&gameType=2&page=1&pageSize=100. Accessed 8 July 2025. Multiple different outputs and filters used.
 
-Rosen, Dan. “Shesterkin Signs 8-Year, $92 Million Contract with Rangers.” NHL.Com, National Hockey League, 8 Dec. 2024, www.nhl.com/news/igor-shesterkin-signs-eight-year-contract-with-new-york-rangers#:~:text=The%20deal%20makes%20Shesterkin%20the,Canadiens%20on%20July%202%2C%202017.
-
+Rosen, Dan. "Shesterkin Signs 8-Year, \$92 Million Contract with Rangers." NHL.Com, National Hockey League, 8 Dec. 2024, www.nhl.com/news/igor-shesterkin-signs-eight-year-contract-with-new-york-rangers#:\~:text=The%20deal%20makes%20Shesterkin%20the,Canadiens%20on%20July%202%2C%20201 page 1

@@ -1,5 +1,17 @@
 ---
 title: "About Me"
+image: headshot1.png
+about:
+  template: solana
+  image-shape: rounded
+  image-width: 10em
+  links: 
+    - text: Email
+      icon: envelope
+      href: mailto:orinmcrouse@gmail.com
+    - text: Linkedin
+      icon: linkedin
+      href: https://www.linkedin.com/in/orin-crouse/
 ---
 
 Hopefully this helps you understand who I am and what I enjoy doing. The two tabs here are projects I did while in my undergrad and graduate school.
