@@ -1,5 +1,5 @@
 ---
-title: "Orin Crouse"
+title: "About Me"
 ---
 
 Hopefully this helps you understand who I am and what I enjoy doing. The two tabs here are projects I did while in my undergrad and graduate school.
