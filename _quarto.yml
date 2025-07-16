@@ -10,7 +10,7 @@ website:
         text: Home
       - href: Goalies.qmd
         text: Goalies
-      - href: ChainPulse.qmd
+      - href: Crypto.qmd
         text: Crypto
 format:
   html:
