@@ -1,5 +1,5 @@
 ---
-title: "Chain Pulse"
+title: "Crypto"
 author: "Alex Schaef, Nathaniel Hamilton Thompson, Orin Crouse"
 date: 15/12/2022
 format:
