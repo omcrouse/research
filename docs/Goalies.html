@@ -95,6 +95,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -125,7 +127,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Goalies</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./ChainPulse.html" rel="" target="">
+    <a class="nav-link" href="./Crypto.html" rel="" target="">
  <span class="menu-text">Crypto</span></a>
   </li>  
 </ul>
@@ -209,12 +211,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="introduction" class="level1">
 <h1>1. Introduction</h1>
-<p>In this paper, we aim to determine whether a National Hockey League (NHL) team that allocates more money to its goal tenders (goalies) will lead to the team achieving a ranking in the top 16 at the conclusion of the season. The reason we choose the top 16 is that it is the number of teams that advance to the playoffs. While teams ranked 15th or 16th occasionally miss the playoffs due to conference seeding, we focused on the top 16 teams by overall standings. The measure of goalies is strictly the average pay per year against a team’s Cap Hit. This shows what the goalie will earn that year, regardless of bonuses. We used the average pay, rather than the goalie’s contract amount divided by the number of years the contract was signed for, to maintain consistency. Teams have player’s pay allocated to sometimes pay out different amounts each year which means that a contract of $ 10 million dollars for 5 years would seem to be $ 2 million a year but we see that some players/goalies will get $ 3 million the first year, and only $1 million in the last year. Looking at this, it seems that a team values the players/goalies more in the first year. This also leads a team to make better deals at the end of that contract, whether it would lead to resigning a contract, extension of a contract, or a trade to another team. The reverse logic is that a player/goalie who is paid the same throughout the contract (or more at the end, which is very rare), would mean the team values the player/goalie equally throughout the contracted years.</p>
-<p>The variables used in this paper are Cap Hit, Wins, overall average Sv %, TOI, GP, and ranking of teams throughout each, rather than a total. We are also only looking at the last four seasons, ’21-’22, ’22-’23, ’23-’24, ’24-’25. This keeps the number of games played per season at 82, rather than accounting for the COVID-19 seasons where ’19-’20 and ’20-’21 were cut short. The tools used are mostly regression, looking at R^2. We will break down how we get there and why we choose to use certain variables at different times.</p>
+<p>In this paper, we aim to determine whether a National Hockey League (NHL) team that allocates more money to its goal tenders (goalies) will lead to the team achieving a ranking in the top 16 at the conclusion of the season. The reason we choose the top 16 is that it is the number of teams that advance to the playoffs. While teams ranked 15th or 16th occasionally miss the playoffs due to conference seeding, we focused on the top 16 teams by overall standings. The measure of goalies is strictly the average pay per year against a team’s Cap Hit. This shows what the goalie will earn that year, regardless of bonuses. We used the average pay, rather than the goalie’s contract amount divided by the number of years the contract was signed for, to maintain consistency. Teams have player’s pay allocated to sometimes pay out different amounts each year which means that a contract of $10 million for 5 years would seem to be $2 million a year but we see that some players/goalies will get $3 million the first year, and only $1 million in the last year. Looking at this, it seems that a team values the players/goalies more in the first year. This also leads a team to make better deals at the end of that contract, whether it would lead to resigning a contract, extension of a contract, or a trade to another team. The reverse logic is that a player/goalie who is paid the same throughout the contract (or more at the end, which is very rare), would mean the team values the player/goalie equally throughout the contracted years.</p>
+<p>The variables used in this paper are Cap Hit, Wins, overall average Sv %, TOI, GP, and ranking of teams throughout each, rather than a total. We are also only looking at the last four seasons, ’21-’22, ’22-’23, ’23-’24, ’24-’25. This keeps the number of games played per season at 82, rather than accounting for the COVID-19 seasons where ’19-’20 and ’20-’21 were cut short. The tools used are mostly regression, looking at <span class="math inline">\(R^2\)</span>. We will break down how we get there and why we choose to use certain variables at different times.</p>
 </section>
 <section id="literature-review" class="level1">
 <h1>2. Literature Review</h1>
-<p>For this research, we sought to see what would lead an NHL goalie to argue for a higher pay rate. This started with seeing Igor Shesterkin, who “signed an eight-year, $ 92 million contract with the New York Rangers (Rosen, 1) this past season. This allowed him to be the highest-paid goalie in NHL history, but it still only makes him the 9th (three-way tie) highest-paid player for the next season, ’25-’26. With that, we looked into a few things. 1. What do goalies do to drive their pay? 2. What can goalies change to possibly argue for more pay? and 3. Are the fallacies in what drives goalie salaries when they sign contracts?</p>
+<p>For this research, we sought to see what would lead an NHL goalie to argue for a higher pay rate. This started with seeing Igor Shesterkin, who “signed an eight-year, $92 million contract with the New York Rangers (Rosen, 1) this past season. This allowed him to be the highest-paid goalie in NHL history, but it still only makes him the 9th (three-way tie) highest-paid player for the next season, ’25-’26. With that, we looked into a few things. 1. What do goalies do to drive their pay? 2. What can goalies change to possibly argue for more pay? and 3. Are the fallacies in what drives goalie salaries when they sign contracts?</p>
 <p>We saw through different articles and papers that one idea that comes from Ding, Cribben, Ingolfsson, and Tran at the University of Alberta looked into whether goalies get hot in the playoffs. We chose to look at the regular season rather than the playoffs, but they saw that goalies with lower Sv% should be preferred as they will turn and start to perform better. Meaning that all goalies perform to a certain average, and if they are below this, then they will at some point start to perform above this average. Also means that the average Sv% of goalies leads to wins.</p>
 <p>We then saw with Luther III and Estep state that goalies in the salary cap era aren’t used for their higher performance alone, but how well they perform against their salary. They showed that recent Stanley Cup winners used a very low cap space allocated towards their goalies. With 8% or less allocated towards the position that receives the most TOI and makes up 10% of the team for the maximum number of players (18 skaters and 2 goalies in the regular season). This amount goes up to 13% post-trade deadline (20 skaters and 3 goalies) and continues into the playoffs with that format. So why does a position in hockey that seems to be one of the most critical get paid a lesser amount? A statement made famous by a football head coach is, Paul Bryant, “offense sells tickets, but defense wins championships”. This can explain the difference if a team is looking to sell tickets, as goalies very rarely score goals. But if a team is hunting for a championship, the Cup, and is willing to forgo higher scoring games, then they should look more into their defense, which starts and ends with a goalie.</p>
 </section>
@@ -223,12 +225,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Data were collected from NHL.com (stats), NHLPA.com (CBA and cap data), and Spotrac.com (contract details). Goalies were associated with the final team they played for each season, under the assumption that final teams absorbed the cap hit.</p>
 <p>Salary cap values used per season:</p>
 <ul>
-<li><p>’21-22: $ 81.5 million</p></li>
-<li><p>’22-23: $ 82.5 million</p></li>
-<li><p>’23-24 and 2024-25: $ 83.5 million</p></li>
+<li><p>’21-22: $81.5 million</p></li>
+<li><p>’22-23: $82.5 million</p></li>
+<li><p>’23-24 and 2024-25: $83.5 million</p></li>
 </ul>
-<p>The salary floor for ’24-25 was $ 70.6 million. Minimum player salary was $ 775,000, rookie max $ 950,000, and total player max 20% of team cap (i.e., $ 17.6 million for ’24-25).</p>
-<p>Carey Price had the highest goalie salary ($ 10.5M), while Igor Shesterkin will earn $ 11.85 million in ’25-26.</p>
+<p>The salary floor for ’24-25 was $70.6 million. Minimum player salary was $ 775,000, rookie max $950,000, and total player max 20% of team cap (i.e., $17.6 million for ’24-25).</p>
+<p>Carey Price had the highest goalie salary ($10.5M), while Igor Shesterkin will earn $11.85 million in ’25-26.</p>
 <section id="data-sorting" class="level2">
 <h2 class="anchored" data-anchor-id="data-sorting">3.1 Data sorting</h2>
 <p>Not all data is good data. Each team in the NHL is allowed to have 3 goalies on the roster, while only 2 can be “dressed” for the game, meaning that they are on the ice for the game or on the bench ready to go in. The third goalie is typically playing for an affiliated team in a lower level, like the American Hockey League (AHL). In the rules of the NHL, you are allowed to pull your starting goalie and put in the backup. The starting goalie for any particular game can either be the number one goalie (typically the highest-paid) or the second goalie. The idea is that goalies cannot play all 82 games in a row. They are given breaks throughout the season, but the goalie who played the last 3-20 games will be dressed for the game(s), but still able to play if the starting goalie becomes injured or has a bad game. A goalie who is having a bad game, meaning they are getting scored on without making many saves (lower Sv%), is eligible to be pulled. There is a rule in the NHL where an Emergency Backup Goalie (EBUG) will be in the building ready to play, but not dressed, for either team, meaning the EBUG can play for an away team. An example is that an EBUG can be in the stands at a Dallas Stars game, in Dallas, and play for the Anaheim Ducks, the away team, which happened on April 29th, 2022. The EBUG procedure became a rule in the 16-’17 season, and before this, it was simply set as a team would call upon a volunteer amateur goalie. This is used when a team’s starting goalie is injured during the game, along with the backup goalie. This can also happen when the starting goalie is pulled, the second goalie becomes injured, requiring the starting goalie to be put back into the game, and then becomes injured. Injuries can range widely, but it is very rare to happen to both goalies. In fact, the EBUG process has only occurred 6 times in NHL history. Since they are EBUGs, they are not allowed to be in any sense a professional goaltender or team-paid employee, meaning they are not paid by any team, and are mostly former goalies or students. The next season of ’25-’26, there will be traveling EBUGs that will not count towards the roster limit and therefore will most likely not go against the cap hit, and there is no set pay for them. Although EBUGs got TOI, they only get $500 (yes, hundred, not thousands) for the game as a professional tryout contract. Side note, they received their jersey, which must be an awesome item for the trophy case in the man cave. This rule means that an EBUG, a goalie, can help a team receive a win; they don’t affect the salary cap for that year. So, for that fact, we removed the 3 EBUGs that took the ice during the seasons we looked at. They were Thomas Hodges for the Anaheim Ducks on April 29th, 2022, with 19 minutes and 16 seconds TOI, Matt Berlin for the Edmonton Oilers on January 28th, 2023, with 2 minutes and 26 seconds, and Jett Alexander for the Toronto Maple Leafs on April 8, 2023 with 1 minute and 10 seconds. The total is 22 minutes and 52 seconds. They do not significantly affect the data set, contributing less than 23 minutes of total ice time.</p>
@@ -241,7 +243,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Median = 1.05</p>
 <p>75th percentile = 3.50</p>
 <p>Maximum = 10.50</p>
-<p>These are broken up by quantiles and are in millions of dollars. So the minimum amount of these bins is $ 750,000 per year, which is the league minimum for any player. However, we see half of the goalies get $ 1,050,000 per year. This is in the ranking of Cap Hit for players set at 531 out of 836 players as of last season, ’24-’25. Next is looking at how these bins spread across several factors. Cap hit against itself, Sv% (save percentage [saves against the number of shots taken]), Wins (overall wins), and TOI (time spent on ice). We used Sv% because this measures how good a goalie performs. The number of shots they can take per season ranges from 1 (rare) to 2,155 shots, while the number of saves ranges from 1 to 1,962. This has used a range for Sv% from 50% to 100%. Wins are used to show how well the Sv% can be used against not only cap hit but also against Sv%. These show which range of paid goalies get more wins, and which range of wins get higher Sv%. The last used is TOI, which will show if a goalie is paid more, do they spend more time on ice, and how much that will vary. It comes off as obvious that if a general manager/head coach pays a goalie more, they will be their starting goalie. Meaning that the goalie is trusted to win more games, so play them more often.</p>
+<p>These are broken up by quantiles and are in millions of dollars. So the minimum amount of these bins is $750,000 per year, which is the league minimum for any player. However, we see half of the goalies get $1,050,000 per year. This is in the ranking of Cap Hit for players set at 531 out of 836 players as of last season, ’24-’25. Next is looking at how these bins spread across several factors. Cap hit against itself, Sv% (save percentage [saves against the number of shots taken]), Wins (overall wins), and TOI (time spent on ice). We used Sv% because this measures how good a goalie performs. The number of shots they can take per season ranges from 1 (rare) to 2,155 shots, while the number of saves ranges from 1 to 1,962. This has used a range for Sv% from 50% to 100%. Wins are used to show how well the Sv% can be used against not only cap hit but also against Sv%. These show which range of paid goalies get more wins, and which range of wins get higher Sv%. The last used is TOI, which will show if a goalie is paid more, do they spend more time on ice, and how much that will vary. It comes off as obvious that if a general manager/head coach pays a goalie more, they will be their starting goalie. Meaning that the goalie is trusted to win more games, so play them more often.</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="Goalies_files/figure-html/boxplots-1.png" class="img-fluid" width="672"></p>
@@ -369,7 +371,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Let us now change how we look at pay for goalies. Each year, as stated before, has different salary caps that each team is able to pay for their players. We will take the goalie pay and modify it to show the percentage of the salary cap for their respective teams. For example, in the ’21-’22 season, Carey Price was the highest-paid goalie at \$ 10.5 million that year. That year, having a \$ 81.5 million salary cap, Price received 12.88% of his team’s (Montreal Canadiens) salary cap. We hope this will show that the pay against the used variables will be better.</p>
 <section id="prediction-regression-model" class="level4">
 <h4 class="anchored" data-anchor-id="prediction-regression-model">4.3.1 Prediction Regression Model</h4>
-<p>Through this model, we see that with the predictor variables (Sv%, Wins, and TOI), we see a positive trend for the predicted relationship between goalie performance and pay. The positive coefficients suggest that goalies with higher Sv%, Wins, and TOI tend to earn more money for their respective team’s salary cap. We see an increase in Sv%, by will change the Cap Hit % by \$ `{r}<code>b_sv_dollars\</code>. Similarly, another win will change their pay by`{r} b_toi_dollars`}, and another minute on ice will change their pay by`{r} beta_toi`. We start the model with an intercept with`{r} intercept`. Which leads us to the equation of $\hat{y} = b_0 + b_1*Sv% + b_2*Wins + b_3*TOI + \epsilon$. This is: $\hat{y} = $`{r} intercept`+`{r} beta_sv`Sv% +`{r} beta_wins`Wins +`{r} beta_toi`TOI + $\epsilon$. We have an $R^2$ of`{r} r2\`, , which is the best and shows that there is a lot of noise in this model.</p>
+<p>Through this model, we see that with the predictor variables (Sv%, Wins, and TOI), we see a positive trend for the predicted relationship between goalie performance and pay. The positive coefficients suggest that goalies with higher Sv%, Wins, and TOI tend to earn more money for their respective team’s salary cap. We see an increase of 1 in Sv%, by will change the Cap Hit % by $-2,284,189. Similarly, another Win will change their pay by 2,4929.8, and another minute of TOI change their pay by $934.65. We start the model with an intercept with $0.03. Which leads us to the equation of <span class="math inline">\(\hat{y} = b_0 + b_1*Sv\% + b_2*Wins + b_3*TOI + \epsilon\)</span>. This is: <span class="math inline">\(\hat{y} = 0.03 - 2284189 * Sv\%+ 24929.8 * Wins + 934.65 * TOI + \epsilon\)</span>. We have an <span class="math inline">\(R^2\)</span> of` 0.39, which is the best but shows that there is a lot of noise in this model.</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="Goalies_files/figure-html/reg_sv_percent-1.png" class="img-fluid" width="672"></p>
@@ -392,12 +394,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="test-model-for-potential-problems" class="level4">
 <h4 class="anchored" data-anchor-id="test-model-for-potential-problems">4.3.2 Test Model for Potential Problems</h4>
 <p>We tested a few items: multicollinearity, autocorrelation, and heteroskedasticity. For multicollinearity, we used a variance inflation factor calculation for our predictors, and they have a value of:\</p>
-<p>Cap Hit off of Percentage we have `{r} vif_wins`\</p>
-<p>Sv% we have `{r} vif_sv_percent`\</p>
-<p>and with TOI we have `{r} vif_toi_minutes`\</p>
-<p>With these values being great than 1, we do some correlation with each other.\</p>
-<p>For autocorrelation we used a Durbin-Watson (DW) test, and we have a value of `{r} dw_stat`, which is very close to 2 meaning have no evidence of autocorrelation.\</p>
-<p>For heteroskedasticity we tested this by using a Breusch-Pagan (BP) test and residual plots. For the BP test value we have `{r} bp_pval`, which means there is strong evidence to suggest heteroskedasticity. We also see this with residual plots below.</p>
+<p>Cap Hit off of Percentage we have 8.45</p>
+<p>Sv% we have 1.10</p>
+<p>and with TOI we have 8.71</p>
+<p>With these values being great than 1, we do some correlation with each other.</p>
+<p>For autocorrelation we used a Durbin-Watson (DW) test, and we have a value of 1.94, which is very close to 2 meaning have no evidence of autocorrelation.</p>
+<p>For heteroskedasticity we tested this by using a Breusch-Pagan (BP) test and residual plots. For the BP test value we have 0.0002, which means there is strong evidence to suggest heteroskedasticity. We also see this with residual plots below.</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="Goalies_files/figure-html/reg_wp_resid_plots-1.png" class="img-fluid" width="672"></p>
@@ -431,13 +433,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="works-cited" class="level1">
 <h1>6.0 Works Cited</h1>
-<p>“2025 NHL Cap Hit Rankings.” Spotrac, www.spotrac.com/nhl/rankings/player/_/year/2025/sort/cap_total. Accessed 8 July 2025.</p>
-<p>“Collective Bargaining Agreement.” The PA | NHLPA.Com, 16 Sept.&nbsp;2012, nhlpa.com/the-pa/cba</p>
-<p>Ding, Likang, et al.&nbsp;Do NHL Goalies Get Hot in the Playoffs? A Multilevel Logistic Regression Analysis, University of Alberta School of Business, 9 May 2024, arxiv.org/html/2102.09689v2#abstract.</p>
-<p>Emily KaplanNov 18, 2024. “Why Paying Goalies Is so Complicated in Today’s NHL.” ESPN, ESPN Internet Ventures, 18 Nov.&nbsp;2024, www.espn.com/nhl/story/_/id/42446173/goalie-contracts-today-nhl-igor-shesterkin-jeremy-swayman.</p>
+<p>“2025 NHL Cap Hit Rankings.” Spotrac, www.spotrac.com/nhl/rankings/player/_/year/2025/sort/cap_total. Accessed 8 July 2025. Multiple different outputs and filters used.</p>
+<p>“Collective Bargaining Agreement.” The PA | NHLPA.Com, 16 Sept.&nbsp;2012, nhlpa.com/the-pa/cba All pages</p>
+<p>Ding, Likang, et al.&nbsp;Do NHL Goalies Get Hot in the Playoffs? A Multilevel Logistic Regression Analysis, University of Alberta School of Business, 9 May 2024, arxiv.org/html/2102.09689v2#abstract. Used as a starting point, no reference in paper.</p>
+<p>Emily Kaplan Nov 18, 2024. “Why Paying Goalies Is so Complicated in Today’s NHL.” ESPN, ESPN Internet Ventures, 18 Nov.&nbsp;2024, www.espn.com/nhl/story/_/id/42446173/goalie-contracts-today-nhl-igor-shesterkin-jeremy-swayman. page 3</p>
 <p>Luther, Robert, and Steven C. Estep. “The Goalie Paradox: Why Elite Goalies Don’t Guarantee Playoff Success and Predictions for the 2025 Stanley Cup Playoffs.” Journal of Sports &amp; Enterainment Law, Havard Law School, 26 Apr.&nbsp;2025, journals.law.harvard.edu/jsel/2025/04/the-goalie-paradox-why-elite-goalies-dont-guarantee-playoff-success-and-predictions-for-the-2025-stanley-cup-playoffs/.</p>
-<p>“NHL Stats.” NHL.Com, National Hockey League, www.nhl.com/stats/goalies?reportType=season&amp;seasonFrom=20212022&amp;seasonTo=20242025&amp;gameType=2&amp;page=1&amp;pageSize=100. Accessed 8 July 2025.</p>
-<p>Rosen, Dan. “Shesterkin Signs 8-Year, $92 Million Contract with Rangers.” NHL.Com, National Hockey League, 8 Dec.&nbsp;2024, www.nhl.com/news/igor-shesterkin-signs-eight-year-contract-with-new-york-rangers#:~:text=The%20deal%20makes%20Shesterkin%20the,Canadiens%20on%20July%202%2C%202017.</p>
+<p>“NHL Stats.” NHL.Com, National Hockey League, www.nhl.com/stats/goalies?reportType=season&amp;seasonFrom=20212022&amp;seasonTo=20242025&amp;gameType=2&amp;page=1&amp;pageSize=100. Accessed 8 July 2025. Multiple different outputs and filters used.</p>
+<p>Rosen, Dan. “Shesterkin Signs 8-Year, $92 Million Contract with Rangers.” NHL.Com, National Hockey League, 8 Dec.&nbsp;2024, www.nhl.com/news/igor-shesterkin-signs-eight-year-contract-with-new-york-rangers#:~:text=The%20deal%20makes%20Shesterkin%20the,Canadiens%20on%20July%202%2C%20201 page 1</p>
 
 
 <!-- -->
@@ -809,13 +811,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a><span class="fu"># 1. Introduction</span></span>
 <span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>In this paper, we aim to determine whether a National Hockey League (NHL) team that allocates more money to its goal tenders (goalies) will lead to the team achieving a ranking in the top 16 at the conclusion of the season. The reason we choose the top 16 is that it is the number of teams that advance to the playoffs. While teams ranked 15th or 16th occasionally miss the playoffs due to conference seeding, we focused on the top 16 teams by overall standings. The measure of goalies is strictly the average pay per year against a team's Cap Hit. This shows what the goalie will earn that year, regardless of bonuses. We used the average pay, rather than the goalie's contract amount divided by the number of years the contract was signed for, to maintain consistency. Teams have player's pay allocated to sometimes pay out different amounts each year which means that a contract of \$ 10 million dollars for 5 years would seem to be \$ 2 million a year but we see that some players/goalies will get \$ 3 million the first year, and only \$1 million in the last year. Looking at this, it seems that a team values the players/goalies more in the first year. This also leads a team to make better deals at the end of that contract, whether it would lead to resigning a contract, extension of a contract, or a trade to another team. The reverse logic is that a player/goalie who is paid the same throughout the contract (or more at the end, which is very rare), would mean the team values the player/goalie equally throughout the contracted years.</span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>In this paper, we aim to determine whether a National Hockey League (NHL) team that allocates more money to its goal tenders (goalies) will lead to the team achieving a ranking in the top 16 at the conclusion of the season. The reason we choose the top 16 is that it is the number of teams that advance to the playoffs. While teams ranked 15th or 16th occasionally miss the playoffs due to conference seeding, we focused on the top 16 teams by overall standings. The measure of goalies is strictly the average pay per year against a team's Cap Hit. This shows what the goalie will earn that year, regardless of bonuses. We used the average pay, rather than the goalie's contract amount divided by the number of years the contract was signed for, to maintain consistency. Teams have player's pay allocated to sometimes pay out different amounts each year which means that a contract of \$10 million for 5 years would seem to be \$2 million a year but we see that some players/goalies will get \$3 million the first year, and only \$1 million in the last year. Looking at this, it seems that a team values the players/goalies more in the first year. This also leads a team to make better deals at the end of that contract, whether it would lead to resigning a contract, extension of a contract, or a trade to another team. The reverse logic is that a player/goalie who is paid the same throughout the contract (or more at the end, which is very rare), would mean the team values the player/goalie equally throughout the contracted years.</span>
 <span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>The variables used in this paper are Cap Hit, Wins, overall average Sv %, TOI, GP, and ranking of teams throughout each, rather than a total. We are also only looking at the last four seasons, '21-'22, '22-'23, '23-'24, '24-'25. This keeps the number of games played per season at 82, rather than accounting for the COVID-19 seasons where '19-'20 and '20-'21 were cut short. The tools used are mostly regression, looking at R\^2. We will break down how we get there and why we choose to use certain variables at different times.</span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>The variables used in this paper are Cap Hit, Wins, overall average Sv %, TOI, GP, and ranking of teams throughout each, rather than a total. We are also only looking at the last four seasons, '21-'22, '22-'23, '23-'24, '24-'25. This keeps the number of games played per season at 82, rather than accounting for the COVID-19 seasons where '19-'20 and '20-'21 were cut short. The tools used are mostly regression, looking at $R^2$. We will break down how we get there and why we choose to use certain variables at different times.</span>
 <span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="fu"># 2. Literature Review</span></span>
 <span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>For this research, we sought to see what would lead an NHL goalie to argue for a higher pay rate. This started with seeing Igor Shesterkin, who "signed an eight-year, \$ 92 million contract with the New York Rangers (Rosen, 1) this past season. This allowed him to be the highest-paid goalie in NHL history, but it still only makes him the 9th (three-way tie) highest-paid player for the next season, '25-'26. With that, we looked into a few things. 1. What do goalies do to drive their pay? 2. What can goalies change to possibly argue for more pay? and 3. Are the fallacies in what drives goalie salaries when they sign contracts?</span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>For this research, we sought to see what would lead an NHL goalie to argue for a higher pay rate. This started with seeing Igor Shesterkin, who "signed an eight-year, \$92 million contract with the New York Rangers (Rosen, 1) this past season. This allowed him to be the highest-paid goalie in NHL history, but it still only makes him the 9th (three-way tie) highest-paid player for the next season, '25-'26. With that, we looked into a few things. 1. What do goalies do to drive their pay? 2. What can goalies change to possibly argue for more pay? and 3. Are the fallacies in what drives goalie salaries when they sign contracts?</span>
 <span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>We saw through different articles and papers that one idea that comes from Ding, Cribben, Ingolfsson, and Tran at the University of Alberta looked into whether goalies get hot in the playoffs. We chose to look at the regular season rather than the playoffs, but they saw that goalies with lower Sv% should be preferred as they will turn and start to perform better. Meaning that all goalies perform to a certain average, and if they are below this, then they will at some point start to perform above this average. Also means that the average Sv% of goalies leads to wins.</span>
 <span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a></span>
@@ -827,15 +829,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>Salary cap values used per season:</span>
 <span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>'21-22: \$ 81.5 million</span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>'21-22: \$81.5 million</span>
 <span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>'22-23: \$ 82.5 million</span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>'22-23: \$82.5 million</span>
 <span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>'23-24 and 2024-25: \$ 83.5 million</span>
+<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>'23-24 and 2024-25: \$83.5 million</span>
 <span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>The salary floor for '24-25 was \$ 70.6 million. Minimum player salary was \$ 775,000, rookie max \$ 950,000, and total player max 20% of team cap (i.e., \$ 17.6 million for '24-25).</span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>The salary floor for '24-25 was \$70.6 million. Minimum player salary was \$ 775,000, rookie max \$950,000, and total player max 20% of team cap (i.e., \$17.6 million for '24-25).</span>
 <span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>Carey Price had the highest goalie salary (\$ 10.5M), while Igor Shesterkin will earn \$ 11.85 million in '25-26.</span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>Carey Price had the highest goalie salary (\$10.5M), while Igor Shesterkin will earn \$11.85 million in '25-26.</span>
 <span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="fu">## 3.1 Data sorting</span></span>
 <span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a></span>
@@ -872,7 +874,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a>Maximum = 10.50</span>
 <span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a>These are broken up by quantiles and are in millions of dollars. So the minimum amount of these bins is \$ 750,000 per year, which is the league minimum for any player. However, we see half of the goalies get \$ 1,050,000  per year. This is in the ranking of Cap Hit for players set at 531 out of 836 players as of last season, '24-'25. Next is looking at how these bins spread across several factors. Cap hit against itself, Sv% (save percentage <span class="co">[</span><span class="ot">saves against the number of shots taken</span><span class="co">]</span>), Wins (overall wins), and TOI (time spent on ice). We used Sv% because this measures how good a goalie performs. The number of shots they can take per season ranges from 1 (rare) to 2,155 shots, while the number of saves ranges from 1 to 1,962. This has used a range for Sv% from 50% to 100%. Wins are used to show how well the Sv% can be used against not only cap hit but also against Sv%. These show which range of paid goalies get more wins, and which range of wins get higher Sv%. The last used is TOI, which will show if a goalie is paid more, do they spend more time on ice, and how much that will vary. It comes off as obvious that if a general manager/head coach pays a goalie more, they will be their starting goalie. Meaning that the goalie is trusted to win more games, so play them more often.</span>
+<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a>These are broken up by quantiles and are in millions of dollars. So the minimum amount of these bins is \$750,000 per year, which is the league minimum for any player. However, we see half of the goalies get \$1,050,000 per year. This is in the ranking of Cap Hit for players set at 531 out of 836 players as of last season, '24-'25. Next is looking at how these bins spread across several factors. Cap hit against itself, Sv% (save percentage <span class="sc">\[</span>saves against the number of shots taken<span class="sc">\]</span>), Wins (overall wins), and TOI (time spent on ice). We used Sv% because this measures how good a goalie performs. The number of shots they can take per season ranges from 1 (rare) to 2,155 shots, while the number of saves ranges from 1 to 1,962. This has used a range for Sv% from 50% to 100%. Wins are used to show how well the Sv% can be used against not only cap hit but also against Sv%. These show which range of paid goalies get more wins, and which range of wins get higher Sv%. The last used is TOI, which will show if a goalie is paid more, do they spend more time on ice, and how much that will vary. It comes off as obvious that if a general manager/head coach pays a goalie more, they will be their starting goalie. Meaning that the goalie is trusted to win more games, so play them more often.</span>
 <span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a><span class="in">```{r boxplots, echo = FALSE}</span></span>
 <span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a></span>
@@ -1645,216 +1647,219 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-914"><a href="#cb1-914" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb1-915"><a href="#cb1-915" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-916"><a href="#cb1-916" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb1-917"><a href="#cb1-917" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-918"><a href="#cb1-918" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-919"><a href="#cb1-919" aria-hidden="true" tabindex="-1"></a>Through this model, we see that with the predictor variables (Sv%, Wins, and TOI), we see a positive trend for the predicted relationship between goalie performance and pay. The positive coefficients suggest that goalies with higher Sv%, Wins, and TOI tend to earn more money for their respective team's salary cap. We see an increase in Sv%, by will change the Cap Hit % by <span class="sc">\\</span>\$ <span class="sc">\`</span>{r}<span class="in">`b_sv_dollars\`</span>. Similarly, another win will change their pay by<span class="sc">\`</span>{r} b_toi_dollars<span class="sc">\`</span>}, and another minute on ice will change their pay by<span class="sc">\`</span>{r} beta_toi<span class="sc">\`</span>. We start the model with an intercept with<span class="sc">\`</span>{r} intercept<span class="sc">\`</span>. Which leads us to the equation of \$<span class="sc">\\</span>hat{y} = b_0 + b_1<span class="sc">\*</span>Sv% + b_2<span class="sc">\*</span>Wins + b_3<span class="sc">\*</span>TOI + <span class="sc">\\</span>epsilon\$. This is: \$<span class="sc">\\</span>hat{y} = \$<span class="sc">\`</span>{r} intercept<span class="sc">\`</span>+<span class="sc">\`</span>{r} beta_sv<span class="sc">\`</span>Sv% +<span class="sc">\`</span>{r} beta_wins<span class="sc">\`</span>Wins +<span class="sc">\`</span>{r} beta_toi<span class="sc">\`</span>TOI + \$<span class="sc">\\</span>epsilon\$. We have an \$R\^2\$ of<span class="sc">\`</span>{r} r2<span class="sc">\\\`</span>, , which is the best and shows that there is a lot of noise in this model.</span>
+<span id="cb1-917"><a href="#cb1-917" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-918"><a href="#cb1-918" aria-hidden="true" tabindex="-1"></a>intercept</span>
+<span id="cb1-919"><a href="#cb1-919" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb1-920"><a href="#cb1-920" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-921"><a href="#cb1-921" aria-hidden="true" tabindex="-1"></a><span class="in">```{r reg_sv_percent, echo = FALSE, message = FALSE}</span></span>
+<span id="cb1-921"><a href="#cb1-921" aria-hidden="true" tabindex="-1"></a>Through this model, we see that with the predictor variables (Sv%, Wins, and TOI), we see a positive trend for the predicted relationship between goalie performance and pay. The positive coefficients suggest that goalies with higher Sv%, Wins, and TOI tend to earn more money for their respective team's salary cap. We see an increase of 1 in Sv%, by will change the Cap Hit % by \$-2,284,189. Similarly, another Win will change their pay by 2,4929.8, and another minute of TOI change their pay by \$934.65. We start the model with an intercept with \$0.03. Which leads us to the equation of $\hat{y} = b_0 + b_1*Sv\% + b_2*Wins + b_3*TOI + \epsilon$. This is: $\hat{y} = 0.03 - 2284189 * Sv\%+ 24929.8 * Wins + 934.65 * TOI + \epsilon$. We have an $R^2$ of<span class="sc">\`</span> 0.39, which is the best but shows that there is a lot of noise in this model.</span>
 <span id="cb1-922"><a href="#cb1-922" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-923"><a href="#cb1-923" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(goalies, <span class="fu">aes</span>(<span class="at">x =</span> Sv_percent, <span class="at">y =</span> Predicted_Cap_Hit)) <span class="sc">+</span></span>
+<span id="cb1-923"><a href="#cb1-923" aria-hidden="true" tabindex="-1"></a><span class="in">```{r reg_sv_percent, echo = FALSE, message = FALSE}</span></span>
 <span id="cb1-924"><a href="#cb1-924" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-925"><a href="#cb1-925" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">color =</span> <span class="st">"darkgreen"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb1-925"><a href="#cb1-925" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(goalies, <span class="fu">aes</span>(<span class="at">x =</span> Sv_percent, <span class="at">y =</span> Predicted_Cap_Hit)) <span class="sc">+</span></span>
 <span id="cb1-926"><a href="#cb1-926" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-927"><a href="#cb1-927" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1-927"><a href="#cb1-927" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">color =</span> <span class="st">"darkgreen"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
 <span id="cb1-928"><a href="#cb1-928" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-929"><a href="#cb1-929" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Actual Sv% vs. Predicted Cap Hit %"</span>,</span>
+<span id="cb1-929"><a href="#cb1-929" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
 <span id="cb1-930"><a href="#cb1-930" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-931"><a href="#cb1-931" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Actual Sv%"</span>,</span>
+<span id="cb1-931"><a href="#cb1-931" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Actual Sv% vs. Predicted Cap Hit %"</span>,</span>
 <span id="cb1-932"><a href="#cb1-932" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-933"><a href="#cb1-933" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Predicted Cap %"</span></span>
+<span id="cb1-933"><a href="#cb1-933" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Actual Sv%"</span>,</span>
 <span id="cb1-934"><a href="#cb1-934" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-935"><a href="#cb1-935" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1-935"><a href="#cb1-935" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Predicted Cap %"</span></span>
 <span id="cb1-936"><a href="#cb1-936" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-937"><a href="#cb1-937" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb1-938"><a href="#cb1-938" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-939"><a href="#cb1-939" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-940"><a href="#cb1-940" aria-hidden="true" tabindex="-1"></a>Above, we see the negative relationship between the predicted Cap Hit % against actual Sv%. Consequently, paying more does not lead to higher Sv%.</span>
+<span id="cb1-937"><a href="#cb1-937" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1-938"><a href="#cb1-938" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-939"><a href="#cb1-939" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb1-940"><a href="#cb1-940" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb1-941"><a href="#cb1-941" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-942"><a href="#cb1-942" aria-hidden="true" tabindex="-1"></a><span class="in">```{r reg_wins_percent, echo = FALSE, message = FALSE}</span></span>
+<span id="cb1-942"><a href="#cb1-942" aria-hidden="true" tabindex="-1"></a>Above, we see the negative relationship between the predicted Cap Hit % against actual Sv%. Consequently, paying more does not lead to higher Sv%.</span>
 <span id="cb1-943"><a href="#cb1-943" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-944"><a href="#cb1-944" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot: Predicted vs. Actual Wins</span></span>
+<span id="cb1-944"><a href="#cb1-944" aria-hidden="true" tabindex="-1"></a><span class="in">```{r reg_wins_percent, echo = FALSE, message = FALSE}</span></span>
 <span id="cb1-945"><a href="#cb1-945" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-946"><a href="#cb1-946" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(goalies, <span class="fu">aes</span>(<span class="at">x =</span> Wins, <span class="at">y =</span> Predicted_Cap_Hit)) <span class="sc">+</span></span>
+<span id="cb1-946"><a href="#cb1-946" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot: Predicted vs. Actual Wins</span></span>
 <span id="cb1-947"><a href="#cb1-947" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-948"><a href="#cb1-948" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">color =</span> <span class="st">"darkgreen"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb1-948"><a href="#cb1-948" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(goalies, <span class="fu">aes</span>(<span class="at">x =</span> Wins, <span class="at">y =</span> Predicted_Cap_Hit)) <span class="sc">+</span></span>
 <span id="cb1-949"><a href="#cb1-949" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-950"><a href="#cb1-950" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1-950"><a href="#cb1-950" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">color =</span> <span class="st">"darkgreen"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
 <span id="cb1-951"><a href="#cb1-951" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-952"><a href="#cb1-952" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Actual Wins vs. Predicted Cap Hit %"</span>,</span>
+<span id="cb1-952"><a href="#cb1-952" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
 <span id="cb1-953"><a href="#cb1-953" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-954"><a href="#cb1-954" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Actual Wins"</span>,</span>
+<span id="cb1-954"><a href="#cb1-954" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Actual Wins vs. Predicted Cap Hit %"</span>,</span>
 <span id="cb1-955"><a href="#cb1-955" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-956"><a href="#cb1-956" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Predicted Cap %"</span></span>
+<span id="cb1-956"><a href="#cb1-956" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Actual Wins"</span>,</span>
 <span id="cb1-957"><a href="#cb1-957" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-958"><a href="#cb1-958" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1-958"><a href="#cb1-958" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Predicted Cap %"</span></span>
 <span id="cb1-959"><a href="#cb1-959" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-960"><a href="#cb1-960" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb1-961"><a href="#cb1-961" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-962"><a href="#cb1-962" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-963"><a href="#cb1-963" aria-hidden="true" tabindex="-1"></a>From this, we can see that the more Wins there are, we predict high pay.</span>
+<span id="cb1-960"><a href="#cb1-960" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1-961"><a href="#cb1-961" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-962"><a href="#cb1-962" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb1-963"><a href="#cb1-963" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb1-964"><a href="#cb1-964" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-965"><a href="#cb1-965" aria-hidden="true" tabindex="-1"></a><span class="in">```{r reg_TOI_percent, echo = FALSE, message = FALSE}</span></span>
+<span id="cb1-965"><a href="#cb1-965" aria-hidden="true" tabindex="-1"></a>From this, we can see that the more Wins there are, we predict high pay.</span>
 <span id="cb1-966"><a href="#cb1-966" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-967"><a href="#cb1-967" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(goalies, <span class="fu">aes</span>(<span class="at">x =</span> TOI_minutes, <span class="at">y =</span> Predicted_Cap_Hit)) <span class="sc">+</span></span>
+<span id="cb1-967"><a href="#cb1-967" aria-hidden="true" tabindex="-1"></a><span class="in">```{r reg_TOI_percent, echo = FALSE, message = FALSE}</span></span>
 <span id="cb1-968"><a href="#cb1-968" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-969"><a href="#cb1-969" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">color =</span> <span class="st">"darkgreen"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb1-969"><a href="#cb1-969" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(goalies, <span class="fu">aes</span>(<span class="at">x =</span> TOI_minutes, <span class="at">y =</span> Predicted_Cap_Hit)) <span class="sc">+</span></span>
 <span id="cb1-970"><a href="#cb1-970" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-971"><a href="#cb1-971" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1-971"><a href="#cb1-971" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">color =</span> <span class="st">"darkgreen"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
 <span id="cb1-972"><a href="#cb1-972" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-973"><a href="#cb1-973" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Actual TOI vs. Predicted Cap Hit %"</span>,</span>
+<span id="cb1-973"><a href="#cb1-973" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
 <span id="cb1-974"><a href="#cb1-974" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-975"><a href="#cb1-975" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Actual TOI"</span>,</span>
+<span id="cb1-975"><a href="#cb1-975" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Actual TOI vs. Predicted Cap Hit %"</span>,</span>
 <span id="cb1-976"><a href="#cb1-976" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-977"><a href="#cb1-977" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Predicted Cap %"</span></span>
+<span id="cb1-977"><a href="#cb1-977" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Actual TOI"</span>,</span>
 <span id="cb1-978"><a href="#cb1-978" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-979"><a href="#cb1-979" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1-979"><a href="#cb1-979" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Predicted Cap %"</span></span>
 <span id="cb1-980"><a href="#cb1-980" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-981"><a href="#cb1-981" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb1-982"><a href="#cb1-982" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-983"><a href="#cb1-983" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-984"><a href="#cb1-984" aria-hidden="true" tabindex="-1"></a>And lastly, more TOI, we predict more pay.</span>
+<span id="cb1-981"><a href="#cb1-981" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb1-982"><a href="#cb1-982" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-983"><a href="#cb1-983" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb1-984"><a href="#cb1-984" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb1-985"><a href="#cb1-985" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-986"><a href="#cb1-986" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 4.3.2 Test Model for Potential Problems</span></span>
+<span id="cb1-986"><a href="#cb1-986" aria-hidden="true" tabindex="-1"></a>And lastly, more TOI, we predict more pay.</span>
 <span id="cb1-987"><a href="#cb1-987" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-988"><a href="#cb1-988" aria-hidden="true" tabindex="-1"></a><span class="in">```{r vif, echo=FALSE, include=FALSE}</span></span>
+<span id="cb1-988"><a href="#cb1-988" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 4.3.2 Test Model for Potential Problems</span></span>
 <span id="cb1-989"><a href="#cb1-989" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-990"><a href="#cb1-990" aria-hidden="true" tabindex="-1"></a>vif_values <span class="ot">&lt;-</span> <span class="fu">vif</span>(model_caphit)</span>
+<span id="cb1-990"><a href="#cb1-990" aria-hidden="true" tabindex="-1"></a><span class="in">```{r vif, echo=FALSE, include=FALSE}</span></span>
 <span id="cb1-991"><a href="#cb1-991" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-992"><a href="#cb1-992" aria-hidden="true" tabindex="-1"></a>vif_wins <span class="ot">&lt;-</span> <span class="fu">round</span>(vif_values[<span class="st">"Wins"</span>],<span class="dv">5</span>)</span>
+<span id="cb1-992"><a href="#cb1-992" aria-hidden="true" tabindex="-1"></a>vif_values <span class="ot">&lt;-</span> <span class="fu">vif</span>(model_caphit)</span>
 <span id="cb1-993"><a href="#cb1-993" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-994"><a href="#cb1-994" aria-hidden="true" tabindex="-1"></a>vif_sv_percent <span class="ot">&lt;-</span> <span class="fu">round</span>(vif_values[<span class="st">"Sv_percent"</span>],<span class="dv">5</span>)</span>
+<span id="cb1-994"><a href="#cb1-994" aria-hidden="true" tabindex="-1"></a>vif_wins <span class="ot">&lt;-</span> <span class="fu">round</span>(vif_values[<span class="st">"Wins"</span>],<span class="dv">5</span>)</span>
 <span id="cb1-995"><a href="#cb1-995" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-996"><a href="#cb1-996" aria-hidden="true" tabindex="-1"></a>vif_toi_minutes <span class="ot">&lt;-</span> <span class="fu">round</span>(vif_values[<span class="st">"TOI_minutes"</span>],<span class="dv">5</span>)</span>
+<span id="cb1-996"><a href="#cb1-996" aria-hidden="true" tabindex="-1"></a>vif_sv_percent <span class="ot">&lt;-</span> <span class="fu">round</span>(vif_values[<span class="st">"Sv_percent"</span>],<span class="dv">5</span>)</span>
 <span id="cb1-997"><a href="#cb1-997" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-998"><a href="#cb1-998" aria-hidden="true" tabindex="-1"></a>bp_test <span class="ot">&lt;-</span> <span class="fu">bptest</span>(model_caphit)</span>
+<span id="cb1-998"><a href="#cb1-998" aria-hidden="true" tabindex="-1"></a>vif_toi_minutes <span class="ot">&lt;-</span> <span class="fu">round</span>(vif_values[<span class="st">"TOI_minutes"</span>],<span class="dv">5</span>)</span>
 <span id="cb1-999"><a href="#cb1-999" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1000"><a href="#cb1-1000" aria-hidden="true" tabindex="-1"></a>bp_pval <span class="ot">&lt;-</span> <span class="fu">round</span>(bp_test<span class="sc">$</span>p.value,<span class="dv">5</span>)</span>
+<span id="cb1-1000"><a href="#cb1-1000" aria-hidden="true" tabindex="-1"></a>bp_test <span class="ot">&lt;-</span> <span class="fu">bptest</span>(model_caphit)</span>
 <span id="cb1-1001"><a href="#cb1-1001" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1002"><a href="#cb1-1002" aria-hidden="true" tabindex="-1"></a>dw_result <span class="ot">&lt;-</span> <span class="fu">dwtest</span>(model_caphit)</span>
+<span id="cb1-1002"><a href="#cb1-1002" aria-hidden="true" tabindex="-1"></a>bp_pval <span class="ot">&lt;-</span> <span class="fu">round</span>(bp_test<span class="sc">$</span>p.value,<span class="dv">5</span>)</span>
 <span id="cb1-1003"><a href="#cb1-1003" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1004"><a href="#cb1-1004" aria-hidden="true" tabindex="-1"></a>dw_stat <span class="ot">&lt;-</span> <span class="fu">round</span>(dw_result<span class="sc">$</span>statistic,<span class="dv">5</span>)</span>
-<span id="cb1-1005"><a href="#cb1-1005" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-1006"><a href="#cb1-1006" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1007"><a href="#cb1-1007" aria-hidden="true" tabindex="-1"></a>We tested a few items: multicollinearity, autocorrelation, and heteroskedasticity. For multicollinearity, we used a variance inflation factor calculation for our predictors, and they have a value of:<span class="sc">\\</span></span>
-<span id="cb1-1008"><a href="#cb1-1008" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1009"><a href="#cb1-1009" aria-hidden="true" tabindex="-1"></a>Cap Hit off of Percentage we have <span class="sc">\`</span>{r} vif_wins<span class="sc">\`\\</span></span>
-<span id="cb1-1010"><a href="#cb1-1010" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1011"><a href="#cb1-1011" aria-hidden="true" tabindex="-1"></a>Sv% we have <span class="sc">\`</span>{r} vif_sv_percent<span class="sc">\`\\</span></span>
-<span id="cb1-1012"><a href="#cb1-1012" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1013"><a href="#cb1-1013" aria-hidden="true" tabindex="-1"></a>and with TOI we have <span class="sc">\`</span>{r} vif_toi_minutes<span class="sc">\`\\</span></span>
-<span id="cb1-1014"><a href="#cb1-1014" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1015"><a href="#cb1-1015" aria-hidden="true" tabindex="-1"></a>With these values being great than 1, we do some correlation with each other.<span class="sc">\\</span></span>
-<span id="cb1-1016"><a href="#cb1-1016" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1017"><a href="#cb1-1017" aria-hidden="true" tabindex="-1"></a>For autocorrelation we used a Durbin-Watson (DW) test, and we have a value of <span class="sc">\`</span>{r} dw_stat<span class="sc">\`</span>, which is very close to 2 meaning have no evidence of autocorrelation.<span class="sc">\\</span></span>
-<span id="cb1-1018"><a href="#cb1-1018" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1019"><a href="#cb1-1019" aria-hidden="true" tabindex="-1"></a>For heteroskedasticity we tested this by using a Breusch-Pagan (BP) test and residual plots. For the BP test value we have <span class="sc">\`</span>{r} bp_pval<span class="sc">\`</span>, which means there is strong evidence to suggest heteroskedasticity. We also see this with residual plots below.</span>
-<span id="cb1-1020"><a href="#cb1-1020" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1021"><a href="#cb1-1021" aria-hidden="true" tabindex="-1"></a><span class="in">```{r reg_wp_resid_plots, echo = FALSE, message = FALSE}</span></span>
-<span id="cb1-1022"><a href="#cb1-1022" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1023"><a href="#cb1-1023" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb1-1024"><a href="#cb1-1024" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1025"><a href="#cb1-1025" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model_caphit)</span>
-<span id="cb1-1026"><a href="#cb1-1026" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-1004"><a href="#cb1-1004" aria-hidden="true" tabindex="-1"></a>dw_result <span class="ot">&lt;-</span> <span class="fu">dwtest</span>(model_caphit)</span>
+<span id="cb1-1005"><a href="#cb1-1005" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1006"><a href="#cb1-1006" aria-hidden="true" tabindex="-1"></a>dw_stat <span class="ot">&lt;-</span> <span class="fu">round</span>(dw_result<span class="sc">$</span>statistic,<span class="dv">5</span>)</span>
+<span id="cb1-1007"><a href="#cb1-1007" aria-hidden="true" tabindex="-1"></a>bp_pval</span>
+<span id="cb1-1008"><a href="#cb1-1008" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-1009"><a href="#cb1-1009" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1010"><a href="#cb1-1010" aria-hidden="true" tabindex="-1"></a>We tested a few items: multicollinearity, autocorrelation, and heteroskedasticity. For multicollinearity, we used a variance inflation factor calculation for our predictors, and they have a value of:<span class="sc">\\</span></span>
+<span id="cb1-1011"><a href="#cb1-1011" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1012"><a href="#cb1-1012" aria-hidden="true" tabindex="-1"></a>Cap Hit off of Percentage we have 8.45</span>
+<span id="cb1-1013"><a href="#cb1-1013" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1014"><a href="#cb1-1014" aria-hidden="true" tabindex="-1"></a>Sv% we have 1.10</span>
+<span id="cb1-1015"><a href="#cb1-1015" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1016"><a href="#cb1-1016" aria-hidden="true" tabindex="-1"></a>and with TOI we have 8.71</span>
+<span id="cb1-1017"><a href="#cb1-1017" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1018"><a href="#cb1-1018" aria-hidden="true" tabindex="-1"></a>With these values being great than 1, we do some correlation with each other.</span>
+<span id="cb1-1019"><a href="#cb1-1019" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1020"><a href="#cb1-1020" aria-hidden="true" tabindex="-1"></a>For autocorrelation we used a Durbin-Watson (DW) test, and we have a value of 1.94, which is very close to 2 meaning have no evidence of autocorrelation.</span>
+<span id="cb1-1021"><a href="#cb1-1021" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1022"><a href="#cb1-1022" aria-hidden="true" tabindex="-1"></a>For heteroskedasticity we tested this by using a Breusch-Pagan (BP) test and residual plots. For the BP test value we have 0.0002, which means there is strong evidence to suggest heteroskedasticity. We also see this with residual plots below.</span>
+<span id="cb1-1023"><a href="#cb1-1023" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1024"><a href="#cb1-1024" aria-hidden="true" tabindex="-1"></a><span class="in">```{r reg_wp_resid_plots, echo = FALSE, message = FALSE}</span></span>
+<span id="cb1-1025"><a href="#cb1-1025" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1026"><a href="#cb1-1026" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
 <span id="cb1-1027"><a href="#cb1-1027" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1028"><a href="#cb1-1028" aria-hidden="true" tabindex="-1"></a>We see with these plots the following:</span>
-<span id="cb1-1029"><a href="#cb1-1029" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1030"><a href="#cb1-1030" aria-hidden="true" tabindex="-1"></a>*The "Residuals vs Fitted" shows that the residuals do follow a pattern, mostly at first, but we would've liked to see no pattern through the whole plot.</span>
-<span id="cb1-1031"><a href="#cb1-1031" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1032"><a href="#cb1-1032" aria-hidden="true" tabindex="-1"></a>*For the "Q-Q Residuals," the residuals at the front and back end do not follow the diagonal line, so they do not follow a normal distribution that well.</span>
-<span id="cb1-1033"><a href="#cb1-1033" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1034"><a href="#cb1-1034" aria-hidden="true" tabindex="-1"></a>*With the "Scale-Location," the line is not flat, meaning the variance is not constant.</span>
-<span id="cb1-1035"><a href="#cb1-1035" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1036"><a href="#cb1-1036" aria-hidden="true" tabindex="-1"></a>And the "Residuals vs Leverage" shows a few outliers and high-leverage points, so a few observations are influencing the model as a whole. This suggests that we should modify the model. We test the model with a t-test using robust standard errors to correct for heteroskedasticity.</span>
-<span id="cb1-1037"><a href="#cb1-1037" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1038"><a href="#cb1-1038" aria-hidden="true" tabindex="-1"></a><span class="in">```{r robust, echo=FALSE, message=FALSE, include=FALSE}</span></span>
-<span id="cb1-1039"><a href="#cb1-1039" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1040"><a href="#cb1-1040" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(model_caphit, </span>
-<span id="cb1-1041"><a href="#cb1-1041" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1042"><a href="#cb1-1042" aria-hidden="true" tabindex="-1"></a>         <span class="at">vcov =</span> <span class="fu">vcovHC</span>(model_caphit, <span class="at">type =</span> <span class="st">"HC1"</span>))</span>
-<span id="cb1-1043"><a href="#cb1-1043" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1044"><a href="#cb1-1044" aria-hidden="true" tabindex="-1"></a>robust_coefs <span class="ot">&lt;-</span> <span class="fu">coeftest</span>(model_caphit, <span class="at">vcov =</span> <span class="fu">vcovHC</span>(model_caphit, <span class="at">type =</span> <span class="st">"HC1"</span>))</span>
-<span id="cb1-1045"><a href="#cb1-1045" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1046"><a href="#cb1-1046" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract p-values</span></span>
-<span id="cb1-1047"><a href="#cb1-1047" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1048"><a href="#cb1-1048" aria-hidden="true" tabindex="-1"></a>p_sv <span class="ot">&lt;-</span> <span class="fu">round</span>(robust_coefs[<span class="st">"Sv_percent"</span>, <span class="st">"Pr(&gt;|t|)"</span>], <span class="dv">5</span>)</span>
-<span id="cb1-1049"><a href="#cb1-1049" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1050"><a href="#cb1-1050" aria-hidden="true" tabindex="-1"></a>p_wins <span class="ot">&lt;-</span> <span class="fu">round</span>(robust_coefs[<span class="st">"Wins"</span>, <span class="st">"Pr(&gt;|t|)"</span>], <span class="dv">5</span>)</span>
-<span id="cb1-1051"><a href="#cb1-1051" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1052"><a href="#cb1-1052" aria-hidden="true" tabindex="-1"></a>p_toi <span class="ot">&lt;-</span> <span class="fu">round</span>(robust_coefs[<span class="st">"TOI_minutes"</span>, <span class="st">"Pr(&gt;|t|)"</span>], <span class="dv">5</span>)</span>
-<span id="cb1-1053"><a href="#cb1-1053" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1054"><a href="#cb1-1054" aria-hidden="true" tabindex="-1"></a>p_intercept <span class="ot">&lt;-</span> <span class="fu">round</span>(robust_coefs[<span class="st">"(Intercept)"</span>, <span class="st">"Pr(&gt;|t|)"</span>], <span class="dv">5</span>)</span>
-<span id="cb1-1055"><a href="#cb1-1055" aria-hidden="true" tabindex="-1"></a>p_wins</span>
-<span id="cb1-1056"><a href="#cb1-1056" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-1057"><a href="#cb1-1057" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1058"><a href="#cb1-1058" aria-hidden="true" tabindex="-1"></a>Though this we see in order of significance with p-values, TOI 0.00006, (Very Significant), Sv% 0.00809, (Significant), wins 0.35221, (Not Significant). with values being less than 0.0001, to 0.01, to 0.05 to 0.1 are the levels we see of significance. Seeing this, we are encourage to remove Wins from the model. Let us see if this is the case with a step-wise regression model.</span>
-<span id="cb1-1059"><a href="#cb1-1059" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1060"><a href="#cb1-1060" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 4.3.3 Step-Wise Regression</span></span>
-<span id="cb1-1061"><a href="#cb1-1061" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1062"><a href="#cb1-1062" aria-hidden="true" tabindex="-1"></a><span class="in">```{r stepwise, echo=FALSE, include=FALSE}</span></span>
-<span id="cb1-1063"><a href="#cb1-1063" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1064"><a href="#cb1-1064" aria-hidden="true" tabindex="-1"></a>model_full <span class="ot">&lt;-</span> <span class="fu">lm</span>(Cap_Percent <span class="sc">~</span> Sv_percent <span class="sc">+</span> Wins <span class="sc">+</span> TOI_minutes, <span class="at">data =</span> goalies)</span>
-<span id="cb1-1065"><a href="#cb1-1065" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1066"><a href="#cb1-1066" aria-hidden="true" tabindex="-1"></a>model_step <span class="ot">&lt;-</span> <span class="fu">step</span>(model_full, <span class="at">direction =</span> <span class="st">"both"</span>)</span>
-<span id="cb1-1067"><a href="#cb1-1067" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1068"><a href="#cb1-1068" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_step)</span>
-<span id="cb1-1069"><a href="#cb1-1069" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-1028"><a href="#cb1-1028" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model_caphit)</span>
+<span id="cb1-1029"><a href="#cb1-1029" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-1030"><a href="#cb1-1030" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1031"><a href="#cb1-1031" aria-hidden="true" tabindex="-1"></a>We see with these plots the following:</span>
+<span id="cb1-1032"><a href="#cb1-1032" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1033"><a href="#cb1-1033" aria-hidden="true" tabindex="-1"></a><span class="sc">\*</span>The "Residuals vs Fitted" shows that the residuals do follow a pattern, mostly at first, but we would've liked to see no pattern through the whole plot.</span>
+<span id="cb1-1034"><a href="#cb1-1034" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1035"><a href="#cb1-1035" aria-hidden="true" tabindex="-1"></a><span class="sc">\*</span>For the "Q-Q Residuals," the residuals at the front and back end do not follow the diagonal line, so they do not follow a normal distribution that well.</span>
+<span id="cb1-1036"><a href="#cb1-1036" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1037"><a href="#cb1-1037" aria-hidden="true" tabindex="-1"></a><span class="sc">\*</span>With the "Scale-Location," the line is not flat, meaning the variance is not constant.</span>
+<span id="cb1-1038"><a href="#cb1-1038" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1039"><a href="#cb1-1039" aria-hidden="true" tabindex="-1"></a>And the "Residuals vs Leverage" shows a few outliers and high-leverage points, so a few observations are influencing the model as a whole. This suggests that we should modify the model. We test the model with a t-test using robust standard errors to correct for heteroskedasticity.</span>
+<span id="cb1-1040"><a href="#cb1-1040" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1041"><a href="#cb1-1041" aria-hidden="true" tabindex="-1"></a><span class="in">```{r robust, echo=FALSE, message=FALSE, include=FALSE}</span></span>
+<span id="cb1-1042"><a href="#cb1-1042" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1043"><a href="#cb1-1043" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(model_caphit, </span>
+<span id="cb1-1044"><a href="#cb1-1044" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1045"><a href="#cb1-1045" aria-hidden="true" tabindex="-1"></a>         <span class="at">vcov =</span> <span class="fu">vcovHC</span>(model_caphit, <span class="at">type =</span> <span class="st">"HC1"</span>))</span>
+<span id="cb1-1046"><a href="#cb1-1046" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1047"><a href="#cb1-1047" aria-hidden="true" tabindex="-1"></a>robust_coefs <span class="ot">&lt;-</span> <span class="fu">coeftest</span>(model_caphit, <span class="at">vcov =</span> <span class="fu">vcovHC</span>(model_caphit, <span class="at">type =</span> <span class="st">"HC1"</span>))</span>
+<span id="cb1-1048"><a href="#cb1-1048" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1049"><a href="#cb1-1049" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract p-values</span></span>
+<span id="cb1-1050"><a href="#cb1-1050" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1051"><a href="#cb1-1051" aria-hidden="true" tabindex="-1"></a>p_sv <span class="ot">&lt;-</span> <span class="fu">round</span>(robust_coefs[<span class="st">"Sv_percent"</span>, <span class="st">"Pr(&gt;|t|)"</span>], <span class="dv">5</span>)</span>
+<span id="cb1-1052"><a href="#cb1-1052" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1053"><a href="#cb1-1053" aria-hidden="true" tabindex="-1"></a>p_wins <span class="ot">&lt;-</span> <span class="fu">round</span>(robust_coefs[<span class="st">"Wins"</span>, <span class="st">"Pr(&gt;|t|)"</span>], <span class="dv">5</span>)</span>
+<span id="cb1-1054"><a href="#cb1-1054" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1055"><a href="#cb1-1055" aria-hidden="true" tabindex="-1"></a>p_toi <span class="ot">&lt;-</span> <span class="fu">round</span>(robust_coefs[<span class="st">"TOI_minutes"</span>, <span class="st">"Pr(&gt;|t|)"</span>], <span class="dv">5</span>)</span>
+<span id="cb1-1056"><a href="#cb1-1056" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1057"><a href="#cb1-1057" aria-hidden="true" tabindex="-1"></a>p_intercept <span class="ot">&lt;-</span> <span class="fu">round</span>(robust_coefs[<span class="st">"(Intercept)"</span>, <span class="st">"Pr(&gt;|t|)"</span>], <span class="dv">5</span>)</span>
+<span id="cb1-1058"><a href="#cb1-1058" aria-hidden="true" tabindex="-1"></a>p_wins</span>
+<span id="cb1-1059"><a href="#cb1-1059" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-1060"><a href="#cb1-1060" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1061"><a href="#cb1-1061" aria-hidden="true" tabindex="-1"></a>Though this we see in order of significance with p-values, TOI 0.00006, (Very Significant), Sv% 0.00809, (Significant), wins 0.35221, (Not Significant). with values being less than 0.0001, to 0.01, to 0.05 to 0.1 are the levels we see of significance. Seeing this, we are encourage to remove Wins from the model. Let us see if this is the case with a step-wise regression model.</span>
+<span id="cb1-1062"><a href="#cb1-1062" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1063"><a href="#cb1-1063" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 4.3.3 Step-Wise Regression</span></span>
+<span id="cb1-1064"><a href="#cb1-1064" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1065"><a href="#cb1-1065" aria-hidden="true" tabindex="-1"></a><span class="in">```{r stepwise, echo=FALSE, include=FALSE}</span></span>
+<span id="cb1-1066"><a href="#cb1-1066" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1067"><a href="#cb1-1067" aria-hidden="true" tabindex="-1"></a>model_full <span class="ot">&lt;-</span> <span class="fu">lm</span>(Cap_Percent <span class="sc">~</span> Sv_percent <span class="sc">+</span> Wins <span class="sc">+</span> TOI_minutes, <span class="at">data =</span> goalies)</span>
+<span id="cb1-1068"><a href="#cb1-1068" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1069"><a href="#cb1-1069" aria-hidden="true" tabindex="-1"></a>model_step <span class="ot">&lt;-</span> <span class="fu">step</span>(model_full, <span class="at">direction =</span> <span class="st">"both"</span>)</span>
 <span id="cb1-1070"><a href="#cb1-1070" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1071"><a href="#cb1-1071" aria-hidden="true" tabindex="-1"></a>This process tells us that we should drop Wins and Sv% as variables used in the regression. With visualization:</span>
-<span id="cb1-1072"><a href="#cb1-1072" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1073"><a href="#cb1-1073" aria-hidden="true" tabindex="-1"></a><span class="in">```{r stepwise_plot, echo=FALSE, message=FALSE, warning=FALSE}</span></span>
-<span id="cb1-1074"><a href="#cb1-1074" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1075"><a href="#cb1-1075" aria-hidden="true" tabindex="-1"></a>step_trace <span class="ot">&lt;-</span> <span class="fu">step</span>(model_full, <span class="at">direction =</span> <span class="st">"both"</span>, <span class="at">trace =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb1-1076"><a href="#cb1-1076" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1077"><a href="#cb1-1077" aria-hidden="true" tabindex="-1"></a>step_summary <span class="ot">&lt;-</span> step_trace<span class="sc">$</span>anova</span>
-<span id="cb1-1078"><a href="#cb1-1078" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1079"><a href="#cb1-1079" aria-hidden="true" tabindex="-1"></a><span class="co"># Add step numbers</span></span>
-<span id="cb1-1080"><a href="#cb1-1080" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1081"><a href="#cb1-1081" aria-hidden="true" tabindex="-1"></a>step_summary<span class="sc">$</span>Step <span class="ot">&lt;-</span> <span class="fu">seq_len</span>(<span class="fu">nrow</span>(step_summary))</span>
-<span id="cb1-1082"><a href="#cb1-1082" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1083"><a href="#cb1-1083" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the AIC path</span></span>
-<span id="cb1-1084"><a href="#cb1-1084" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1085"><a href="#cb1-1085" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(step_summary, <span class="fu">aes</span>(<span class="at">x =</span> Step, <span class="at">y =</span> AIC)) <span class="sc">+</span></span>
-<span id="cb1-1086"><a href="#cb1-1086" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1087"><a href="#cb1-1087" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"steelblue"</span>, <span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
-<span id="cb1-1088"><a href="#cb1-1088" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1089"><a href="#cb1-1089" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"darkblue"</span>) <span class="sc">+</span></span>
-<span id="cb1-1090"><a href="#cb1-1090" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1091"><a href="#cb1-1091" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb1-1092"><a href="#cb1-1092" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1093"><a href="#cb1-1093" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"AIC Across Stepwise Selection Steps"</span>,</span>
-<span id="cb1-1094"><a href="#cb1-1094" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1095"><a href="#cb1-1095" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Step Number"</span>,</span>
-<span id="cb1-1096"><a href="#cb1-1096" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1097"><a href="#cb1-1097" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Akaike Information Criterion (AIC)"</span></span>
-<span id="cb1-1098"><a href="#cb1-1098" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1099"><a href="#cb1-1099" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb1-1100"><a href="#cb1-1100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1101"><a href="#cb1-1101" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb1-1102"><a href="#cb1-1102" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-1071"><a href="#cb1-1071" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_step)</span>
+<span id="cb1-1072"><a href="#cb1-1072" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-1073"><a href="#cb1-1073" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1074"><a href="#cb1-1074" aria-hidden="true" tabindex="-1"></a>This process tells us that we should drop Wins and Sv% as variables used in the regression. With visualization:</span>
+<span id="cb1-1075"><a href="#cb1-1075" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1076"><a href="#cb1-1076" aria-hidden="true" tabindex="-1"></a><span class="in">```{r stepwise_plot, echo=FALSE, message=FALSE, warning=FALSE}</span></span>
+<span id="cb1-1077"><a href="#cb1-1077" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1078"><a href="#cb1-1078" aria-hidden="true" tabindex="-1"></a>step_trace <span class="ot">&lt;-</span> <span class="fu">step</span>(model_full, <span class="at">direction =</span> <span class="st">"both"</span>, <span class="at">trace =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-1079"><a href="#cb1-1079" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1080"><a href="#cb1-1080" aria-hidden="true" tabindex="-1"></a>step_summary <span class="ot">&lt;-</span> step_trace<span class="sc">$</span>anova</span>
+<span id="cb1-1081"><a href="#cb1-1081" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1082"><a href="#cb1-1082" aria-hidden="true" tabindex="-1"></a><span class="co"># Add step numbers</span></span>
+<span id="cb1-1083"><a href="#cb1-1083" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1084"><a href="#cb1-1084" aria-hidden="true" tabindex="-1"></a>step_summary<span class="sc">$</span>Step <span class="ot">&lt;-</span> <span class="fu">seq_len</span>(<span class="fu">nrow</span>(step_summary))</span>
+<span id="cb1-1085"><a href="#cb1-1085" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1086"><a href="#cb1-1086" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the AIC path</span></span>
+<span id="cb1-1087"><a href="#cb1-1087" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1088"><a href="#cb1-1088" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(step_summary, <span class="fu">aes</span>(<span class="at">x =</span> Step, <span class="at">y =</span> AIC)) <span class="sc">+</span></span>
+<span id="cb1-1089"><a href="#cb1-1089" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1090"><a href="#cb1-1090" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"steelblue"</span>, <span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb1-1091"><a href="#cb1-1091" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1092"><a href="#cb1-1092" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"darkblue"</span>) <span class="sc">+</span></span>
+<span id="cb1-1093"><a href="#cb1-1093" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1094"><a href="#cb1-1094" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1-1095"><a href="#cb1-1095" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1096"><a href="#cb1-1096" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"AIC Across Stepwise Selection Steps"</span>,</span>
+<span id="cb1-1097"><a href="#cb1-1097" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1098"><a href="#cb1-1098" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Step Number"</span>,</span>
+<span id="cb1-1099"><a href="#cb1-1099" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1100"><a href="#cb1-1100" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Akaike Information Criterion (AIC)"</span></span>
+<span id="cb1-1101"><a href="#cb1-1101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1102"><a href="#cb1-1102" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb1-1103"><a href="#cb1-1103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1104"><a href="#cb1-1104" aria-hidden="true" tabindex="-1"></a><span class="fu"># 5.0 Conculsion</span></span>
-<span id="cb1-1105"><a href="#cb1-1105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1106"><a href="#cb1-1106" aria-hidden="true" tabindex="-1"></a>With our results, we can say that goalies who get more time on ice should receive a greater percentage of pay against the team's salary cap. We found this through inspection of the data, regression analysis, and finally, identified which variables are more important than others. These goalies that do receive more already tend to get more time on ice, but this shows that they should argue for more pay when their contract comes up for renewal. If a goalie starts to get more and more play time, then that should serve as evidence that they deserve more pay, regardless of wins and save percentage. We can infer this as once a team feels confident in a goalie, then they will start to shift towards playing that goalie more than others. There can be statements made that this may only occur because the starting goalie may be injured for a while or out for the season. Although this is true, that would be overlooking the many goalies that can be called up from lower-level leagues or even trades for other goalies. Hopefully, this study can provide goalies with help in the negotiations for contract signing. More time on ice should lead to more wins with a higher save percentage, granting them contracts with more pay each year.</span>
-<span id="cb1-1107"><a href="#cb1-1107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1108"><a href="#cb1-1108" aria-hidden="true" tabindex="-1"></a><span class="fu">## 5.1 Suggest Areas of Further Research</span></span>
-<span id="cb1-1109"><a href="#cb1-1109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1110"><a href="#cb1-1110" aria-hidden="true" tabindex="-1"></a>Further research would include more variables in selection, i.e. does it matter which hand a goalie catches and does that lead to better performance. Can also look when a goalie gets traded and receives a pay increase, what</span>
-<span id="cb1-1111"><a href="#cb1-1111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1112"><a href="#cb1-1112" aria-hidden="true" tabindex="-1"></a><span class="fu"># 6.0 Works Cited</span></span>
-<span id="cb1-1113"><a href="#cb1-1113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1114"><a href="#cb1-1114" aria-hidden="true" tabindex="-1"></a>“2025 NHL Cap Hit Rankings.” Spotrac, www.spotrac.com/nhl/rankings/player/_/year/2025/sort/cap_total. Accessed 8 July 2025.</span>
-<span id="cb1-1115"><a href="#cb1-1115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1116"><a href="#cb1-1116" aria-hidden="true" tabindex="-1"></a>“Collective Bargaining Agreement.” The PA | NHLPA.Com, 16 Sept. 2012, nhlpa.com/the-pa/cba</span>
-<span id="cb1-1117"><a href="#cb1-1117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1118"><a href="#cb1-1118" aria-hidden="true" tabindex="-1"></a>Ding, Likang, et al. Do NHL Goalies Get Hot in the Playoffs? A Multilevel Logistic Regression Analysis, University of Alberta School of Business, 9 May 2024, arxiv.org/html/2102.09689v2#abstract.</span>
-<span id="cb1-1119"><a href="#cb1-1119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1120"><a href="#cb1-1120" aria-hidden="true" tabindex="-1"></a>Emily KaplanNov 18, 2024. “Why Paying Goalies Is so Complicated in Today’s NHL.” ESPN, ESPN Internet Ventures, 18 Nov. 2024, www.espn.com/nhl/story/_/id/42446173/goalie-contracts-today-nhl-igor-shesterkin-jeremy-swayman.</span>
-<span id="cb1-1121"><a href="#cb1-1121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1122"><a href="#cb1-1122" aria-hidden="true" tabindex="-1"></a>Luther, Robert, and Steven C. Estep. “The Goalie Paradox: Why Elite Goalies Don’t Guarantee Playoff Success and Predictions for the 2025 Stanley Cup Playoffs.” Journal of Sports &amp; Enterainment Law, Havard Law School, 26 Apr. 2025, journals.law.harvard.edu/jsel/2025/04/the-goalie-paradox-why-elite-goalies-dont-guarantee-playoff-success-and-predictions-for-the-2025-stanley-cup-playoffs/.</span>
-<span id="cb1-1123"><a href="#cb1-1123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1124"><a href="#cb1-1124" aria-hidden="true" tabindex="-1"></a>“NHL Stats.” NHL.Com, National Hockey League, www.nhl.com/stats/goalies?reportType=season&amp;seasonFrom=20212022&amp;seasonTo=20242025&amp;gameType=2&amp;page=1&amp;pageSize=100. Accessed 8 July 2025.</span>
-<span id="cb1-1125"><a href="#cb1-1125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1126"><a href="#cb1-1126" aria-hidden="true" tabindex="-1"></a>Rosen, Dan. “Shesterkin Signs 8-Year, $92 Million Contract with Rangers.” NHL.Com, National Hockey League, 8 Dec. 2024, www.nhl.com/news/igor-shesterkin-signs-eight-year-contract-with-new-york-rangers#:~:text=The%20deal%20makes%20Shesterkin%20the,Canadiens%20on%20July%202%2C%202017.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-1104"><a href="#cb1-1104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb1-1105"><a href="#cb1-1105" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-1106"><a href="#cb1-1106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1107"><a href="#cb1-1107" aria-hidden="true" tabindex="-1"></a><span class="fu"># 5.0 Conculsion</span></span>
+<span id="cb1-1108"><a href="#cb1-1108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1109"><a href="#cb1-1109" aria-hidden="true" tabindex="-1"></a>With our results, we can say that goalies who get more time on ice should receive a greater percentage of pay against the team's salary cap. We found this through inspection of the data, regression analysis, and finally, identified which variables are more important than others. These goalies that do receive more already tend to get more time on ice, but this shows that they should argue for more pay when their contract comes up for renewal. If a goalie starts to get more and more play time, then that should serve as evidence that they deserve more pay, regardless of wins and save percentage. We can infer this as once a team feels confident in a goalie, then they will start to shift towards playing that goalie more than others. There can be statements made that this may only occur because the starting goalie may be injured for a while or out for the season. Although this is true, that would be overlooking the many goalies that can be called up from lower-level leagues or even trades for other goalies. Hopefully, this study can provide goalies with help in the negotiations for contract signing. More time on ice should lead to more wins with a higher save percentage, granting them contracts with more pay each year.</span>
+<span id="cb1-1110"><a href="#cb1-1110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1111"><a href="#cb1-1111" aria-hidden="true" tabindex="-1"></a><span class="fu">## 5.1 Suggest Areas of Further Research</span></span>
+<span id="cb1-1112"><a href="#cb1-1112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1113"><a href="#cb1-1113" aria-hidden="true" tabindex="-1"></a>Further research would include more variables in selection, i.e. does it matter which hand a goalie catches and does that lead to better performance. Can also look when a goalie gets traded and receives a pay increase, what</span>
+<span id="cb1-1114"><a href="#cb1-1114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1115"><a href="#cb1-1115" aria-hidden="true" tabindex="-1"></a><span class="fu"># 6.0 Works Cited</span></span>
+<span id="cb1-1116"><a href="#cb1-1116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1117"><a href="#cb1-1117" aria-hidden="true" tabindex="-1"></a>"2025 NHL Cap Hit Rankings." Spotrac, www.spotrac.com/nhl/rankings/player/<span class="sc">\_</span>/year/2025/sort/cap_total. Accessed 8 July 2025. Multiple different outputs and filters used.</span>
+<span id="cb1-1118"><a href="#cb1-1118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1119"><a href="#cb1-1119" aria-hidden="true" tabindex="-1"></a>"Collective Bargaining Agreement." The PA \| NHLPA.Com, 16 Sept. 2012, nhlpa.com/the-pa/cba All pages</span>
+<span id="cb1-1120"><a href="#cb1-1120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1121"><a href="#cb1-1121" aria-hidden="true" tabindex="-1"></a>Ding, Likang, et al. Do NHL Goalies Get Hot in the Playoffs? A Multilevel Logistic Regression Analysis, University of Alberta School of Business, 9 May 2024, arxiv.org/html/2102.09689v2#abstract. Used as a starting point, no reference in paper.</span>
+<span id="cb1-1122"><a href="#cb1-1122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1123"><a href="#cb1-1123" aria-hidden="true" tabindex="-1"></a>Emily Kaplan Nov 18, 2024. "Why Paying Goalies Is so Complicated in Today's NHL." ESPN, ESPN Internet Ventures, 18 Nov. 2024, www.espn.com/nhl/story/<span class="sc">\_</span>/id/42446173/goalie-contracts-today-nhl-igor-shesterkin-jeremy-swayman. page 3</span>
+<span id="cb1-1124"><a href="#cb1-1124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1125"><a href="#cb1-1125" aria-hidden="true" tabindex="-1"></a>Luther, Robert, and Steven C. Estep. "The Goalie Paradox: Why Elite Goalies Don't Guarantee Playoff Success and Predictions for the 2025 Stanley Cup Playoffs." Journal of Sports &amp; Enterainment Law, Havard Law School, 26 Apr. 2025, journals.law.harvard.edu/jsel/2025/04/the-goalie-paradox-why-elite-goalies-dont-guarantee-playoff-success-and-predictions-for-the-2025-stanley-cup-playoffs/.</span>
+<span id="cb1-1126"><a href="#cb1-1126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1127"><a href="#cb1-1127" aria-hidden="true" tabindex="-1"></a>"NHL Stats." NHL.Com, National Hockey League, www.nhl.com/stats/goalies?reportType=season&amp;seasonFrom=20212022&amp;seasonTo=20242025&amp;gameType=2&amp;page=1&amp;pageSize=100. Accessed 8 July 2025. Multiple different outputs and filters used.</span>
+<span id="cb1-1128"><a href="#cb1-1128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1129"><a href="#cb1-1129" aria-hidden="true" tabindex="-1"></a>Rosen, Dan. "Shesterkin Signs 8-Year, \$92 Million Contract with Rangers." NHL.Com, National Hockey League, 8 Dec. 2024, www.nhl.com/news/igor-shesterkin-signs-eight-year-contract-with-new-york-rangers#:\~:text=The%20deal%20makes%20Shesterkin%20the,Canadiens%20on%20July%202%2C%20201 page 1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

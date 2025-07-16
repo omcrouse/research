@@ -16,7 +16,7 @@ about:
 
 Hopefully this helps you understand who I am and what I enjoy doing. The two tabs here are projects I did while in my undergrad and graduate school.
 
-\## Skills
+# Skills
 
 -Proficient in programs R, Python, and Microsoft Office Suite.
 
@@ -24,7 +24,9 @@ Hopefully this helps you understand who I am and what I enjoy doing. The two tab
 
 -Able to be trained with quick turn around to train others to same high level of standard.
 
-\## Education
+# Education
+
+\- B.A. in Economics and B.S. in Mathematics (May 2022). M.S. in Business Analytics (December 2025).
 
 -College courses for Mathematics were focused on statistics, regression, and applied programming.
 
