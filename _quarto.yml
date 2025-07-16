@@ -8,8 +8,10 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - Goalies.qmd
-      - ChainPulse.qmd
+      - href: Goalies.qmd
+        text: Goalies
+      - href: ChainPulse.qmd
+        text: Crypto
 format:
   html:
     theme: cosmo
