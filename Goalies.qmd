@@ -236,6 +236,13 @@ plot3
 
 Now we do see that higher-paid goalies do receive more wins. This is related to that you play your more trusted goalie more to either guarantee wins or in hopes of securing a win. We see general managers say that goalies who "'stop(s) 92% of shots in of the best goalies in the world', Tulsky said, 'a guy who stops 91% is average'" (Kaplan page 3). This shows that paying goalies more is essentially hoping that those goalies get a 92% Sv%.
 
+```{r plot5, echo=FALSE}
+
+plot5
+```
+
+Now, we see that goalies who get paid more do play more, with TOI showing against the Cap Hit. This follows the trend we've been seeing. So, goalies who get paid more get more TOI, bigger Sv%, and more Wins. Let us now check which teams in the ranking are paying more for goalies.
+
 ```{r plot4, echo=FALSE}
 
 wins_quartiles <- quantile(goalies$Wins, probs = seq(0, 1, 0.25), na.rm = TRUE)
@@ -255,14 +262,7 @@ q4_wins <- wins_quartiles[5]  # Maximum
 plot4
 ```
 
-Now we see that those who are getting more wins do have a range of wins from 0 to 47. That being said, the goalie that had 47 wins in one season was Connor Hellebuyck, who played 63 games in the '24-'25 season. Now there are 48 goalies that 0 wins in any particular season, ranging from 1 to 8 games played in those seasons.
-
-```{r plot5, echo=FALSE}
-
-plot5
-```
-
-Lastly, we see that goalies who get paid more do play more, with TOI showing against the Cap Hit. This follows the trend we've been seeing. So, goalies who get paid more get more TOI, bigger Sv%, and more Wins. Let us now check which teams in the ranking are paying more for goalies.
+Lastly, we see that those who are getting more wins do have a range of wins from 0 to 47. That being said, the goalie that had 47 wins in one season was Connor Hellebuyck, who played 63 games in the '24-'25 season. Now there are 48 goalies that 0 wins in any particular season, ranging from 1 to 8 games played in those seasons.
 
 ```{r combining, echo = FALSE}
 

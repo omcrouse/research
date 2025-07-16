@@ -264,16 +264,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Now we do see that higher-paid goalies do receive more wins. This is related to that you play your more trusted goalie more to either guarantee wins or in hopes of securing a win. We see general managers say that goalies who “‘stop(s) 92% of shots in of the best goalies in the world’, Tulsky said, ‘a guy who stops 91% is average’” (Kaplan page 3). This shows that paying goalies more is essentially hoping that those goalies get a 92% Sv%.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="Goalies_files/figure-html/plot4-1.png" class="img-fluid" width="672"></p>
-</div>
-</div>
-<p>Now we see that those who are getting more wins do have a range of wins from 0 to 47. That being said, the goalie that had 47 wins in one season was Connor Hellebuyck, who played 63 games in the ’24-’25 season. Now there are 48 goalies that 0 wins in any particular season, ranging from 1 to 8 games played in those seasons.</p>
-<div class="cell">
-<div class="cell-output-display">
 <p><img src="Goalies_files/figure-html/plot5-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Lastly, we see that goalies who get paid more do play more, with TOI showing against the Cap Hit. This follows the trend we’ve been seeing. So, goalies who get paid more get more TOI, bigger Sv%, and more Wins. Let us now check which teams in the ranking are paying more for goalies.</p>
+<p>Now, we see that goalies who get paid more do play more, with TOI showing against the Cap Hit. This follows the trend we’ve been seeing. So, goalies who get paid more get more TOI, bigger Sv%, and more Wins. Let us now check which teams in the ranking are paying more for goalies.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="Goalies_files/figure-html/plot4-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Lastly, we see that those who are getting more wins do have a range of wins from 0 to 47. That being said, the goalie that had 47 wins in one season was Connor Hellebuyck, who played 63 games in the ’24-’25 season. Now there are 48 goalies that 0 wins in any particular season, ranging from 1 to 8 games played in those seasons.</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="Goalies_files/figure-html/combining-1.png" class="img-fluid" width="672"></p>
@@ -969,33 +969,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a>Now we do see that higher-paid goalies do receive more wins. This is related to that you play your more trusted goalie more to either guarantee wins or in hopes of securing a win. We see general managers say that goalies who "'stop(s) 92% of shots in of the best goalies in the world', Tulsky said, 'a guy who stops 91% is average'" (Kaplan page 3). This shows that paying goalies more is essentially hoping that those goalies get a 92% Sv%.</span>
 <span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a><span class="in">```{r plot4, echo=FALSE}</span></span>
+<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a><span class="in">```{r plot5, echo=FALSE}</span></span>
 <span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a>wins_quartiles <span class="ot">&lt;-</span> <span class="fu">quantile</span>(goalies<span class="sc">$</span>Wins, <span class="at">probs =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.25</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign each quantile to a variable</span></span>
-<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a>q0_wins <span class="ot">&lt;-</span> wins_quartiles[<span class="dv">1</span>]  <span class="co"># Minimum</span></span>
-<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a>q1_wins <span class="ot">&lt;-</span> wins_quartiles[<span class="dv">2</span>]  <span class="co"># 25th percentile (Q1)</span></span>
-<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a>q2_wins <span class="ot">&lt;-</span> wins_quartiles[<span class="dv">3</span>]  <span class="co"># Median (Q2)</span></span>
-<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a>q3_wins <span class="ot">&lt;-</span> wins_quartiles[<span class="dv">4</span>]  <span class="co"># 75th percentile (Q3)</span></span>
-<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a>q4_wins <span class="ot">&lt;-</span> wins_quartiles[<span class="dv">5</span>]  <span class="co"># Maximum</span></span>
-<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a>plot4</span>
-<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a>plot5</span>
+<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a>Now, we see that goalies who get paid more do play more, with TOI showing against the Cap Hit. This follows the trend we've been seeing. So, goalies who get paid more get more TOI, bigger Sv%, and more Wins. Let us now check which teams in the ranking are paying more for goalies.</span>
+<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a><span class="in">```{r plot4, echo=FALSE}</span></span>
+<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a>wins_quartiles <span class="ot">&lt;-</span> <span class="fu">quantile</span>(goalies<span class="sc">$</span>Wins, <span class="at">probs =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.25</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign each quantile to a variable</span></span>
+<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a>q0_wins <span class="ot">&lt;-</span> wins_quartiles[<span class="dv">1</span>]  <span class="co"># Minimum</span></span>
+<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a>q1_wins <span class="ot">&lt;-</span> wins_quartiles[<span class="dv">2</span>]  <span class="co"># 25th percentile (Q1)</span></span>
+<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a>q2_wins <span class="ot">&lt;-</span> wins_quartiles[<span class="dv">3</span>]  <span class="co"># Median (Q2)</span></span>
 <span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a>Now we see that those who are getting more wins do have a range of wins from 0 to 47. That being said, the goalie that had 47 wins in one season was Connor Hellebuyck, who played 63 games in the '24-'25 season. Now there are 48 goalies that 0 wins in any particular season, ranging from 1 to 8 games played in those seasons.</span>
+<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a>q3_wins <span class="ot">&lt;-</span> wins_quartiles[<span class="dv">4</span>]  <span class="co"># 75th percentile (Q3)</span></span>
 <span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a><span class="in">```{r plot5, echo=FALSE}</span></span>
+<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a>q4_wins <span class="ot">&lt;-</span> wins_quartiles[<span class="dv">5</span>]  <span class="co"># Maximum</span></span>
 <span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a>plot5</span>
+<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a>plot4</span>
 <span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a>Lastly, we see that goalies who get paid more do play more, with TOI showing against the Cap Hit. This follows the trend we've been seeing. So, goalies who get paid more get more TOI, bigger Sv%, and more Wins. Let us now check which teams in the ranking are paying more for goalies.</span>
+<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a>Lastly, we see that those who are getting more wins do have a range of wins from 0 to 47. That being said, the goalie that had 47 wins in one season was Connor Hellebuyck, who played 63 games in the '24-'25 season. Now there are 48 goalies that 0 wins in any particular season, ranging from 1 to 8 games played in those seasons.</span>
 <span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a><span class="in">```{r combining, echo = FALSE}</span></span>
 <span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a></span>
