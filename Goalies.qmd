@@ -1257,7 +1257,7 @@ With our results, we can say that goalies who get more time on ice should receiv
 
 ## 5.1 Suggest Areas of Further Research
 
-Further research would include more variables in selection, i.e. does it matter which hand a goalie catches and does that lead to better performance. Can also look when a goalie gets traded and receives a pay increase.
+Further research would include more variables in selection, i.e. does it matter which hand a goalie catches and does that lead to better performance. Can also look when a goalie gets traded and receives a pay increase or decrease. Would also look at best performing goalie each year (The Vezina Trophy) and track that and see how that affects their pay when it comes to contract year. Could also track contracts and see when they change, what led to that.
 
 # 6.0 Works Cited
 
