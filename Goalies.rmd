@@ -1198,7 +1198,7 @@ ggplot(step_summary, aes(x = Step, y = AIC)) +
   theme_minimal()
 ```
 
-### 4.3.1 Regression with Only TOI against Cap Hit
+### 4.3.4 Regression with Only TOI against Cap Hit
 
 ```{r regTOI, echo=FALSE, include=FALSE, message=FALSE}
 
