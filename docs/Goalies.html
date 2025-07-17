@@ -160,9 +160,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#analysis-on-normal-distributions" id="toc-analysis-on-normal-distributions" class="nav-link" data-scroll-target="#analysis-on-normal-distributions">4.1 Analysis on Normal Distributions</a></li>
   <li><a href="#analysis-for-return-on-investment" id="toc-analysis-for-return-on-investment" class="nav-link" data-scroll-target="#analysis-for-return-on-investment">4.2 Analysis for Return on Investment</a></li>
   <li><a href="#regression-modeling" id="toc-regression-modeling" class="nav-link" data-scroll-target="#regression-modeling">4.3 Regression Modeling</a></li>
-  <li><a href="#regression-for-cap-hit-against-salary-cap." id="toc-regression-for-cap-hit-against-salary-cap." class="nav-link" data-scroll-target="#regression-for-cap-hit-against-salary-cap.">4.3 Regression for Cap Hit against Salary Cap.</a>
+  <li><a href="#regression-for-cap-hit-against-salary-cap." id="toc-regression-for-cap-hit-against-salary-cap." class="nav-link" data-scroll-target="#regression-for-cap-hit-against-salary-cap.">4.4 Regression for Cap Hit against Salary Cap.</a>
   <ul class="collapse">
-  <li><a href="#regression-with-only-toi-against-cap-hit" id="toc-regression-with-only-toi-against-cap-hit" class="nav-link" data-scroll-target="#regression-with-only-toi-against-cap-hit">4.3.4 Regression with Only TOI against Cap Hit</a></li>
+  <li><a href="#regression-with-only-toi-against-cap-hit" id="toc-regression-with-only-toi-against-cap-hit" class="nav-link" data-scroll-target="#regression-with-only-toi-against-cap-hit">4.4.4 Regression with Only TOI against Cap Hit</a></li>
   </ul></li>
   </ul></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">5.0 Conclusion</a>
@@ -369,16 +369,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>We see what was expected, the teams in the top 16 are above, on, or slightly below the regression. Not one team in the bottom 16 is above. An obvious statement, but it is useful to see.</p>
 </section>
 <section id="regression-for-cap-hit-against-salary-cap." class="level2">
-<h2 class="anchored" data-anchor-id="regression-for-cap-hit-against-salary-cap.">4.3 Regression for Cap Hit against Salary Cap.</h2>
+<h2 class="anchored" data-anchor-id="regression-for-cap-hit-against-salary-cap.">4.4 Regression for Cap Hit against Salary Cap.</h2>
 <p>Let us now change how we look at pay for goalies. Each year, as stated before, has different salary caps that each team is able to pay for their players. We will take the goalie pay and modify it to show the percentage of the salary cap for their respective teams. For example, in the ‘21-’22 season, Carey Price was the highest-paid goalie at $10.5 million that year. That year, having a $81.5 million salary cap, Price received 12.88% of his team’s (Montreal Canadians) salary cap. We hope this will show that the pay against the used variables will be better. Here are the updated box plots now using the goalies’ cap hit as a percentage of that seasons salary cap per team.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="Goalies_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+<p><img src="Goalies_files/figure-html/redfine-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>We see these plots did not change but much, and at face value, are the same. Now we will use these to show prediction models.</p>
 <section id="prediction-regression-model" class="level4">
-<h4 class="anchored" data-anchor-id="prediction-regression-model">4.3.1 Prediction Regression Model</h4>
+<h4 class="anchored" data-anchor-id="prediction-regression-model">4.4.1 Prediction Regression Model</h4>
 <p>Through this model, we see that with the predictor variables (Sv%, Wins, and TOI), we see a positive trend for the predicted relationship between goalie performance and pay. The positive coefficients suggest that goalies with higher Sv%, Wins, and TOI tend to earn more money for their respective team’s salary cap. We see an increase of 1 in Sv%, by will change the Cap Hit % by $-2,284,189. Similarly, another Win will change their pay by 2,4929.8, and another minute of TOI change their pay by $934.65. We start the model with an intercept with $0.03. Which leads us to the equation of <span class="math inline">\(\hat{y} = b_0 + b_1*Sv\% + b_2*Wins + b_3*TOI + \epsilon\)</span>. This is: <span class="math inline">\(\hat{y} = 2,665,690 - 2,281,489* Sv\%+ 24,929.8* Wins + 934.65 * TOI + \epsilon\)</span>. We have an <span class="math inline">\(R^2\)</span> of` 0.387, which is the best but shows that there is a lot of noise in this model.</p>
 <p>Also the p-value for each variable is, Sv%=0.138, Wins=0.251, and TOI=0.0000797. As a rule, any p-value over 0.05 means that variable is not significant. So we really only want TOI. We will get into that later.</p>
 <div class="cell">
@@ -401,7 +401,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>And lastly, more TOI, we predict more pay. And we can see that this plot has more of a linear relationship, showing us that the p-value plays more here.</p>
 </section>
 <section id="test-model-for-potential-problems" class="level4">
-<h4 class="anchored" data-anchor-id="test-model-for-potential-problems">4.3.2 Test Model for Potential Problems</h4>
+<h4 class="anchored" data-anchor-id="test-model-for-potential-problems">4.4.2 Test Model for Potential Problems</h4>
 <p>We tested a few items: multicollinearity, autocorrelation, and heteroskedasticity. For multicollinearity, we used a variance inflation factor calculation for our predictors, and they have a value of:\</p>
 <p>Cap Hit off of Percentage we have 8.45</p>
 <p>Sv% we have 1.10</p>
@@ -431,7 +431,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </section>
 <section id="regression-with-only-toi-against-cap-hit" class="level3">
-<h3 class="anchored" data-anchor-id="regression-with-only-toi-against-cap-hit">4.3.4 Regression with Only TOI against Cap Hit</h3>
+<h3 class="anchored" data-anchor-id="regression-with-only-toi-against-cap-hit">4.4.4 Regression with Only TOI against Cap Hit</h3>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="Goalies_files/figure-html/regtoi_plot-1.png" class="img-fluid" width="672"></p>
@@ -1620,417 +1620,416 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-864"><a href="#cb1-864" aria-hidden="true" tabindex="-1"></a>team_model_data <span class="ot">&lt;-</span> df_clean</span>
 <span id="cb1-865"><a href="#cb1-865" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb1-866"><a href="#cb1-866" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-867"><a href="#cb1-867" aria-hidden="true" tabindex="-1"></a><span class="fu">## 4.3 Regression for Cap Hit against Salary Cap.</span></span>
+<span id="cb1-867"><a href="#cb1-867" aria-hidden="true" tabindex="-1"></a><span class="fu">## 4.4 Regression for Cap Hit against Salary Cap.</span></span>
 <span id="cb1-868"><a href="#cb1-868" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-869"><a href="#cb1-869" aria-hidden="true" tabindex="-1"></a>Let us now change how we look at pay for goalies. Each year, as stated before, has different salary caps that each team is able to pay for their players. We will take the goalie pay and modify it to show the percentage of the salary cap for their respective teams. For example, in the '21-'22 season, Carey Price was the highest-paid goalie at \$10.5 million that year. That year, having a \$81.5 million salary cap, Price received 12.88% of his team's (Montreal Canadians) salary cap. We hope this will show that the pay against the used variables will be better. Here are the updated box plots now using the goalies' cap hit as a percentage of that seasons salary cap per team.</span>
 <span id="cb1-870"><a href="#cb1-870" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-873"><a href="#cb1-873" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb1-874"><a href="#cb1-874" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the season salary caps</span></span>
-<span id="cb1-875"><a href="#cb1-875" aria-hidden="true" tabindex="-1"></a>cap_by_season <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb1-876"><a href="#cb1-876" aria-hidden="true" tabindex="-1"></a>  <span class="st">"2021-2022"</span> <span class="ot">=</span> <span class="fl">81.5</span>,</span>
-<span id="cb1-877"><a href="#cb1-877" aria-hidden="true" tabindex="-1"></a>  <span class="st">"2022-2023"</span> <span class="ot">=</span> <span class="fl">82.5</span>,</span>
-<span id="cb1-878"><a href="#cb1-878" aria-hidden="true" tabindex="-1"></a>  <span class="st">"2023-2024"</span> <span class="ot">=</span> <span class="fl">83.5</span>,</span>
-<span id="cb1-879"><a href="#cb1-879" aria-hidden="true" tabindex="-1"></a>  <span class="st">"2024-2025"</span> <span class="ot">=</span> <span class="fl">83.5</span>  <span class="co"># Or 88.0 if you're using the upper cap</span></span>
-<span id="cb1-880"><a href="#cb1-880" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-881"><a href="#cb1-881" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-882"><a href="#cb1-882" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute Cap Hit as % of team cap</span></span>
-<span id="cb1-883"><a href="#cb1-883" aria-hidden="true" tabindex="-1"></a>goalies <span class="ot">&lt;-</span> goalies <span class="sc">%&gt;%</span></span>
-<span id="cb1-884"><a href="#cb1-884" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Cap_Percent =</span> Cap_Hit <span class="sc">/</span> cap_by_season[Season])</span>
-<span id="cb1-885"><a href="#cb1-885" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-886"><a href="#cb1-886" aria-hidden="true" tabindex="-1"></a><span class="co"># Create bins based on Cap_Percent</span></span>
-<span id="cb1-887"><a href="#cb1-887" aria-hidden="true" tabindex="-1"></a>goalies <span class="ot">&lt;-</span> goalies <span class="sc">%&gt;%</span></span>
-<span id="cb1-888"><a href="#cb1-888" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Cap_Percent_Bin =</span> <span class="fu">cut</span>(Cap_Percent,</span>
-<span id="cb1-889"><a href="#cb1-889" aria-hidden="true" tabindex="-1"></a>                               <span class="at">breaks =</span> <span class="fu">quantile</span>(Cap_Percent, <span class="at">probs =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.25</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb1-890"><a href="#cb1-890" aria-hidden="true" tabindex="-1"></a>                               <span class="at">include.lowest =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb1-891"><a href="#cb1-891" aria-hidden="true" tabindex="-1"></a>                               <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Mid-Low"</span>, <span class="st">"Mid-High"</span>, <span class="st">"High"</span>)))</span>
-<span id="cb1-892"><a href="#cb1-892" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-893"><a href="#cb1-893" aria-hidden="true" tabindex="-1"></a><span class="co"># Create bins based on Cap_Percent</span></span>
-<span id="cb1-894"><a href="#cb1-894" aria-hidden="true" tabindex="-1"></a>goalies <span class="ot">&lt;-</span> goalies <span class="sc">%&gt;%</span></span>
-<span id="cb1-895"><a href="#cb1-895" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Cap_Percent_Bin =</span> <span class="fu">cut</span>(Cap_Percent,</span>
-<span id="cb1-896"><a href="#cb1-896" aria-hidden="true" tabindex="-1"></a>                               <span class="at">breaks =</span> <span class="fu">quantile</span>(Cap_Percent, <span class="at">probs =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.25</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb1-897"><a href="#cb1-897" aria-hidden="true" tabindex="-1"></a>                               <span class="at">include.lowest =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb1-898"><a href="#cb1-898" aria-hidden="true" tabindex="-1"></a>                               <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Mid-Low"</span>, <span class="st">"Mid-High"</span>, <span class="st">"High"</span>)))</span>
-<span id="cb1-899"><a href="#cb1-899" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-900"><a href="#cb1-900" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot: Cap_Percent vs Cap_Percent_Bin</span></span>
-<span id="cb1-901"><a href="#cb1-901" aria-hidden="true" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(goalies, <span class="fu">aes</span>(<span class="at">x =</span> Cap_Percent_Bin, <span class="at">y =</span> Cap_Percent)) <span class="sc">+</span></span>
-<span id="cb1-902"><a href="#cb1-902" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb1-903"><a href="#cb1-903" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Cap % by Bin"</span>,</span>
-<span id="cb1-904"><a href="#cb1-904" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Cap % Group"</span>,</span>
-<span id="cb1-905"><a href="#cb1-905" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Cap Hit (% of Salary Cap)"</span>) <span class="sc">+</span></span>
-<span id="cb1-906"><a href="#cb1-906" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb1-907"><a href="#cb1-907" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-908"><a href="#cb1-908" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot: Sv% vs Cap_Percent_Bin</span></span>
-<span id="cb1-909"><a href="#cb1-909" aria-hidden="true" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(goalies, <span class="fu">aes</span>(<span class="at">x =</span> Cap_Percent_Bin, <span class="at">y =</span> Sv_percent)) <span class="sc">+</span></span>
-<span id="cb1-910"><a href="#cb1-910" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb1-911"><a href="#cb1-911" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Save % by Cap % Bin"</span>,</span>
-<span id="cb1-912"><a href="#cb1-912" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Cap % Group"</span>, <span class="at">y =</span> <span class="st">"Sv%"</span>) <span class="sc">+</span></span>
-<span id="cb1-913"><a href="#cb1-913" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb1-914"><a href="#cb1-914" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-915"><a href="#cb1-915" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot: Wins vs Cap_Percent_Bin</span></span>
-<span id="cb1-916"><a href="#cb1-916" aria-hidden="true" tabindex="-1"></a>plot3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(goalies, <span class="fu">aes</span>(<span class="at">x =</span> Cap_Percent_Bin, <span class="at">y =</span> Wins)) <span class="sc">+</span></span>
-<span id="cb1-917"><a href="#cb1-917" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"darkgreen"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb1-918"><a href="#cb1-918" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Wins by Cap % Bin"</span>,</span>
-<span id="cb1-919"><a href="#cb1-919" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Cap % Group"</span>, <span class="at">y =</span> <span class="st">"Wins"</span>) <span class="sc">+</span></span>
-<span id="cb1-920"><a href="#cb1-920" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb1-921"><a href="#cb1-921" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-922"><a href="#cb1-922" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot: TOI vs Cap_Percent_Bin</span></span>
-<span id="cb1-923"><a href="#cb1-923" aria-hidden="true" tabindex="-1"></a>plot4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(goalies, <span class="fu">aes</span>(<span class="at">x =</span> Cap_Percent_Bin, <span class="at">y =</span> TOI_minutes)) <span class="sc">+</span></span>
-<span id="cb1-924"><a href="#cb1-924" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"darkgreen"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb1-925"><a href="#cb1-925" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"TOI by Cap % Bin"</span>,</span>
-<span id="cb1-926"><a href="#cb1-926" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Cap % Group"</span>, <span class="at">y =</span> <span class="st">"Time on Ice (minutes)"</span>) <span class="sc">+</span></span>
-<span id="cb1-927"><a href="#cb1-927" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb1-928"><a href="#cb1-928" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-929"><a href="#cb1-929" aria-hidden="true" tabindex="-1"></a><span class="co"># Optionally show all side by side</span></span>
-<span id="cb1-930"><a href="#cb1-930" aria-hidden="true" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(plot1, plot2, plot3, plot4, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
-<span id="cb1-931"><a href="#cb1-931" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-871"><a href="#cb1-871" aria-hidden="true" tabindex="-1"></a><span class="in">```{r redfine, echo=FALSE}</span></span>
+<span id="cb1-872"><a href="#cb1-872" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the season salary caps</span></span>
+<span id="cb1-873"><a href="#cb1-873" aria-hidden="true" tabindex="-1"></a>cap_by_season <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb1-874"><a href="#cb1-874" aria-hidden="true" tabindex="-1"></a>  <span class="st">"2021-2022"</span> <span class="ot">=</span> <span class="fl">81.5</span>,</span>
+<span id="cb1-875"><a href="#cb1-875" aria-hidden="true" tabindex="-1"></a>  <span class="st">"2022-2023"</span> <span class="ot">=</span> <span class="fl">82.5</span>,</span>
+<span id="cb1-876"><a href="#cb1-876" aria-hidden="true" tabindex="-1"></a>  <span class="st">"2023-2024"</span> <span class="ot">=</span> <span class="fl">83.5</span>,</span>
+<span id="cb1-877"><a href="#cb1-877" aria-hidden="true" tabindex="-1"></a>  <span class="st">"2024-2025"</span> <span class="ot">=</span> <span class="fl">83.5</span>  <span class="co"># Or 88.0 if you're using the upper cap</span></span>
+<span id="cb1-878"><a href="#cb1-878" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-879"><a href="#cb1-879" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-880"><a href="#cb1-880" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute Cap Hit as % of team cap</span></span>
+<span id="cb1-881"><a href="#cb1-881" aria-hidden="true" tabindex="-1"></a>goalies <span class="ot">&lt;-</span> goalies <span class="sc">%&gt;%</span></span>
+<span id="cb1-882"><a href="#cb1-882" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Cap_Percent =</span> Cap_Hit <span class="sc">/</span> cap_by_season[Season])</span>
+<span id="cb1-883"><a href="#cb1-883" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-884"><a href="#cb1-884" aria-hidden="true" tabindex="-1"></a><span class="co"># Create bins based on Cap_Percent</span></span>
+<span id="cb1-885"><a href="#cb1-885" aria-hidden="true" tabindex="-1"></a>goalies <span class="ot">&lt;-</span> goalies <span class="sc">%&gt;%</span></span>
+<span id="cb1-886"><a href="#cb1-886" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Cap_Percent_Bin =</span> <span class="fu">cut</span>(Cap_Percent,</span>
+<span id="cb1-887"><a href="#cb1-887" aria-hidden="true" tabindex="-1"></a>                               <span class="at">breaks =</span> <span class="fu">quantile</span>(Cap_Percent, <span class="at">probs =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.25</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb1-888"><a href="#cb1-888" aria-hidden="true" tabindex="-1"></a>                               <span class="at">include.lowest =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-889"><a href="#cb1-889" aria-hidden="true" tabindex="-1"></a>                               <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Mid-Low"</span>, <span class="st">"Mid-High"</span>, <span class="st">"High"</span>)))</span>
+<span id="cb1-890"><a href="#cb1-890" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-891"><a href="#cb1-891" aria-hidden="true" tabindex="-1"></a><span class="co"># Create bins based on Cap_Percent</span></span>
+<span id="cb1-892"><a href="#cb1-892" aria-hidden="true" tabindex="-1"></a>goalies <span class="ot">&lt;-</span> goalies <span class="sc">%&gt;%</span></span>
+<span id="cb1-893"><a href="#cb1-893" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Cap_Percent_Bin =</span> <span class="fu">cut</span>(Cap_Percent,</span>
+<span id="cb1-894"><a href="#cb1-894" aria-hidden="true" tabindex="-1"></a>                               <span class="at">breaks =</span> <span class="fu">quantile</span>(Cap_Percent, <span class="at">probs =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.25</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb1-895"><a href="#cb1-895" aria-hidden="true" tabindex="-1"></a>                               <span class="at">include.lowest =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-896"><a href="#cb1-896" aria-hidden="true" tabindex="-1"></a>                               <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"Mid-Low"</span>, <span class="st">"Mid-High"</span>, <span class="st">"High"</span>)))</span>
+<span id="cb1-897"><a href="#cb1-897" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-898"><a href="#cb1-898" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot: Cap_Percent vs Cap_Percent_Bin</span></span>
+<span id="cb1-899"><a href="#cb1-899" aria-hidden="true" tabindex="-1"></a>plot1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(goalies, <span class="fu">aes</span>(<span class="at">x =</span> Cap_Percent_Bin, <span class="at">y =</span> Cap_Percent)) <span class="sc">+</span></span>
+<span id="cb1-900"><a href="#cb1-900" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb1-901"><a href="#cb1-901" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Cap % by Bin"</span>,</span>
+<span id="cb1-902"><a href="#cb1-902" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Cap % Group"</span>,</span>
+<span id="cb1-903"><a href="#cb1-903" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Cap Hit (% of Salary Cap)"</span>) <span class="sc">+</span></span>
+<span id="cb1-904"><a href="#cb1-904" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb1-905"><a href="#cb1-905" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-906"><a href="#cb1-906" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot: Sv% vs Cap_Percent_Bin</span></span>
+<span id="cb1-907"><a href="#cb1-907" aria-hidden="true" tabindex="-1"></a>plot2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(goalies, <span class="fu">aes</span>(<span class="at">x =</span> Cap_Percent_Bin, <span class="at">y =</span> Sv_percent)) <span class="sc">+</span></span>
+<span id="cb1-908"><a href="#cb1-908" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"steelblue"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb1-909"><a href="#cb1-909" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Save % by Cap % Bin"</span>,</span>
+<span id="cb1-910"><a href="#cb1-910" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Cap % Group"</span>, <span class="at">y =</span> <span class="st">"Sv%"</span>) <span class="sc">+</span></span>
+<span id="cb1-911"><a href="#cb1-911" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb1-912"><a href="#cb1-912" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-913"><a href="#cb1-913" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot: Wins vs Cap_Percent_Bin</span></span>
+<span id="cb1-914"><a href="#cb1-914" aria-hidden="true" tabindex="-1"></a>plot3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(goalies, <span class="fu">aes</span>(<span class="at">x =</span> Cap_Percent_Bin, <span class="at">y =</span> Wins)) <span class="sc">+</span></span>
+<span id="cb1-915"><a href="#cb1-915" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"darkgreen"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb1-916"><a href="#cb1-916" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Wins by Cap % Bin"</span>,</span>
+<span id="cb1-917"><a href="#cb1-917" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Cap % Group"</span>, <span class="at">y =</span> <span class="st">"Wins"</span>) <span class="sc">+</span></span>
+<span id="cb1-918"><a href="#cb1-918" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb1-919"><a href="#cb1-919" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-920"><a href="#cb1-920" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot: TOI vs Cap_Percent_Bin</span></span>
+<span id="cb1-921"><a href="#cb1-921" aria-hidden="true" tabindex="-1"></a>plot4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(goalies, <span class="fu">aes</span>(<span class="at">x =</span> Cap_Percent_Bin, <span class="at">y =</span> TOI_minutes)) <span class="sc">+</span></span>
+<span id="cb1-922"><a href="#cb1-922" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"darkgreen"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb1-923"><a href="#cb1-923" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"TOI by Cap % Bin"</span>,</span>
+<span id="cb1-924"><a href="#cb1-924" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Cap % Group"</span>, <span class="at">y =</span> <span class="st">"Time on Ice (minutes)"</span>) <span class="sc">+</span></span>
+<span id="cb1-925"><a href="#cb1-925" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb1-926"><a href="#cb1-926" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-927"><a href="#cb1-927" aria-hidden="true" tabindex="-1"></a><span class="co"># Optionally show all side by side</span></span>
+<span id="cb1-928"><a href="#cb1-928" aria-hidden="true" tabindex="-1"></a>gridExtra<span class="sc">::</span><span class="fu">grid.arrange</span>(plot1, plot2, plot3, plot4, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb1-929"><a href="#cb1-929" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-930"><a href="#cb1-930" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-931"><a href="#cb1-931" aria-hidden="true" tabindex="-1"></a>We see these plots did not change but much, and at face value, are the same. Now we will use these to show prediction models.</span>
 <span id="cb1-932"><a href="#cb1-932" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-933"><a href="#cb1-933" aria-hidden="true" tabindex="-1"></a>We see these plots did not change but much, and at face value, are the same. Now we will use these to show prediction models.</span>
+<span id="cb1-933"><a href="#cb1-933" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 4.4.1 Prediction Regression Model</span></span>
 <span id="cb1-934"><a href="#cb1-934" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-935"><a href="#cb1-935" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 4.3.1 Prediction Regression Model</span></span>
+<span id="cb1-935"><a href="#cb1-935" aria-hidden="true" tabindex="-1"></a><span class="in">```{r caphitbyseason, echo=FALSE, include=FALSE}</span></span>
 <span id="cb1-936"><a href="#cb1-936" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-937"><a href="#cb1-937" aria-hidden="true" tabindex="-1"></a><span class="in">```{r caphitbyseason, echo=FALSE, include=FALSE}</span></span>
+<span id="cb1-937"><a href="#cb1-937" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the salary cap by season</span></span>
 <span id="cb1-938"><a href="#cb1-938" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-939"><a href="#cb1-939" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the salary cap by season</span></span>
+<span id="cb1-939"><a href="#cb1-939" aria-hidden="true" tabindex="-1"></a>cap_by_season <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
 <span id="cb1-940"><a href="#cb1-940" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-941"><a href="#cb1-941" aria-hidden="true" tabindex="-1"></a>cap_by_season <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb1-941"><a href="#cb1-941" aria-hidden="true" tabindex="-1"></a>  <span class="st">"2021-2022"</span> <span class="ot">=</span> <span class="fl">81.5</span>,</span>
 <span id="cb1-942"><a href="#cb1-942" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-943"><a href="#cb1-943" aria-hidden="true" tabindex="-1"></a>  <span class="st">"2021-2022"</span> <span class="ot">=</span> <span class="fl">81.5</span>,</span>
+<span id="cb1-943"><a href="#cb1-943" aria-hidden="true" tabindex="-1"></a>  <span class="st">"2022-2023"</span> <span class="ot">=</span> <span class="fl">82.5</span>,</span>
 <span id="cb1-944"><a href="#cb1-944" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-945"><a href="#cb1-945" aria-hidden="true" tabindex="-1"></a>  <span class="st">"2022-2023"</span> <span class="ot">=</span> <span class="fl">82.5</span>,</span>
+<span id="cb1-945"><a href="#cb1-945" aria-hidden="true" tabindex="-1"></a>  <span class="st">"2023-2024"</span> <span class="ot">=</span> <span class="fl">83.5</span>,</span>
 <span id="cb1-946"><a href="#cb1-946" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-947"><a href="#cb1-947" aria-hidden="true" tabindex="-1"></a>  <span class="st">"2023-2024"</span> <span class="ot">=</span> <span class="fl">83.5</span>,</span>
+<span id="cb1-947"><a href="#cb1-947" aria-hidden="true" tabindex="-1"></a>  <span class="st">"2024-2025"</span> <span class="ot">=</span> <span class="fl">88.0</span></span>
 <span id="cb1-948"><a href="#cb1-948" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-949"><a href="#cb1-949" aria-hidden="true" tabindex="-1"></a>  <span class="st">"2024-2025"</span> <span class="ot">=</span> <span class="fl">88.0</span></span>
+<span id="cb1-949"><a href="#cb1-949" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb1-950"><a href="#cb1-950" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-951"><a href="#cb1-951" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-951"><a href="#cb1-951" aria-hidden="true" tabindex="-1"></a><span class="co"># Add Cap_Percent column: Cap_Hit / season cap</span></span>
 <span id="cb1-952"><a href="#cb1-952" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-953"><a href="#cb1-953" aria-hidden="true" tabindex="-1"></a><span class="co"># Add Cap_Percent column: Cap_Hit / season cap</span></span>
+<span id="cb1-953"><a href="#cb1-953" aria-hidden="true" tabindex="-1"></a>goalies <span class="ot">&lt;-</span> goalies <span class="sc">%&gt;%</span></span>
 <span id="cb1-954"><a href="#cb1-954" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-955"><a href="#cb1-955" aria-hidden="true" tabindex="-1"></a>goalies <span class="ot">&lt;-</span> goalies <span class="sc">%&gt;%</span></span>
+<span id="cb1-955"><a href="#cb1-955" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb1-956"><a href="#cb1-956" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-957"><a href="#cb1-957" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1-957"><a href="#cb1-957" aria-hidden="true" tabindex="-1"></a>    <span class="at">Cap_Percent =</span> Cap_Hit <span class="sc">/</span> cap_by_season[Season]</span>
 <span id="cb1-958"><a href="#cb1-958" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-959"><a href="#cb1-959" aria-hidden="true" tabindex="-1"></a>    <span class="at">Cap_Percent =</span> Cap_Hit <span class="sc">/</span> cap_by_season[Season]</span>
-<span id="cb1-960"><a href="#cb1-960" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-961"><a href="#cb1-961" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb1-962"><a href="#cb1-962" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-959"><a href="#cb1-959" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-960"><a href="#cb1-960" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-961"><a href="#cb1-961" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-962"><a href="#cb1-962" aria-hidden="true" tabindex="-1"></a><span class="in">```{r regwinscaphit, echo=FALSE, include=FALSE, message=FALSE}</span></span>
 <span id="cb1-963"><a href="#cb1-963" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-964"><a href="#cb1-964" aria-hidden="true" tabindex="-1"></a><span class="in">```{r regwinscaphit, echo=FALSE, include=FALSE, message=FALSE}</span></span>
+<span id="cb1-964"><a href="#cb1-964" aria-hidden="true" tabindex="-1"></a>model_caphit <span class="ot">&lt;-</span> <span class="fu">lm</span>(Cap_Percent <span class="sc">~</span> Sv_percent <span class="sc">+</span> Wins <span class="sc">+</span> TOI_minutes, <span class="at">data =</span> goalies)</span>
 <span id="cb1-965"><a href="#cb1-965" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-966"><a href="#cb1-966" aria-hidden="true" tabindex="-1"></a>model_caphit <span class="ot">&lt;-</span> <span class="fu">lm</span>(Cap_Percent <span class="sc">~</span> Sv_percent <span class="sc">+</span> Wins <span class="sc">+</span> TOI_minutes, <span class="at">data =</span> goalies)</span>
+<span id="cb1-966"><a href="#cb1-966" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_caphit)</span>
 <span id="cb1-967"><a href="#cb1-967" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-968"><a href="#cb1-968" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_caphit)</span>
+<span id="cb1-968"><a href="#cb1-968" aria-hidden="true" tabindex="-1"></a>coef_values <span class="ot">&lt;-</span> <span class="fu">coef</span>(model_caphit)</span>
 <span id="cb1-969"><a href="#cb1-969" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-970"><a href="#cb1-970" aria-hidden="true" tabindex="-1"></a>coef_values <span class="ot">&lt;-</span> <span class="fu">coef</span>(model_caphit)</span>
+<span id="cb1-970"><a href="#cb1-970" aria-hidden="true" tabindex="-1"></a>intercept      <span class="ot">&lt;-</span> coef_values[<span class="st">"(Intercept)"</span>]</span>
 <span id="cb1-971"><a href="#cb1-971" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-972"><a href="#cb1-972" aria-hidden="true" tabindex="-1"></a>intercept      <span class="ot">&lt;-</span> coef_values[<span class="st">"(Intercept)"</span>]</span>
+<span id="cb1-972"><a href="#cb1-972" aria-hidden="true" tabindex="-1"></a>beta_sv        <span class="ot">&lt;-</span> coef_values[<span class="st">"Sv_percent"</span>]</span>
 <span id="cb1-973"><a href="#cb1-973" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-974"><a href="#cb1-974" aria-hidden="true" tabindex="-1"></a>beta_sv        <span class="ot">&lt;-</span> coef_values[<span class="st">"Sv_percent"</span>]</span>
+<span id="cb1-974"><a href="#cb1-974" aria-hidden="true" tabindex="-1"></a>beta_wins      <span class="ot">&lt;-</span> coef_values[<span class="st">"Wins"</span>]</span>
 <span id="cb1-975"><a href="#cb1-975" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-976"><a href="#cb1-976" aria-hidden="true" tabindex="-1"></a>beta_wins      <span class="ot">&lt;-</span> coef_values[<span class="st">"Wins"</span>]</span>
+<span id="cb1-976"><a href="#cb1-976" aria-hidden="true" tabindex="-1"></a>beta_toi       <span class="ot">&lt;-</span> coef_values[<span class="st">"TOI_minutes"</span>]</span>
 <span id="cb1-977"><a href="#cb1-977" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-978"><a href="#cb1-978" aria-hidden="true" tabindex="-1"></a>beta_toi       <span class="ot">&lt;-</span> coef_values[<span class="st">"TOI_minutes"</span>]</span>
+<span id="cb1-978"><a href="#cb1-978" aria-hidden="true" tabindex="-1"></a>b_sv_dollars <span class="ot">&lt;-</span> beta_sv <span class="sc">*</span> <span class="dv">83875000</span></span>
 <span id="cb1-979"><a href="#cb1-979" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-980"><a href="#cb1-980" aria-hidden="true" tabindex="-1"></a>b_sv_dollars <span class="ot">&lt;-</span> beta_sv <span class="sc">*</span> <span class="dv">83875000</span></span>
+<span id="cb1-980"><a href="#cb1-980" aria-hidden="true" tabindex="-1"></a>b_wins_dollars <span class="ot">&lt;-</span> beta_wins <span class="sc">*</span> <span class="dv">83875000</span></span>
 <span id="cb1-981"><a href="#cb1-981" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-982"><a href="#cb1-982" aria-hidden="true" tabindex="-1"></a>b_wins_dollars <span class="ot">&lt;-</span> beta_wins <span class="sc">*</span> <span class="dv">83875000</span></span>
+<span id="cb1-982"><a href="#cb1-982" aria-hidden="true" tabindex="-1"></a>b_toi_dollars <span class="ot">&lt;-</span> beta_toi <span class="sc">*</span> <span class="dv">83875000</span></span>
 <span id="cb1-983"><a href="#cb1-983" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-984"><a href="#cb1-984" aria-hidden="true" tabindex="-1"></a>b_toi_dollars <span class="ot">&lt;-</span> beta_toi <span class="sc">*</span> <span class="dv">83875000</span></span>
+<span id="cb1-984"><a href="#cb1-984" aria-hidden="true" tabindex="-1"></a>inter_dollars <span class="ot">&lt;-</span> intercept <span class="sc">*</span> <span class="dv">83875000</span></span>
 <span id="cb1-985"><a href="#cb1-985" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-986"><a href="#cb1-986" aria-hidden="true" tabindex="-1"></a>inter_dollars <span class="ot">&lt;-</span> intercept <span class="sc">*</span> <span class="dv">83875000</span></span>
-<span id="cb1-987"><a href="#cb1-987" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-988"><a href="#cb1-988" aria-hidden="true" tabindex="-1"></a>r2 <span class="ot">&lt;-</span> <span class="fu">summary</span>(model_caphit)<span class="sc">$</span>r.squared</span>
-<span id="cb1-989"><a href="#cb1-989" aria-hidden="true" tabindex="-1"></a>r2</span>
-<span id="cb1-990"><a href="#cb1-990" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-986"><a href="#cb1-986" aria-hidden="true" tabindex="-1"></a>r2 <span class="ot">&lt;-</span> <span class="fu">summary</span>(model_caphit)<span class="sc">$</span>r.squared</span>
+<span id="cb1-987"><a href="#cb1-987" aria-hidden="true" tabindex="-1"></a>r2</span>
+<span id="cb1-988"><a href="#cb1-988" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-989"><a href="#cb1-989" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-990"><a href="#cb1-990" aria-hidden="true" tabindex="-1"></a><span class="in">```{r reg, echo=FALSE, include=FALSE}</span></span>
 <span id="cb1-991"><a href="#cb1-991" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-992"><a href="#cb1-992" aria-hidden="true" tabindex="-1"></a><span class="in">```{r reg, echo=FALSE, include=FALSE}</span></span>
+<span id="cb1-992"><a href="#cb1-992" aria-hidden="true" tabindex="-1"></a>goalies<span class="sc">$</span>Predicted_Cap_Hit <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_caphit)</span>
 <span id="cb1-993"><a href="#cb1-993" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-994"><a href="#cb1-994" aria-hidden="true" tabindex="-1"></a>goalies<span class="sc">$</span>Predicted_Cap_Hit <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_caphit)</span>
+<span id="cb1-994"><a href="#cb1-994" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(goalies, <span class="fu">aes</span>(<span class="at">x =</span> Predicted_Cap_Hit, <span class="at">y =</span> Cap_Percent)) <span class="sc">+</span></span>
 <span id="cb1-995"><a href="#cb1-995" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-996"><a href="#cb1-996" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(goalies, <span class="fu">aes</span>(<span class="at">x =</span> Predicted_Cap_Hit, <span class="at">y =</span> Cap_Percent)) <span class="sc">+</span></span>
+<span id="cb1-996"><a href="#cb1-996" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
 <span id="cb1-997"><a href="#cb1-997" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-998"><a href="#cb1-998" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb1-998"><a href="#cb1-998" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>) <span class="sc">+</span></span>
 <span id="cb1-999"><a href="#cb1-999" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1000"><a href="#cb1-1000" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>) <span class="sc">+</span></span>
+<span id="cb1-1000"><a href="#cb1-1000" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
 <span id="cb1-1001"><a href="#cb1-1001" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1002"><a href="#cb1-1002" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1-1002"><a href="#cb1-1002" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Actual vs. Predicted Cap Hit Percentage"</span>,</span>
 <span id="cb1-1003"><a href="#cb1-1003" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1004"><a href="#cb1-1004" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Actual vs. Predicted Cap Hit Percentage"</span>,</span>
+<span id="cb1-1004"><a href="#cb1-1004" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Predicted Cap Hit %"</span>,</span>
 <span id="cb1-1005"><a href="#cb1-1005" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1006"><a href="#cb1-1006" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Predicted Cap Hit %"</span>,</span>
+<span id="cb1-1006"><a href="#cb1-1006" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Actual Cap Hit %"</span></span>
 <span id="cb1-1007"><a href="#cb1-1007" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1008"><a href="#cb1-1008" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Actual Cap Hit %"</span></span>
+<span id="cb1-1008"><a href="#cb1-1008" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb1-1009"><a href="#cb1-1009" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1010"><a href="#cb1-1010" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb1-1011"><a href="#cb1-1011" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1012"><a href="#cb1-1012" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb1-1013"><a href="#cb1-1013" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-1010"><a href="#cb1-1010" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb1-1011"><a href="#cb1-1011" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-1012"><a href="#cb1-1012" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1013"><a href="#cb1-1013" aria-hidden="true" tabindex="-1"></a>Through this model, we see that with the predictor variables (Sv%, Wins, and TOI), we see a positive trend for the predicted relationship between goalie performance and pay. The positive coefficients suggest that goalies with higher Sv%, Wins, and TOI tend to earn more money for their respective team's salary cap. We see an increase of 1 in Sv%, by will change the Cap Hit % by \$-2,284,189. Similarly, another Win will change their pay by 2,4929.8, and another minute of TOI change their pay by \$934.65. We start the model with an intercept with \$0.03. Which leads us to the equation of $\hat{y} = b_0 + b_1*Sv\% + b_2*Wins + b_3*TOI + \epsilon$. This is: $\hat{y} = 2,665,690 - 2,281,489* Sv\%+ 24,929.8* Wins + 934.65 * TOI + \epsilon$. We have an $R^2$ of<span class="sc">\`</span> 0.387, which is the best but shows that there is a lot of noise in this model.</span>
 <span id="cb1-1014"><a href="#cb1-1014" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1015"><a href="#cb1-1015" aria-hidden="true" tabindex="-1"></a>Through this model, we see that with the predictor variables (Sv%, Wins, and TOI), we see a positive trend for the predicted relationship between goalie performance and pay. The positive coefficients suggest that goalies with higher Sv%, Wins, and TOI tend to earn more money for their respective team's salary cap. We see an increase of 1 in Sv%, by will change the Cap Hit % by \$-2,284,189. Similarly, another Win will change their pay by 2,4929.8, and another minute of TOI change their pay by \$934.65. We start the model with an intercept with \$0.03. Which leads us to the equation of $\hat{y} = b_0 + b_1*Sv\% + b_2*Wins + b_3*TOI + \epsilon$. This is: $\hat{y} = 2,665,690 - 2,281,489* Sv\%+ 24,929.8* Wins + 934.65 * TOI + \epsilon$. We have an $R^2$ of<span class="sc">\`</span> 0.387, which is the best but shows that there is a lot of noise in this model.</span>
+<span id="cb1-1015"><a href="#cb1-1015" aria-hidden="true" tabindex="-1"></a>Also the p-value for each variable is, Sv%=0.138, Wins=0.251, and TOI=0.0000797. As a rule, any p-value over 0.05 means that variable is not significant. So we really only want TOI. We will get into that later.</span>
 <span id="cb1-1016"><a href="#cb1-1016" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1017"><a href="#cb1-1017" aria-hidden="true" tabindex="-1"></a>Also the p-value for each variable is, Sv%=0.138, Wins=0.251, and TOI=0.0000797. As a rule, any p-value over 0.05 means that variable is not significant. So we really only want TOI. We will get into that later.</span>
+<span id="cb1-1017"><a href="#cb1-1017" aria-hidden="true" tabindex="-1"></a><span class="in">```{r reg_sv_percent, echo = FALSE, message = FALSE}</span></span>
 <span id="cb1-1018"><a href="#cb1-1018" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1019"><a href="#cb1-1019" aria-hidden="true" tabindex="-1"></a><span class="in">```{r reg_sv_percent, echo = FALSE, message = FALSE}</span></span>
+<span id="cb1-1019"><a href="#cb1-1019" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(goalies, <span class="fu">aes</span>(<span class="at">x =</span> Sv_percent, <span class="at">y =</span> Predicted_Cap_Hit)) <span class="sc">+</span></span>
 <span id="cb1-1020"><a href="#cb1-1020" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1021"><a href="#cb1-1021" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(goalies, <span class="fu">aes</span>(<span class="at">x =</span> Sv_percent, <span class="at">y =</span> Predicted_Cap_Hit)) <span class="sc">+</span></span>
+<span id="cb1-1021"><a href="#cb1-1021" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">color =</span> <span class="st">"darkgreen"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
 <span id="cb1-1022"><a href="#cb1-1022" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1023"><a href="#cb1-1023" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">color =</span> <span class="st">"darkgreen"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb1-1023"><a href="#cb1-1023" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
 <span id="cb1-1024"><a href="#cb1-1024" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1025"><a href="#cb1-1025" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1-1025"><a href="#cb1-1025" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Actual Sv% vs. Predicted Cap Hit %"</span>,</span>
 <span id="cb1-1026"><a href="#cb1-1026" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1027"><a href="#cb1-1027" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Actual Sv% vs. Predicted Cap Hit %"</span>,</span>
+<span id="cb1-1027"><a href="#cb1-1027" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Actual Sv%"</span>,</span>
 <span id="cb1-1028"><a href="#cb1-1028" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1029"><a href="#cb1-1029" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Actual Sv%"</span>,</span>
+<span id="cb1-1029"><a href="#cb1-1029" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Predicted Cap %"</span></span>
 <span id="cb1-1030"><a href="#cb1-1030" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1031"><a href="#cb1-1031" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Predicted Cap %"</span></span>
+<span id="cb1-1031"><a href="#cb1-1031" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb1-1032"><a href="#cb1-1032" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1033"><a href="#cb1-1033" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb1-1034"><a href="#cb1-1034" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1035"><a href="#cb1-1035" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb1-1036"><a href="#cb1-1036" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-1033"><a href="#cb1-1033" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb1-1034"><a href="#cb1-1034" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-1035"><a href="#cb1-1035" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1036"><a href="#cb1-1036" aria-hidden="true" tabindex="-1"></a>Above, we see the negative relationship between the predicted Cap Hit % against actual Sv%. Consequently, paying more does not lead to higher Sv%.</span>
 <span id="cb1-1037"><a href="#cb1-1037" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1038"><a href="#cb1-1038" aria-hidden="true" tabindex="-1"></a>Above, we see the negative relationship between the predicted Cap Hit % against actual Sv%. Consequently, paying more does not lead to higher Sv%.</span>
+<span id="cb1-1038"><a href="#cb1-1038" aria-hidden="true" tabindex="-1"></a><span class="in">```{r reg_wins_percent, echo = FALSE, message = FALSE}</span></span>
 <span id="cb1-1039"><a href="#cb1-1039" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1040"><a href="#cb1-1040" aria-hidden="true" tabindex="-1"></a><span class="in">```{r reg_wins_percent, echo = FALSE, message = FALSE}</span></span>
+<span id="cb1-1040"><a href="#cb1-1040" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot: Predicted vs. Actual Wins</span></span>
 <span id="cb1-1041"><a href="#cb1-1041" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1042"><a href="#cb1-1042" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot: Predicted vs. Actual Wins</span></span>
+<span id="cb1-1042"><a href="#cb1-1042" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(goalies, <span class="fu">aes</span>(<span class="at">x =</span> Wins, <span class="at">y =</span> Predicted_Cap_Hit)) <span class="sc">+</span></span>
 <span id="cb1-1043"><a href="#cb1-1043" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1044"><a href="#cb1-1044" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(goalies, <span class="fu">aes</span>(<span class="at">x =</span> Wins, <span class="at">y =</span> Predicted_Cap_Hit)) <span class="sc">+</span></span>
+<span id="cb1-1044"><a href="#cb1-1044" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">color =</span> <span class="st">"darkgreen"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
 <span id="cb1-1045"><a href="#cb1-1045" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1046"><a href="#cb1-1046" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">color =</span> <span class="st">"darkgreen"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb1-1046"><a href="#cb1-1046" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
 <span id="cb1-1047"><a href="#cb1-1047" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1048"><a href="#cb1-1048" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1-1048"><a href="#cb1-1048" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Actual Wins vs. Predicted Cap Hit %"</span>,</span>
 <span id="cb1-1049"><a href="#cb1-1049" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1050"><a href="#cb1-1050" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Actual Wins vs. Predicted Cap Hit %"</span>,</span>
+<span id="cb1-1050"><a href="#cb1-1050" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Actual Wins"</span>,</span>
 <span id="cb1-1051"><a href="#cb1-1051" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1052"><a href="#cb1-1052" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Actual Wins"</span>,</span>
+<span id="cb1-1052"><a href="#cb1-1052" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Predicted Cap %"</span></span>
 <span id="cb1-1053"><a href="#cb1-1053" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1054"><a href="#cb1-1054" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Predicted Cap %"</span></span>
+<span id="cb1-1054"><a href="#cb1-1054" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb1-1055"><a href="#cb1-1055" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1056"><a href="#cb1-1056" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb1-1057"><a href="#cb1-1057" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1058"><a href="#cb1-1058" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb1-1059"><a href="#cb1-1059" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-1056"><a href="#cb1-1056" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb1-1057"><a href="#cb1-1057" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-1058"><a href="#cb1-1058" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1059"><a href="#cb1-1059" aria-hidden="true" tabindex="-1"></a>From this, we can see that the more Wins there are, we predict high pay.</span>
 <span id="cb1-1060"><a href="#cb1-1060" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1061"><a href="#cb1-1061" aria-hidden="true" tabindex="-1"></a>From this, we can see that the more Wins there are, we predict high pay.</span>
+<span id="cb1-1061"><a href="#cb1-1061" aria-hidden="true" tabindex="-1"></a><span class="in">```{r reg_TOI_percent, echo = FALSE, message = FALSE}</span></span>
 <span id="cb1-1062"><a href="#cb1-1062" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1063"><a href="#cb1-1063" aria-hidden="true" tabindex="-1"></a><span class="in">```{r reg_TOI_percent, echo = FALSE, message = FALSE}</span></span>
+<span id="cb1-1063"><a href="#cb1-1063" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(goalies, <span class="fu">aes</span>(<span class="at">x =</span> TOI_minutes, <span class="at">y =</span> Predicted_Cap_Hit)) <span class="sc">+</span></span>
 <span id="cb1-1064"><a href="#cb1-1064" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1065"><a href="#cb1-1065" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(goalies, <span class="fu">aes</span>(<span class="at">x =</span> TOI_minutes, <span class="at">y =</span> Predicted_Cap_Hit)) <span class="sc">+</span></span>
+<span id="cb1-1065"><a href="#cb1-1065" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">color =</span> <span class="st">"darkgreen"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
 <span id="cb1-1066"><a href="#cb1-1066" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1067"><a href="#cb1-1067" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>, <span class="at">color =</span> <span class="st">"darkgreen"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb1-1067"><a href="#cb1-1067" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
 <span id="cb1-1068"><a href="#cb1-1068" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1069"><a href="#cb1-1069" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1-1069"><a href="#cb1-1069" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Actual TOI vs. Predicted Cap Hit %"</span>,</span>
 <span id="cb1-1070"><a href="#cb1-1070" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1071"><a href="#cb1-1071" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Actual TOI vs. Predicted Cap Hit %"</span>,</span>
+<span id="cb1-1071"><a href="#cb1-1071" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Actual TOI"</span>,</span>
 <span id="cb1-1072"><a href="#cb1-1072" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1073"><a href="#cb1-1073" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Actual TOI"</span>,</span>
+<span id="cb1-1073"><a href="#cb1-1073" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Predicted Cap %"</span></span>
 <span id="cb1-1074"><a href="#cb1-1074" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1075"><a href="#cb1-1075" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Predicted Cap %"</span></span>
+<span id="cb1-1075"><a href="#cb1-1075" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb1-1076"><a href="#cb1-1076" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1077"><a href="#cb1-1077" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb1-1078"><a href="#cb1-1078" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1079"><a href="#cb1-1079" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb1-1080"><a href="#cb1-1080" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-1077"><a href="#cb1-1077" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb1-1078"><a href="#cb1-1078" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-1079"><a href="#cb1-1079" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1080"><a href="#cb1-1080" aria-hidden="true" tabindex="-1"></a>And lastly, more TOI, we predict more pay. And we can see that this plot has more of a linear relationship, showing us that the p-value plays more here.</span>
 <span id="cb1-1081"><a href="#cb1-1081" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1082"><a href="#cb1-1082" aria-hidden="true" tabindex="-1"></a>And lastly, more TOI, we predict more pay. And we can see that this plot has more of a linear relationship, showing us that the p-value plays more here.</span>
+<span id="cb1-1082"><a href="#cb1-1082" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 4.4.2 Test Model for Potential Problems</span></span>
 <span id="cb1-1083"><a href="#cb1-1083" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1084"><a href="#cb1-1084" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 4.3.2 Test Model for Potential Problems</span></span>
+<span id="cb1-1084"><a href="#cb1-1084" aria-hidden="true" tabindex="-1"></a><span class="in">```{r vif, echo=FALSE, include=FALSE}</span></span>
 <span id="cb1-1085"><a href="#cb1-1085" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1086"><a href="#cb1-1086" aria-hidden="true" tabindex="-1"></a><span class="in">```{r vif, echo=FALSE, include=FALSE}</span></span>
+<span id="cb1-1086"><a href="#cb1-1086" aria-hidden="true" tabindex="-1"></a>vif_values <span class="ot">&lt;-</span> <span class="fu">vif</span>(model_caphit)</span>
 <span id="cb1-1087"><a href="#cb1-1087" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1088"><a href="#cb1-1088" aria-hidden="true" tabindex="-1"></a>vif_values <span class="ot">&lt;-</span> <span class="fu">vif</span>(model_caphit)</span>
+<span id="cb1-1088"><a href="#cb1-1088" aria-hidden="true" tabindex="-1"></a>vif_wins <span class="ot">&lt;-</span> <span class="fu">round</span>(vif_values[<span class="st">"Wins"</span>],<span class="dv">5</span>)</span>
 <span id="cb1-1089"><a href="#cb1-1089" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1090"><a href="#cb1-1090" aria-hidden="true" tabindex="-1"></a>vif_wins <span class="ot">&lt;-</span> <span class="fu">round</span>(vif_values[<span class="st">"Wins"</span>],<span class="dv">5</span>)</span>
+<span id="cb1-1090"><a href="#cb1-1090" aria-hidden="true" tabindex="-1"></a>vif_sv_percent <span class="ot">&lt;-</span> <span class="fu">round</span>(vif_values[<span class="st">"Sv_percent"</span>],<span class="dv">5</span>)</span>
 <span id="cb1-1091"><a href="#cb1-1091" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1092"><a href="#cb1-1092" aria-hidden="true" tabindex="-1"></a>vif_sv_percent <span class="ot">&lt;-</span> <span class="fu">round</span>(vif_values[<span class="st">"Sv_percent"</span>],<span class="dv">5</span>)</span>
+<span id="cb1-1092"><a href="#cb1-1092" aria-hidden="true" tabindex="-1"></a>vif_toi_minutes <span class="ot">&lt;-</span> <span class="fu">round</span>(vif_values[<span class="st">"TOI_minutes"</span>],<span class="dv">5</span>)</span>
 <span id="cb1-1093"><a href="#cb1-1093" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1094"><a href="#cb1-1094" aria-hidden="true" tabindex="-1"></a>vif_toi_minutes <span class="ot">&lt;-</span> <span class="fu">round</span>(vif_values[<span class="st">"TOI_minutes"</span>],<span class="dv">5</span>)</span>
+<span id="cb1-1094"><a href="#cb1-1094" aria-hidden="true" tabindex="-1"></a>bp_test <span class="ot">&lt;-</span> <span class="fu">bptest</span>(model_caphit)</span>
 <span id="cb1-1095"><a href="#cb1-1095" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1096"><a href="#cb1-1096" aria-hidden="true" tabindex="-1"></a>bp_test <span class="ot">&lt;-</span> <span class="fu">bptest</span>(model_caphit)</span>
+<span id="cb1-1096"><a href="#cb1-1096" aria-hidden="true" tabindex="-1"></a>bp_pval <span class="ot">&lt;-</span> <span class="fu">round</span>(bp_test<span class="sc">$</span>p.value,<span class="dv">5</span>)</span>
 <span id="cb1-1097"><a href="#cb1-1097" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1098"><a href="#cb1-1098" aria-hidden="true" tabindex="-1"></a>bp_pval <span class="ot">&lt;-</span> <span class="fu">round</span>(bp_test<span class="sc">$</span>p.value,<span class="dv">5</span>)</span>
+<span id="cb1-1098"><a href="#cb1-1098" aria-hidden="true" tabindex="-1"></a>dw_result <span class="ot">&lt;-</span> <span class="fu">dwtest</span>(model_caphit)</span>
 <span id="cb1-1099"><a href="#cb1-1099" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1100"><a href="#cb1-1100" aria-hidden="true" tabindex="-1"></a>dw_result <span class="ot">&lt;-</span> <span class="fu">dwtest</span>(model_caphit)</span>
-<span id="cb1-1101"><a href="#cb1-1101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1102"><a href="#cb1-1102" aria-hidden="true" tabindex="-1"></a>dw_stat <span class="ot">&lt;-</span> <span class="fu">round</span>(dw_result<span class="sc">$</span>statistic,<span class="dv">5</span>)</span>
-<span id="cb1-1103"><a href="#cb1-1103" aria-hidden="true" tabindex="-1"></a>bp_pval</span>
-<span id="cb1-1104"><a href="#cb1-1104" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-1100"><a href="#cb1-1100" aria-hidden="true" tabindex="-1"></a>dw_stat <span class="ot">&lt;-</span> <span class="fu">round</span>(dw_result<span class="sc">$</span>statistic,<span class="dv">5</span>)</span>
+<span id="cb1-1101"><a href="#cb1-1101" aria-hidden="true" tabindex="-1"></a>bp_pval</span>
+<span id="cb1-1102"><a href="#cb1-1102" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-1103"><a href="#cb1-1103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1104"><a href="#cb1-1104" aria-hidden="true" tabindex="-1"></a>We tested a few items: multicollinearity, autocorrelation, and heteroskedasticity. For multicollinearity, we used a variance inflation factor calculation for our predictors, and they have a value of:<span class="sc">\\</span></span>
 <span id="cb1-1105"><a href="#cb1-1105" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1106"><a href="#cb1-1106" aria-hidden="true" tabindex="-1"></a>We tested a few items: multicollinearity, autocorrelation, and heteroskedasticity. For multicollinearity, we used a variance inflation factor calculation for our predictors, and they have a value of:<span class="sc">\\</span></span>
+<span id="cb1-1106"><a href="#cb1-1106" aria-hidden="true" tabindex="-1"></a>Cap Hit off of Percentage we have 8.45</span>
 <span id="cb1-1107"><a href="#cb1-1107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1108"><a href="#cb1-1108" aria-hidden="true" tabindex="-1"></a>Cap Hit off of Percentage we have 8.45</span>
+<span id="cb1-1108"><a href="#cb1-1108" aria-hidden="true" tabindex="-1"></a>Sv% we have 1.10</span>
 <span id="cb1-1109"><a href="#cb1-1109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1110"><a href="#cb1-1110" aria-hidden="true" tabindex="-1"></a>Sv% we have 1.10</span>
+<span id="cb1-1110"><a href="#cb1-1110" aria-hidden="true" tabindex="-1"></a>and with TOI we have 8.71</span>
 <span id="cb1-1111"><a href="#cb1-1111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1112"><a href="#cb1-1112" aria-hidden="true" tabindex="-1"></a>and with TOI we have 8.71</span>
+<span id="cb1-1112"><a href="#cb1-1112" aria-hidden="true" tabindex="-1"></a>With these values being great than 1, we do some correlation with each other.</span>
 <span id="cb1-1113"><a href="#cb1-1113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1114"><a href="#cb1-1114" aria-hidden="true" tabindex="-1"></a>With these values being great than 1, we do some correlation with each other.</span>
+<span id="cb1-1114"><a href="#cb1-1114" aria-hidden="true" tabindex="-1"></a>For autocorrelation we used a Durbin-Watson (DW) test, and we have a value of 1.94, which is very close to 2 meaning have no evidence of autocorrelation.</span>
 <span id="cb1-1115"><a href="#cb1-1115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1116"><a href="#cb1-1116" aria-hidden="true" tabindex="-1"></a>For autocorrelation we used a Durbin-Watson (DW) test, and we have a value of 1.94, which is very close to 2 meaning have no evidence of autocorrelation.</span>
+<span id="cb1-1116"><a href="#cb1-1116" aria-hidden="true" tabindex="-1"></a>For heteroskedasticity we tested this by using a Breusch-Pagan (BP) test and residual plots. For the BP test value we have 0.0002, which means there is strong evidence to suggest heteroskedasticity. We also see this with residual plots below.</span>
 <span id="cb1-1117"><a href="#cb1-1117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1118"><a href="#cb1-1118" aria-hidden="true" tabindex="-1"></a>For heteroskedasticity we tested this by using a Breusch-Pagan (BP) test and residual plots. For the BP test value we have 0.0002, which means there is strong evidence to suggest heteroskedasticity. We also see this with residual plots below.</span>
+<span id="cb1-1118"><a href="#cb1-1118" aria-hidden="true" tabindex="-1"></a><span class="in">```{r reg_wp_resid_plots, echo = FALSE, message = FALSE}</span></span>
 <span id="cb1-1119"><a href="#cb1-1119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1120"><a href="#cb1-1120" aria-hidden="true" tabindex="-1"></a><span class="in">```{r reg_wp_resid_plots, echo = FALSE, message = FALSE}</span></span>
+<span id="cb1-1120"><a href="#cb1-1120" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
 <span id="cb1-1121"><a href="#cb1-1121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1122"><a href="#cb1-1122" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb1-1123"><a href="#cb1-1123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1124"><a href="#cb1-1124" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model_caphit)</span>
-<span id="cb1-1125"><a href="#cb1-1125" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-1122"><a href="#cb1-1122" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model_caphit)</span>
+<span id="cb1-1123"><a href="#cb1-1123" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-1124"><a href="#cb1-1124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1125"><a href="#cb1-1125" aria-hidden="true" tabindex="-1"></a>We see with these plots the following:</span>
 <span id="cb1-1126"><a href="#cb1-1126" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1127"><a href="#cb1-1127" aria-hidden="true" tabindex="-1"></a>We see with these plots the following:</span>
+<span id="cb1-1127"><a href="#cb1-1127" aria-hidden="true" tabindex="-1"></a><span class="sc">\*</span>The "Residuals vs Fitted" shows that the residuals do follow a pattern, mostly at first, but we would've liked to see no pattern through the whole plot.</span>
 <span id="cb1-1128"><a href="#cb1-1128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1129"><a href="#cb1-1129" aria-hidden="true" tabindex="-1"></a><span class="sc">\*</span>The "Residuals vs Fitted" shows that the residuals do follow a pattern, mostly at first, but we would've liked to see no pattern through the whole plot.</span>
+<span id="cb1-1129"><a href="#cb1-1129" aria-hidden="true" tabindex="-1"></a><span class="sc">\*</span>For the "Q-Q Residuals," the residuals at the front and back end do not follow the diagonal line, so they do not follow a normal distribution that well.</span>
 <span id="cb1-1130"><a href="#cb1-1130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1131"><a href="#cb1-1131" aria-hidden="true" tabindex="-1"></a><span class="sc">\*</span>For the "Q-Q Residuals," the residuals at the front and back end do not follow the diagonal line, so they do not follow a normal distribution that well.</span>
+<span id="cb1-1131"><a href="#cb1-1131" aria-hidden="true" tabindex="-1"></a><span class="sc">\*</span>With the "Scale-Location," the line is not flat, meaning the variance is not constant.</span>
 <span id="cb1-1132"><a href="#cb1-1132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1133"><a href="#cb1-1133" aria-hidden="true" tabindex="-1"></a><span class="sc">\*</span>With the "Scale-Location," the line is not flat, meaning the variance is not constant.</span>
+<span id="cb1-1133"><a href="#cb1-1133" aria-hidden="true" tabindex="-1"></a>And the "Residuals vs Leverage" shows a few outliers and high-leverage points, so a few observations are influencing the model as a whole. This suggests that we should modify the model. We test the model with a t-test using robust standard errors to correct for heteroskedasticity.</span>
 <span id="cb1-1134"><a href="#cb1-1134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1135"><a href="#cb1-1135" aria-hidden="true" tabindex="-1"></a>And the "Residuals vs Leverage" shows a few outliers and high-leverage points, so a few observations are influencing the model as a whole. This suggests that we should modify the model. We test the model with a t-test using robust standard errors to correct for heteroskedasticity.</span>
+<span id="cb1-1135"><a href="#cb1-1135" aria-hidden="true" tabindex="-1"></a><span class="in">```{r robust, echo=FALSE, message=FALSE, include=FALSE}</span></span>
 <span id="cb1-1136"><a href="#cb1-1136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1137"><a href="#cb1-1137" aria-hidden="true" tabindex="-1"></a><span class="in">```{r robust, echo=FALSE, message=FALSE, include=FALSE}</span></span>
+<span id="cb1-1137"><a href="#cb1-1137" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(model_caphit, </span>
 <span id="cb1-1138"><a href="#cb1-1138" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1139"><a href="#cb1-1139" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(model_caphit, </span>
+<span id="cb1-1139"><a href="#cb1-1139" aria-hidden="true" tabindex="-1"></a>         <span class="at">vcov =</span> <span class="fu">vcovHC</span>(model_caphit, <span class="at">type =</span> <span class="st">"HC1"</span>))</span>
 <span id="cb1-1140"><a href="#cb1-1140" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1141"><a href="#cb1-1141" aria-hidden="true" tabindex="-1"></a>         <span class="at">vcov =</span> <span class="fu">vcovHC</span>(model_caphit, <span class="at">type =</span> <span class="st">"HC1"</span>))</span>
+<span id="cb1-1141"><a href="#cb1-1141" aria-hidden="true" tabindex="-1"></a>robust_coefs <span class="ot">&lt;-</span> <span class="fu">coeftest</span>(model_caphit, <span class="at">vcov =</span> <span class="fu">vcovHC</span>(model_caphit, <span class="at">type =</span> <span class="st">"HC1"</span>))</span>
 <span id="cb1-1142"><a href="#cb1-1142" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1143"><a href="#cb1-1143" aria-hidden="true" tabindex="-1"></a>robust_coefs <span class="ot">&lt;-</span> <span class="fu">coeftest</span>(model_caphit, <span class="at">vcov =</span> <span class="fu">vcovHC</span>(model_caphit, <span class="at">type =</span> <span class="st">"HC1"</span>))</span>
+<span id="cb1-1143"><a href="#cb1-1143" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract p-values</span></span>
 <span id="cb1-1144"><a href="#cb1-1144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1145"><a href="#cb1-1145" aria-hidden="true" tabindex="-1"></a><span class="co"># Extract p-values</span></span>
+<span id="cb1-1145"><a href="#cb1-1145" aria-hidden="true" tabindex="-1"></a>p_sv <span class="ot">&lt;-</span> <span class="fu">round</span>(robust_coefs[<span class="st">"Sv_percent"</span>, <span class="st">"Pr(&gt;|t|)"</span>], <span class="dv">5</span>)</span>
 <span id="cb1-1146"><a href="#cb1-1146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1147"><a href="#cb1-1147" aria-hidden="true" tabindex="-1"></a>p_sv <span class="ot">&lt;-</span> <span class="fu">round</span>(robust_coefs[<span class="st">"Sv_percent"</span>, <span class="st">"Pr(&gt;|t|)"</span>], <span class="dv">5</span>)</span>
+<span id="cb1-1147"><a href="#cb1-1147" aria-hidden="true" tabindex="-1"></a>p_wins <span class="ot">&lt;-</span> <span class="fu">round</span>(robust_coefs[<span class="st">"Wins"</span>, <span class="st">"Pr(&gt;|t|)"</span>], <span class="dv">5</span>)</span>
 <span id="cb1-1148"><a href="#cb1-1148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1149"><a href="#cb1-1149" aria-hidden="true" tabindex="-1"></a>p_wins <span class="ot">&lt;-</span> <span class="fu">round</span>(robust_coefs[<span class="st">"Wins"</span>, <span class="st">"Pr(&gt;|t|)"</span>], <span class="dv">5</span>)</span>
+<span id="cb1-1149"><a href="#cb1-1149" aria-hidden="true" tabindex="-1"></a>p_toi <span class="ot">&lt;-</span> <span class="fu">round</span>(robust_coefs[<span class="st">"TOI_minutes"</span>, <span class="st">"Pr(&gt;|t|)"</span>], <span class="dv">5</span>)</span>
 <span id="cb1-1150"><a href="#cb1-1150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1151"><a href="#cb1-1151" aria-hidden="true" tabindex="-1"></a>p_toi <span class="ot">&lt;-</span> <span class="fu">round</span>(robust_coefs[<span class="st">"TOI_minutes"</span>, <span class="st">"Pr(&gt;|t|)"</span>], <span class="dv">5</span>)</span>
-<span id="cb1-1152"><a href="#cb1-1152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1153"><a href="#cb1-1153" aria-hidden="true" tabindex="-1"></a>p_intercept <span class="ot">&lt;-</span> <span class="fu">round</span>(robust_coefs[<span class="st">"(Intercept)"</span>, <span class="st">"Pr(&gt;|t|)"</span>], <span class="dv">5</span>)</span>
-<span id="cb1-1154"><a href="#cb1-1154" aria-hidden="true" tabindex="-1"></a>p_wins</span>
-<span id="cb1-1155"><a href="#cb1-1155" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-1151"><a href="#cb1-1151" aria-hidden="true" tabindex="-1"></a>p_intercept <span class="ot">&lt;-</span> <span class="fu">round</span>(robust_coefs[<span class="st">"(Intercept)"</span>, <span class="st">"Pr(&gt;|t|)"</span>], <span class="dv">5</span>)</span>
+<span id="cb1-1152"><a href="#cb1-1152" aria-hidden="true" tabindex="-1"></a>p_wins</span>
+<span id="cb1-1153"><a href="#cb1-1153" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-1154"><a href="#cb1-1154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1155"><a href="#cb1-1155" aria-hidden="true" tabindex="-1"></a>Though this we see in order of significance with p-values, TOI 0.00006, (Very Significant), Sv% 0.00809, (Significant), wins 0.35221, (Not Significant). with values being less than 0.0001, to 0.01, to 0.05 to 0.1 are the levels we see of significance. Seeing this, we are encourage to remove Wins from the model. Let us see if this is the case with a step-wise regression model.</span>
 <span id="cb1-1156"><a href="#cb1-1156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1157"><a href="#cb1-1157" aria-hidden="true" tabindex="-1"></a>Though this we see in order of significance with p-values, TOI 0.00006, (Very Significant), Sv% 0.00809, (Significant), wins 0.35221, (Not Significant). with values being less than 0.0001, to 0.01, to 0.05 to 0.1 are the levels we see of significance. Seeing this, we are encourage to remove Wins from the model. Let us see if this is the case with a step-wise regression model.</span>
+<span id="cb1-1157"><a href="#cb1-1157" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 4.3.3 Step-Wise Regression</span></span>
 <span id="cb1-1158"><a href="#cb1-1158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1159"><a href="#cb1-1159" aria-hidden="true" tabindex="-1"></a><span class="fu">#### 4.3.3 Step-Wise Regression</span></span>
+<span id="cb1-1159"><a href="#cb1-1159" aria-hidden="true" tabindex="-1"></a><span class="in">```{r stepwise, echo=FALSE, include=FALSE}</span></span>
 <span id="cb1-1160"><a href="#cb1-1160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1161"><a href="#cb1-1161" aria-hidden="true" tabindex="-1"></a><span class="in">```{r stepwise, echo=FALSE, include=FALSE}</span></span>
+<span id="cb1-1161"><a href="#cb1-1161" aria-hidden="true" tabindex="-1"></a>model_full <span class="ot">&lt;-</span> <span class="fu">lm</span>(Cap_Percent <span class="sc">~</span> Sv_percent <span class="sc">+</span> Wins <span class="sc">+</span> TOI_minutes, <span class="at">data =</span> goalies)</span>
 <span id="cb1-1162"><a href="#cb1-1162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1163"><a href="#cb1-1163" aria-hidden="true" tabindex="-1"></a>model_full <span class="ot">&lt;-</span> <span class="fu">lm</span>(Cap_Percent <span class="sc">~</span> Sv_percent <span class="sc">+</span> Wins <span class="sc">+</span> TOI_minutes, <span class="at">data =</span> goalies)</span>
+<span id="cb1-1163"><a href="#cb1-1163" aria-hidden="true" tabindex="-1"></a>model_step <span class="ot">&lt;-</span> <span class="fu">step</span>(model_full, <span class="at">direction =</span> <span class="st">"both"</span>)</span>
 <span id="cb1-1164"><a href="#cb1-1164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1165"><a href="#cb1-1165" aria-hidden="true" tabindex="-1"></a>model_step <span class="ot">&lt;-</span> <span class="fu">step</span>(model_full, <span class="at">direction =</span> <span class="st">"both"</span>)</span>
-<span id="cb1-1166"><a href="#cb1-1166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1167"><a href="#cb1-1167" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_step)</span>
-<span id="cb1-1168"><a href="#cb1-1168" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-1165"><a href="#cb1-1165" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_step)</span>
+<span id="cb1-1166"><a href="#cb1-1166" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-1167"><a href="#cb1-1167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1168"><a href="#cb1-1168" aria-hidden="true" tabindex="-1"></a>This process tells us that we should drop Wins and Sv% as variables used in the regression. With visualization:</span>
 <span id="cb1-1169"><a href="#cb1-1169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1170"><a href="#cb1-1170" aria-hidden="true" tabindex="-1"></a>This process tells us that we should drop Wins and Sv% as variables used in the regression. With visualization:</span>
+<span id="cb1-1170"><a href="#cb1-1170" aria-hidden="true" tabindex="-1"></a><span class="in">```{r stepwise_plot, echo=FALSE, message=FALSE, warning=FALSE}</span></span>
 <span id="cb1-1171"><a href="#cb1-1171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1172"><a href="#cb1-1172" aria-hidden="true" tabindex="-1"></a><span class="in">```{r stepwise_plot, echo=FALSE, message=FALSE, warning=FALSE}</span></span>
+<span id="cb1-1172"><a href="#cb1-1172" aria-hidden="true" tabindex="-1"></a>step_trace <span class="ot">&lt;-</span> <span class="fu">step</span>(model_full, <span class="at">direction =</span> <span class="st">"both"</span>, <span class="at">trace =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb1-1173"><a href="#cb1-1173" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1174"><a href="#cb1-1174" aria-hidden="true" tabindex="-1"></a>step_trace <span class="ot">&lt;-</span> <span class="fu">step</span>(model_full, <span class="at">direction =</span> <span class="st">"both"</span>, <span class="at">trace =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-1174"><a href="#cb1-1174" aria-hidden="true" tabindex="-1"></a>step_summary <span class="ot">&lt;-</span> step_trace<span class="sc">$</span>anova</span>
 <span id="cb1-1175"><a href="#cb1-1175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1176"><a href="#cb1-1176" aria-hidden="true" tabindex="-1"></a>step_summary <span class="ot">&lt;-</span> step_trace<span class="sc">$</span>anova</span>
+<span id="cb1-1176"><a href="#cb1-1176" aria-hidden="true" tabindex="-1"></a><span class="co"># Add step numbers</span></span>
 <span id="cb1-1177"><a href="#cb1-1177" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1178"><a href="#cb1-1178" aria-hidden="true" tabindex="-1"></a><span class="co"># Add step numbers</span></span>
+<span id="cb1-1178"><a href="#cb1-1178" aria-hidden="true" tabindex="-1"></a>step_summary<span class="sc">$</span>Step <span class="ot">&lt;-</span> <span class="fu">seq_len</span>(<span class="fu">nrow</span>(step_summary))</span>
 <span id="cb1-1179"><a href="#cb1-1179" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1180"><a href="#cb1-1180" aria-hidden="true" tabindex="-1"></a>step_summary<span class="sc">$</span>Step <span class="ot">&lt;-</span> <span class="fu">seq_len</span>(<span class="fu">nrow</span>(step_summary))</span>
+<span id="cb1-1180"><a href="#cb1-1180" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the AIC path</span></span>
 <span id="cb1-1181"><a href="#cb1-1181" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1182"><a href="#cb1-1182" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the AIC path</span></span>
+<span id="cb1-1182"><a href="#cb1-1182" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(step_summary, <span class="fu">aes</span>(<span class="at">x =</span> Step, <span class="at">y =</span> AIC)) <span class="sc">+</span></span>
 <span id="cb1-1183"><a href="#cb1-1183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1184"><a href="#cb1-1184" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(step_summary, <span class="fu">aes</span>(<span class="at">x =</span> Step, <span class="at">y =</span> AIC)) <span class="sc">+</span></span>
+<span id="cb1-1184"><a href="#cb1-1184" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"steelblue"</span>, <span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
 <span id="cb1-1185"><a href="#cb1-1185" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1186"><a href="#cb1-1186" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">color =</span> <span class="st">"steelblue"</span>, <span class="at">size =</span> <span class="fl">1.2</span>) <span class="sc">+</span></span>
+<span id="cb1-1186"><a href="#cb1-1186" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"darkblue"</span>) <span class="sc">+</span></span>
 <span id="cb1-1187"><a href="#cb1-1187" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1188"><a href="#cb1-1188" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>, <span class="at">color =</span> <span class="st">"darkblue"</span>) <span class="sc">+</span></span>
+<span id="cb1-1188"><a href="#cb1-1188" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
 <span id="cb1-1189"><a href="#cb1-1189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1190"><a href="#cb1-1190" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1-1190"><a href="#cb1-1190" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"AIC Across Stepwise Selection Steps"</span>,</span>
 <span id="cb1-1191"><a href="#cb1-1191" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1192"><a href="#cb1-1192" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"AIC Across Stepwise Selection Steps"</span>,</span>
+<span id="cb1-1192"><a href="#cb1-1192" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Step Number"</span>,</span>
 <span id="cb1-1193"><a href="#cb1-1193" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1194"><a href="#cb1-1194" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Step Number"</span>,</span>
+<span id="cb1-1194"><a href="#cb1-1194" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Akaike Information Criterion (AIC)"</span></span>
 <span id="cb1-1195"><a href="#cb1-1195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1196"><a href="#cb1-1196" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Akaike Information Criterion (AIC)"</span></span>
+<span id="cb1-1196"><a href="#cb1-1196" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb1-1197"><a href="#cb1-1197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1198"><a href="#cb1-1198" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb1-1199"><a href="#cb1-1199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1200"><a href="#cb1-1200" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb1-1201"><a href="#cb1-1201" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-1198"><a href="#cb1-1198" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb1-1199"><a href="#cb1-1199" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-1200"><a href="#cb1-1200" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1201"><a href="#cb1-1201" aria-hidden="true" tabindex="-1"></a><span class="fu">### 4.4.4 Regression with Only TOI against Cap Hit</span></span>
 <span id="cb1-1202"><a href="#cb1-1202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1203"><a href="#cb1-1203" aria-hidden="true" tabindex="-1"></a><span class="fu">### 4.3.4 Regression with Only TOI against Cap Hit</span></span>
+<span id="cb1-1203"><a href="#cb1-1203" aria-hidden="true" tabindex="-1"></a><span class="in">```{r regTOI, echo=FALSE, include=FALSE, message=FALSE}</span></span>
 <span id="cb1-1204"><a href="#cb1-1204" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1205"><a href="#cb1-1205" aria-hidden="true" tabindex="-1"></a><span class="in">```{r regTOI, echo=FALSE, include=FALSE, message=FALSE}</span></span>
+<span id="cb1-1205"><a href="#cb1-1205" aria-hidden="true" tabindex="-1"></a>model_caphit_toi <span class="ot">&lt;-</span> <span class="fu">lm</span>(Cap_Percent <span class="sc">~</span> TOI_minutes, <span class="at">data =</span> goalies)</span>
 <span id="cb1-1206"><a href="#cb1-1206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1207"><a href="#cb1-1207" aria-hidden="true" tabindex="-1"></a>model_caphit_toi <span class="ot">&lt;-</span> <span class="fu">lm</span>(Cap_Percent <span class="sc">~</span> TOI_minutes, <span class="at">data =</span> goalies)</span>
+<span id="cb1-1207"><a href="#cb1-1207" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_caphit_toi)</span>
 <span id="cb1-1208"><a href="#cb1-1208" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1209"><a href="#cb1-1209" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model_caphit_toi)</span>
+<span id="cb1-1209"><a href="#cb1-1209" aria-hidden="true" tabindex="-1"></a>coef_values <span class="ot">&lt;-</span> <span class="fu">coef</span>(model_caphit_toi)</span>
 <span id="cb1-1210"><a href="#cb1-1210" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1211"><a href="#cb1-1211" aria-hidden="true" tabindex="-1"></a>coef_values <span class="ot">&lt;-</span> <span class="fu">coef</span>(model_caphit_toi)</span>
+<span id="cb1-1211"><a href="#cb1-1211" aria-hidden="true" tabindex="-1"></a>intercept      <span class="ot">&lt;-</span> coef_values[<span class="st">"(Intercept)"</span>]</span>
 <span id="cb1-1212"><a href="#cb1-1212" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1213"><a href="#cb1-1213" aria-hidden="true" tabindex="-1"></a>intercept      <span class="ot">&lt;-</span> coef_values[<span class="st">"(Intercept)"</span>]</span>
+<span id="cb1-1213"><a href="#cb1-1213" aria-hidden="true" tabindex="-1"></a>beta_toi       <span class="ot">&lt;-</span> coef_values[<span class="st">"TOI_minutes"</span>]</span>
 <span id="cb1-1214"><a href="#cb1-1214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1215"><a href="#cb1-1215" aria-hidden="true" tabindex="-1"></a>beta_toi       <span class="ot">&lt;-</span> coef_values[<span class="st">"TOI_minutes"</span>]</span>
+<span id="cb1-1215"><a href="#cb1-1215" aria-hidden="true" tabindex="-1"></a>b_toi_dollars <span class="ot">&lt;-</span> beta_toi <span class="sc">*</span> <span class="dv">83875000</span></span>
 <span id="cb1-1216"><a href="#cb1-1216" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1217"><a href="#cb1-1217" aria-hidden="true" tabindex="-1"></a>b_toi_dollars <span class="ot">&lt;-</span> beta_toi <span class="sc">*</span> <span class="dv">83875000</span></span>
+<span id="cb1-1217"><a href="#cb1-1217" aria-hidden="true" tabindex="-1"></a>inter_dollars <span class="ot">&lt;-</span> intercept <span class="sc">*</span> <span class="dv">83875000</span></span>
 <span id="cb1-1218"><a href="#cb1-1218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1219"><a href="#cb1-1219" aria-hidden="true" tabindex="-1"></a>inter_dollars <span class="ot">&lt;-</span> intercept <span class="sc">*</span> <span class="dv">83875000</span></span>
-<span id="cb1-1220"><a href="#cb1-1220" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1221"><a href="#cb1-1221" aria-hidden="true" tabindex="-1"></a>r2 <span class="ot">&lt;-</span> <span class="fu">summary</span>(model_caphit)<span class="sc">$</span>r.squared</span>
-<span id="cb1-1222"><a href="#cb1-1222" aria-hidden="true" tabindex="-1"></a>inter_dollars</span>
-<span id="cb1-1223"><a href="#cb1-1223" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-1224"><a href="#cb1-1224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1225"><a href="#cb1-1225" aria-hidden="true" tabindex="-1"></a><span class="in">```{r regtoi_plot, echo=FALSE, warning=FALSE, message=FALSE}</span></span>
-<span id="cb1-1226"><a href="#cb1-1226" aria-hidden="true" tabindex="-1"></a>goalies<span class="sc">$</span>Predicted_Cap_Hit <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_caphit_toi)</span>
+<span id="cb1-1219"><a href="#cb1-1219" aria-hidden="true" tabindex="-1"></a>r2 <span class="ot">&lt;-</span> <span class="fu">summary</span>(model_caphit)<span class="sc">$</span>r.squared</span>
+<span id="cb1-1220"><a href="#cb1-1220" aria-hidden="true" tabindex="-1"></a>inter_dollars</span>
+<span id="cb1-1221"><a href="#cb1-1221" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-1222"><a href="#cb1-1222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1223"><a href="#cb1-1223" aria-hidden="true" tabindex="-1"></a><span class="in">```{r regtoi_plot, echo=FALSE, warning=FALSE, message=FALSE}</span></span>
+<span id="cb1-1224"><a href="#cb1-1224" aria-hidden="true" tabindex="-1"></a>goalies<span class="sc">$</span>Predicted_Cap_Hit <span class="ot">&lt;-</span> <span class="fu">predict</span>(model_caphit_toi)</span>
+<span id="cb1-1225"><a href="#cb1-1225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1226"><a href="#cb1-1226" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(goalies, <span class="fu">aes</span>(<span class="at">x =</span> Predicted_Cap_Hit, <span class="at">y =</span> Cap_Percent)) <span class="sc">+</span></span>
 <span id="cb1-1227"><a href="#cb1-1227" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1228"><a href="#cb1-1228" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(goalies, <span class="fu">aes</span>(<span class="at">x =</span> Predicted_Cap_Hit, <span class="at">y =</span> Cap_Percent)) <span class="sc">+</span></span>
+<span id="cb1-1228"><a href="#cb1-1228" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
 <span id="cb1-1229"><a href="#cb1-1229" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1230"><a href="#cb1-1230" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>, <span class="at">color =</span> <span class="st">"steelblue"</span>) <span class="sc">+</span></span>
+<span id="cb1-1230"><a href="#cb1-1230" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>) <span class="sc">+</span></span>
 <span id="cb1-1231"><a href="#cb1-1231" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1232"><a href="#cb1-1232" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">slope =</span> <span class="dv">1</span>, <span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">linetype =</span> <span class="st">"solid"</span>) <span class="sc">+</span></span>
+<span id="cb1-1232"><a href="#cb1-1232" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
 <span id="cb1-1233"><a href="#cb1-1233" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1234"><a href="#cb1-1234" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb1-1234"><a href="#cb1-1234" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Actual vs. Predicted Cap Hit Percentage"</span>,</span>
 <span id="cb1-1235"><a href="#cb1-1235" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1236"><a href="#cb1-1236" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Actual vs. Predicted Cap Hit Percentage"</span>,</span>
+<span id="cb1-1236"><a href="#cb1-1236" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Predicted Cap Hit %"</span>,</span>
 <span id="cb1-1237"><a href="#cb1-1237" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1238"><a href="#cb1-1238" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Predicted Cap Hit %"</span>,</span>
+<span id="cb1-1238"><a href="#cb1-1238" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Actual Cap Hit %"</span></span>
 <span id="cb1-1239"><a href="#cb1-1239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1240"><a href="#cb1-1240" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Actual Cap Hit %"</span></span>
+<span id="cb1-1240"><a href="#cb1-1240" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
 <span id="cb1-1241"><a href="#cb1-1241" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1242"><a href="#cb1-1242" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb1-1243"><a href="#cb1-1243" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1244"><a href="#cb1-1244" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
-<span id="cb1-1245"><a href="#cb1-1245" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-1242"><a href="#cb1-1242" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb1-1243"><a href="#cb1-1243" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-1244"><a href="#cb1-1244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1245"><a href="#cb1-1245" aria-hidden="true" tabindex="-1"></a><span class="in">```{r reg_toi_resid_plots, echo = FALSE, message = FALSE}</span></span>
 <span id="cb1-1246"><a href="#cb1-1246" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1247"><a href="#cb1-1247" aria-hidden="true" tabindex="-1"></a><span class="in">```{r reg_toi_resid_plots, echo = FALSE, message = FALSE}</span></span>
+<span id="cb1-1247"><a href="#cb1-1247" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
 <span id="cb1-1248"><a href="#cb1-1248" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1249"><a href="#cb1-1249" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
-<span id="cb1-1250"><a href="#cb1-1250" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1251"><a href="#cb1-1251" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model_caphit_toi)</span>
-<span id="cb1-1252"><a href="#cb1-1252" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-1249"><a href="#cb1-1249" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model_caphit_toi)</span>
+<span id="cb1-1250"><a href="#cb1-1250" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb1-1251"><a href="#cb1-1251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-1252"><a href="#cb1-1252" aria-hidden="true" tabindex="-1"></a>Without loss of generality, we these above plots are ran against using only TOI to predict Cap Hit. Just as one point we have an $R^2$ of 0.387 which is the same but we now have an intercept of 633,525 a beta variable of 1,136 for TOI. So the same amount of noise but overall we see that this explains better.</span>
 <span id="cb1-1253"><a href="#cb1-1253" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1254"><a href="#cb1-1254" aria-hidden="true" tabindex="-1"></a>Without loss of generality, we these above plots are ran against using only TOI to predict Cap Hit. Just as one point we have an $R^2$ of 0.387 which is the same but we now have an intercept of 633,525 a beta variable of 1,136 for TOI. So the same amount of noise but overall we see that this explains better.</span>
+<span id="cb1-1254"><a href="#cb1-1254" aria-hidden="true" tabindex="-1"></a><span class="fu"># 5.0 Conclusion</span></span>
 <span id="cb1-1255"><a href="#cb1-1255" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1256"><a href="#cb1-1256" aria-hidden="true" tabindex="-1"></a><span class="fu"># 5.0 Conclusion</span></span>
+<span id="cb1-1256"><a href="#cb1-1256" aria-hidden="true" tabindex="-1"></a>With our results, we can say that goalies who get more time on ice should receive a greater percentage of pay against the team's salary cap. We found this through inspection of the data, regression analysis, and finally, identified which variables are more important than others. These goalies that do receive more already tend to get more time on ice, but this shows that they should argue for more pay when their contract comes up for renewal. If a goalie starts to get more and more play time, then that should serve as evidence that they deserve more pay, regardless of wins and save percentage. We can infer this as once a team feels confident in a goalie, then they will start to shift towards playing that goalie more than others. There can be statements made that this may only occur because the starting goalie may be injured for a while or out for the season. Although this is true, that would be overlooking the many goalies that can be called up from lower-level leagues or even trades for other goalies. Hopefully, this study can provide goalies with help in the negotiations for contract signing. More time on ice should lead to more wins with a higher save percentage, granting them contracts with more pay each year.</span>
 <span id="cb1-1257"><a href="#cb1-1257" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1258"><a href="#cb1-1258" aria-hidden="true" tabindex="-1"></a>With our results, we can say that goalies who get more time on ice should receive a greater percentage of pay against the team's salary cap. We found this through inspection of the data, regression analysis, and finally, identified which variables are more important than others. These goalies that do receive more already tend to get more time on ice, but this shows that they should argue for more pay when their contract comes up for renewal. If a goalie starts to get more and more play time, then that should serve as evidence that they deserve more pay, regardless of wins and save percentage. We can infer this as once a team feels confident in a goalie, then they will start to shift towards playing that goalie more than others. There can be statements made that this may only occur because the starting goalie may be injured for a while or out for the season. Although this is true, that would be overlooking the many goalies that can be called up from lower-level leagues or even trades for other goalies. Hopefully, this study can provide goalies with help in the negotiations for contract signing. More time on ice should lead to more wins with a higher save percentage, granting them contracts with more pay each year.</span>
+<span id="cb1-1258"><a href="#cb1-1258" aria-hidden="true" tabindex="-1"></a><span class="fu">## 5.1 Suggest Areas of Further Research</span></span>
 <span id="cb1-1259"><a href="#cb1-1259" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1260"><a href="#cb1-1260" aria-hidden="true" tabindex="-1"></a><span class="fu">## 5.1 Suggest Areas of Further Research</span></span>
+<span id="cb1-1260"><a href="#cb1-1260" aria-hidden="true" tabindex="-1"></a>Further research would include more variables in selection, i.e. does it matter which hand a goalie catches and does that lead to better performance. Can also look when a goalie gets traded and receives a pay increase.</span>
 <span id="cb1-1261"><a href="#cb1-1261" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1262"><a href="#cb1-1262" aria-hidden="true" tabindex="-1"></a>Further research would include more variables in selection, i.e. does it matter which hand a goalie catches and does that lead to better performance. Can also look when a goalie gets traded and receives a pay increase.</span>
+<span id="cb1-1262"><a href="#cb1-1262" aria-hidden="true" tabindex="-1"></a><span class="fu"># 6.0 Works Cited</span></span>
 <span id="cb1-1263"><a href="#cb1-1263" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1264"><a href="#cb1-1264" aria-hidden="true" tabindex="-1"></a><span class="fu"># 6.0 Works Cited</span></span>
+<span id="cb1-1264"><a href="#cb1-1264" aria-hidden="true" tabindex="-1"></a>"2025 NHL Cap Hit Rankings." Spotrac, www.spotrac.com/nhl/rankings/player/<span class="sc">\_</span>/year/2025/sort/cap_total. Accessed 8 July 2025. Multiple different outputs and filters used.</span>
 <span id="cb1-1265"><a href="#cb1-1265" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1266"><a href="#cb1-1266" aria-hidden="true" tabindex="-1"></a>"2025 NHL Cap Hit Rankings." Spotrac, www.spotrac.com/nhl/rankings/player/<span class="sc">\_</span>/year/2025/sort/cap_total. Accessed 8 July 2025. Multiple different outputs and filters used.</span>
+<span id="cb1-1266"><a href="#cb1-1266" aria-hidden="true" tabindex="-1"></a>"Collective Bargaining Agreement." The PA \| NHLPA.Com, 16 Sept. 2012, nhlpa.com/the-pa/cba All pages</span>
 <span id="cb1-1267"><a href="#cb1-1267" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1268"><a href="#cb1-1268" aria-hidden="true" tabindex="-1"></a>"Collective Bargaining Agreement." The PA \| NHLPA.Com, 16 Sept. 2012, nhlpa.com/the-pa/cba All pages</span>
+<span id="cb1-1268"><a href="#cb1-1268" aria-hidden="true" tabindex="-1"></a>Ding, Likang, et al. Do NHL Goalies Get Hot in the Playoffs? A Multilevel Logistic Regression Analysis, University of Alberta School of Business, 9 May 2024, arxiv.org/html/2102.09689v2#abstract. Used as a starting point, no reference in paper.</span>
 <span id="cb1-1269"><a href="#cb1-1269" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1270"><a href="#cb1-1270" aria-hidden="true" tabindex="-1"></a>Ding, Likang, et al. Do NHL Goalies Get Hot in the Playoffs? A Multilevel Logistic Regression Analysis, University of Alberta School of Business, 9 May 2024, arxiv.org/html/2102.09689v2#abstract. Used as a starting point, no reference in paper.</span>
+<span id="cb1-1270"><a href="#cb1-1270" aria-hidden="true" tabindex="-1"></a>Emily Kaplan Nov 18, 2024. "Why Paying Goalies Is so Complicated in Today's NHL." ESPN, ESPN Internet Ventures, 18 Nov. 2024, www.espn.com/nhl/story/<span class="sc">\_</span>/id/42446173/goalie-contracts-today-nhl-igor-shesterkin-jeremy-swayman. page 3</span>
 <span id="cb1-1271"><a href="#cb1-1271" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1272"><a href="#cb1-1272" aria-hidden="true" tabindex="-1"></a>Emily Kaplan Nov 18, 2024. "Why Paying Goalies Is so Complicated in Today's NHL." ESPN, ESPN Internet Ventures, 18 Nov. 2024, www.espn.com/nhl/story/<span class="sc">\_</span>/id/42446173/goalie-contracts-today-nhl-igor-shesterkin-jeremy-swayman. page 3</span>
+<span id="cb1-1272"><a href="#cb1-1272" aria-hidden="true" tabindex="-1"></a>Luther, Robert, and Steven C. Estep. "The Goalie Paradox: Why Elite Goalies Don't Guarantee Playoff Success and Predictions for the 2025 Stanley Cup Playoffs." Journal of Sports &amp; Enterainment Law, Havard Law School, 26 Apr. 2025, journals.law.harvard.edu/jsel/2025/04/the-goalie-paradox-why-elite-goalies-dont-guarantee-playoff-success-and-predictions-for-the-2025-stanley-cup-playoffs/.</span>
 <span id="cb1-1273"><a href="#cb1-1273" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1274"><a href="#cb1-1274" aria-hidden="true" tabindex="-1"></a>Luther, Robert, and Steven C. Estep. "The Goalie Paradox: Why Elite Goalies Don't Guarantee Playoff Success and Predictions for the 2025 Stanley Cup Playoffs." Journal of Sports &amp; Enterainment Law, Havard Law School, 26 Apr. 2025, journals.law.harvard.edu/jsel/2025/04/the-goalie-paradox-why-elite-goalies-dont-guarantee-playoff-success-and-predictions-for-the-2025-stanley-cup-playoffs/.</span>
+<span id="cb1-1274"><a href="#cb1-1274" aria-hidden="true" tabindex="-1"></a>"NHL Stats." NHL.Com, National Hockey League, www.nhl.com/stats/goalies?reportType=season&amp;seasonFrom=20212022&amp;seasonTo=20242025&amp;gameType=2&amp;page=1&amp;pageSize=100. Accessed 8 July 2025. Multiple different outputs and filters used.</span>
 <span id="cb1-1275"><a href="#cb1-1275" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1276"><a href="#cb1-1276" aria-hidden="true" tabindex="-1"></a>"NHL Stats." NHL.Com, National Hockey League, www.nhl.com/stats/goalies?reportType=season&amp;seasonFrom=20212022&amp;seasonTo=20242025&amp;gameType=2&amp;page=1&amp;pageSize=100. Accessed 8 July 2025. Multiple different outputs and filters used.</span>
-<span id="cb1-1277"><a href="#cb1-1277" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-1278"><a href="#cb1-1278" aria-hidden="true" tabindex="-1"></a>Rosen, Dan. "Shesterkin Signs 8-Year, \$92 Million Contract with Rangers." NHL.Com, National Hockey League, 8 Dec. 2024, www.nhl.com/news/igor-shesterkin-signs-eight-year-contract-with-new-york-rangers#:\~:text=The%20deal%20makes%20Shesterkin%20the,Canadiens%20on%20July%202%2C%20201 page 1</span>
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-1276"><a href="#cb1-1276" aria-hidden="true" tabindex="-1"></a>Rosen, Dan. "Shesterkin Signs 8-Year, \$92 Million Contract with Rangers." NHL.Com, National Hockey League, 8 Dec. 2024, www.nhl.com/news/igor-shesterkin-signs-eight-year-contract-with-new-york-rangers#:\~:text=The%20deal%20makes%20Shesterkin%20the,Canadiens%20on%20July%202%2C%20201 page 1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
