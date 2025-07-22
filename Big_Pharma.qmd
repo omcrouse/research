@@ -1,7 +1,7 @@
 ---
 title: "ML for Big Pharma"
 author: "Orin Crouse"
-date: 08/07/2025
+date: 22/07/2025
 date-format: "DD/MM/YYYY"
 format:
   html:
@@ -58,9 +58,9 @@ This study explores the relationship between macroeconomic indicators---specific
 
 ## Literature Review
 
-We use NADAC rather than the Average Wholesale Price (AWP), as discussed in the Capital Rx article *What is NADAC & How Does It Differ From AWP?*, which states: \"AWP is an artificial number that is generally highly inflated from the manufacturer\'s price\" (CapRx.com, 3rd paragraph). The article notes that while consumer-facing prices have remained relatively consistent over the past seven years, NADAC has declined by approximately 55% during the same period.
+We use NADAC rather than the Average Wholesale Price (AWP), as discussed in the Capital Rx article *What is NADAC & How Does It Differ From AWP?*, which states: "AWP is an artificial number that is generally highly inflated from the manufacturer's price" (CapRx.com, 3rd paragraph). The article notes that while consumer-facing prices have remained relatively consistent over the past seven years, NADAC has declined by approximately 55% during the same period.
 
-Additionally, the Ohio State University College of Pharmacy\'s article *Shedding Light on NADAC* emphasizes how NADAC, though voluntary, provides a useful pricing benchmark. The paper also highlights proposed legislation to mandate pharmacy participation, but warns that \"transparency alone is not enough\" (Murphy & Rodis, final paragraph). This suggests a need for additional tools---such as machine learning---to better understand and forecast price dynamics.
+Additionally, the Ohio State University College of Pharmacy's article *Shedding Light on NADAC* emphasizes how NADAC, though voluntary, provides a useful pricing benchmark. The paper also highlights proposed legislation to mandate pharmacy participation, but warns that "transparency alone is not enough" (Murphy & Rodis, final paragraph). This suggests a need for additional tools---such as machine learning---to better understand and forecast price dynamics.
 
 ## Data
 
@@ -614,12 +614,12 @@ This study examined how inflation and production cost indicators influence drug 
 
 ## Works cited
 
-Medicaid.gov. \"National Average Drug Acquisition Cost.\" *Medicaid*, www.medicaid.gov/medicaid/nadac. Accessed 22 July 2025.
+Medicaid.gov. "National Average Drug Acquisition Cost." *Medicaid*, www.medicaid.gov/medicaid/nadac. Accessed 22 July 2025.
 
-Federal Reserve Eduction Department, Federal Reserve Bank of St. Louis. \"Producer Price Index by Commodity: All Commodities.\" *FRED*, 16 July 2025, fred.stlouisfed.org/series/PPIACO.
+Federal Reserve Eduction Department, Federal Reserve Bank of St. Louis. "Producer Price Index by Commodity: All Commodities." *FRED*, 16 July 2025, fred.stlouisfed.org/series/PPIACO.
 
-Levy, Joseph, et al. \"A Transparent and Consistent Approach to Assess US Outpatient Drug Costs for Use in Cost-Effectiveness Analyses.\" *Value in Health : The Journal of the International Society for Pharmacoeconomics and Outcomes Research*, U.S. National Library of Medicine, 1 June 2018, pmc.ncbi.nlm.nih.gov/articles/PMC6394851/.
+Levy, Joseph, et al. "A Transparent and Consistent Approach to Assess US Outpatient Drug Costs for Use in Cost-Effectiveness Analyses." *Value in Health : The Journal of the International Society for Pharmacoeconomics and Outcomes Research*, U.S. National Library of Medicine, 1 June 2018, pmc.ncbi.nlm.nih.gov/articles/PMC6394851/.
 
-Murphy, Michael, and Jennifer Rodis. \"Shedding Light on NADAC: How Pricing Power Influences Pharmacy Reimbursement.\" *Shedding Light on NADAC: How Pricing Power Influences Pharmacy Reimbursement \| The Ohio State University College of Pharmacy*, The Ohio State University College of Pharmacy, 26 June 2025, pharmacy.osu.edu/news/shedding-light-nadac-how-pricing-power-influences-pharmacy-reimbursement#:\~:text=The%20NADAC%20disruptions%20of%202024,(PBMs)%20for%20drugs%20dispensed.
+Murphy, Michael, and Jennifer Rodis. "Shedding Light on NADAC: How Pricing Power Influences Pharmacy Reimbursement." *Shedding Light on NADAC: How Pricing Power Influences Pharmacy Reimbursement \| The Ohio State University College of Pharmacy*, The Ohio State University College of Pharmacy, 26 June 2025, pharmacy.osu.edu/news/shedding-light-nadac-how-pricing-power-influences-pharmacy-reimbursement#:\~:text=The%20NADAC%20disruptions%20of%202024,(PBMs)%20for%20drugs%20dispensed.
 
-Unknown. \"What Is NADAC & How Does It Differ from AWP?: Capital Rx.\" *RSS*, 18 Oct. 2024, www.cap-rx.com/insights/what-is-nadac-how-does-it-differ-from-awp.
+Unknown. "What Is NADAC & How Does It Differ from AWP?: Capital Rx." *RSS*, 18 Oct. 2024, www.cap-rx.com/insights/what-is-nadac-how-does-it-differ-from-awp.
