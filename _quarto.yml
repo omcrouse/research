@@ -12,8 +12,8 @@ website:
         text: Goalies
       - href: Crypto.qmd
         text: Crypto
-      - href: Big_Pharma.qmd
-        text: Big Pharma
+      - href: Big-Pharma.qmd
+        text: Big-Pharma
 format:
   html:
     theme: cosmo
